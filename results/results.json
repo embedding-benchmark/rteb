@@ -604,7 +604,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "HumanEval",
@@ -1210,7 +1210,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "JapanLaw",
@@ -1784,7 +1784,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "TAT_QA",
@@ -2391,7 +2391,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "ChatDoctor_HealthCareMagic",
@@ -2998,7 +2998,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "AILACasedocs",
@@ -3638,7 +3638,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "LegalSummarization",
@@ -4245,7 +4245,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "COVID_QA",
@@ -4852,7 +4852,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "DS1000",
@@ -5459,7 +5459,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "FrenchTriviaQAWikicontext",
@@ -6065,7 +6065,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "WikiSQL",
@@ -6672,7 +6672,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "FrenchBoolQ",
@@ -7278,7 +7278,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "LegalQuAD",
@@ -7885,7 +7885,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "FinQA",
@@ -8492,7 +8492,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "FiQAPersonalFinance",
@@ -9099,7 +9099,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "DialogsumGerman",
@@ -9705,7 +9705,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "JapaneseCoNaLa",
@@ -10312,7 +10312,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "HC3Finance",
@@ -10919,7 +10919,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "FrenchOpenFiscalTexts",
@@ -11526,7 +11526,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "MBPP",
@@ -12132,7 +12132,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "ConvFinQA",
@@ -12739,7 +12739,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "APPS",
@@ -13346,7 +13346,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "HealthCareGerman",
@@ -13953,7 +13953,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "AILAStatutes",
@@ -14593,7 +14593,7 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": true
+        "is_closed": false
     },
     {
         "dataset_name": "GermanLegalSentences",
@@ -15200,6 +15200,6 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     }
 ]
