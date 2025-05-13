@@ -1213,7 +1213,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "JapanLaw",
+        "dataset_name": "_JapaneseLegal1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -1787,7 +1787,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "TAT_QA",
+        "dataset_name": "_EnglishFinance1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -4248,7 +4248,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "COVID_QA",
+        "dataset_name": "_EnglishHealthcare1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -5462,7 +5462,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "FrenchTriviaQAWikicontext",
+        "dataset_name": "_French1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -8495,7 +8495,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "FiQAPersonalFinance",
+        "dataset_name": "_EnglishFinance3",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -9102,7 +9102,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "DialogsumGerman",
+        "dataset_name": "_German1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -9708,7 +9708,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "JapaneseCoNaLa",
+        "dataset_name": "_JapaneseCode1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -10922,11 +10922,11 @@
         "is_closed": false
     },
     {
-        "dataset_name": "FrenchOpenFiscalTexts",
+        "dataset_name": "_FrenchLegal1",
         "tier": 3,
         "groups": {
             "text": 1,
-            "finance": 1,
+            "legal": 1,
             "french": 1
         },
         "reference": null,
@@ -12135,7 +12135,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ConvFinQA",
+        "dataset_name": "_EnglishFinance2",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -13349,7 +13349,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "HealthCareGerman",
+        "dataset_name": "_GermanHealthcare1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -14596,7 +14596,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "GermanLegalSentences",
+        "dataset_name": "_GermanLegal1",
         "tier": 3,
         "groups": {
             "text": 1,
