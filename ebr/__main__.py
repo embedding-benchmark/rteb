@@ -117,7 +117,7 @@ def _compile_results(
         results.append({
             **DATASET_REGISTRY[dataset_output_dir.name].model_dump(),
             "results": dataset_results,
-            "is_closed": DATASET_REGISTRY[dataset_output_dir.name].tier != 3
+            "is_closed": DATASET_REGISTRY[dataset_output_dir.name].tier != 0
         })
 
     with open(Path(results_dir) / "results.json", "w") as f:

@@ -1,7 +1,7 @@
 [
     {
         "dataset_name": "FinanceBench",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "finance": 1,
@@ -608,7 +608,7 @@
     },
     {
         "dataset_name": "HumanEval",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "code": 1
@@ -1213,7 +1213,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "JapanLaw",
+        "dataset_name": "_JapaneseLegal1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -1784,10 +1784,10 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
-        "dataset_name": "TAT_QA",
+        "dataset_name": "_EnglishFinance1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -2391,11 +2391,11 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "ChatDoctor_HealthCareMagic",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "healthcare": 1,
@@ -3002,7 +3002,7 @@
     },
     {
         "dataset_name": "AILACasedocs",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "legal": 1,
@@ -3642,7 +3642,7 @@
     },
     {
         "dataset_name": "LegalSummarization",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "legal": 1,
@@ -4248,7 +4248,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "COVID_QA",
+        "dataset_name": "_EnglishHealthcare1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -4852,11 +4852,11 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "DS1000",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "code": 1,
@@ -5462,7 +5462,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "FrenchTriviaQAWikicontext",
+        "dataset_name": "_French1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -6065,11 +6065,11 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "WikiSQL",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "code": 1,
@@ -6676,7 +6676,7 @@
     },
     {
         "dataset_name": "FrenchBoolQ",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "french": 1
@@ -7282,7 +7282,7 @@
     },
     {
         "dataset_name": "LegalQuAD",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "legal": 1,
@@ -7889,7 +7889,7 @@
     },
     {
         "dataset_name": "FinQA",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "finance": 1,
@@ -8495,7 +8495,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "FiQAPersonalFinance",
+        "dataset_name": "_EnglishFinance3",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -9099,10 +9099,10 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
-        "dataset_name": "DialogsumGerman",
+        "dataset_name": "_German1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -9705,10 +9705,10 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
-        "dataset_name": "JapaneseCoNaLa",
+        "dataset_name": "_JapaneseCode1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -10312,11 +10312,11 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "HC3Finance",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "finance": 1,
@@ -10922,11 +10922,11 @@
         "is_closed": false
     },
     {
-        "dataset_name": "FrenchOpenFiscalTexts",
+        "dataset_name": "_FrenchLegal1",
         "tier": 3,
         "groups": {
             "text": 1,
-            "finance": 1,
+            "legal": 1,
             "french": 1
         },
         "reference": null,
@@ -11526,11 +11526,11 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "MBPP",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "code": 1
@@ -12135,7 +12135,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ConvFinQA",
+        "dataset_name": "_EnglishFinance2",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -12739,11 +12739,11 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "APPS",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "code": 1,
@@ -13349,7 +13349,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "HealthCareGerman",
+        "dataset_name": "_GermanHealthcare1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -13953,11 +13953,11 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     },
     {
         "dataset_name": "AILAStatutes",
-        "tier": 3,
+        "tier": 0,
         "groups": {
             "text": 1,
             "legal": 1,
@@ -14596,7 +14596,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "GermanLegalSentences",
+        "dataset_name": "_GermanLegal1",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -15200,6 +15200,6 @@
                 "embd_dtype": "float32"
             }
         ],
-        "is_closed": false
+        "is_closed": true
     }
 ]
