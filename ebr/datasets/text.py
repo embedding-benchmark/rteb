@@ -87,12 +87,110 @@ class TextRetrievalDataset(RetrievalDataset):
         return relevant_docs
 
 
+GermanLegalSentences = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="GermanLegalSentences",
+    tier=3,
+    groups={"text": 1, "legal": 1, "german": 1},
+    reference=None
+)
+
+JapanLaw = DatasetMeta(   # Google breaks with 'Request payload size exceeds the limit: 4194304 bytes.'
+    loader=TextRetrievalDataset,
+    dataset_name="JapanLaw",
+    tier=3,
+    groups={"text": 1, "legal": 1, "japanese": 1},
+    reference=None
+)
+
+FrenchTriviaQAWikicontext = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="FrenchTriviaQAWikicontext",
+    tier=3,
+    groups={"text": 1, "french": 1},
+    reference=None
+)
+
+FrenchOpenFiscalTexts = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="FrenchOpenFiscalTexts",
+    tier=3,
+    groups={"text": 1, "finance": 1, "french": 1},
+    reference=None
+)
+
+TAT_QA = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="TAT_QA",
+    tier=3,
+    groups={"text": 1, "finance": 1, "english": 1},
+    reference=None
+)
+
+ConvFinQA = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="ConvFinQA",
+    tier=3,
+    groups={"text": 1, "finance": 1, "english": 1},
+    reference=None
+)
+
+FiQAPersonalFinance = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="FiQAPersonalFinance",
+    tier=3,
+    groups={"text": 1, "finance": 1, "english": 1},
+    reference=None
+)
+
+# Github = DatasetMeta(
+#     loader=TextRetrievalDataset,
+#     dataset_name="Github",
+#     tier=3,
+#     groups={"text": 1, "code": 1},
+#     reference=None
+# )
+
+JapaneseCoNaLa = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="JapaneseCoNaLa",
+    tier=3,
+    groups={"text": 1, "code": 1, "japanese": 1},
+    reference=None
+)
+
+COVID_QA = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="COVID_QA",
+    tier=3,
+    groups={"text": 1, "healthcare": 1, "english": 1},
+    reference=None
+)
+
+DialogsumGerman = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="DialogsumGerman",
+    tier=3,
+    groups={"text": 1, "german": 1},
+    reference=None
+)
+
+HealthCareGerman = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="HealthCareGerman",
+    tier=3,
+    groups={"text": 1, "healthcare": 1, "german": 1},
+    reference=None
+)
+
+
+
 # Legal datasets
 
 AILACasedocs = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="AILACasedocs",
-    tier=3,
+    tier=0,
     groups={"text": 1, "legal": 1, "english": 1},
     reference=None
 )
@@ -100,7 +198,7 @@ AILACasedocs = DatasetMeta(
 AILAStatutes = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="AILAStatutes",
-    tier=3,
+    tier=0,
     groups={"text": 1, "legal": 1, "english": 1},
     reference=None
 )
@@ -108,7 +206,7 @@ AILAStatutes = DatasetMeta(
 LegalSummarization = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="LegalSummarization",
-    tier=3,
+    tier=0,
     groups={"text": 1, "legal": 1, "english": 1},
     reference=None
 )
@@ -116,7 +214,7 @@ LegalSummarization = DatasetMeta(
 LegalQuAD = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="LegalQuAD",
-    tier=3,
+    tier=0,
     groups={"text": 1, "legal": 1, "german": 1},
     reference=None
 )
@@ -127,7 +225,7 @@ LegalQuAD = DatasetMeta(
 FinanceBench = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="FinanceBench",
-    tier=3,
+    tier=0,
     groups={"text": 1, "finance": 1, "english": 1},
     reference=None
 )
@@ -135,7 +233,7 @@ FinanceBench = DatasetMeta(
 HC3Finance = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="HC3Finance",
-    tier=3,
+    tier=0,
     groups={"text": 1, "finance": 1, "english": 1},
     reference=None
 )
@@ -143,7 +241,7 @@ HC3Finance = DatasetMeta(
 FinQA = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="FinQA",
-    tier=3,
+    tier=0,
     groups={"text": 1, "finance": 1, "english": 1},
     reference=None
 )
@@ -154,7 +252,7 @@ FinQA = DatasetMeta(
 APPS = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="APPS",
-    tier=3,
+    tier=0,
     groups={"text": 1, "code": 1, "english": 1},
     reference=None
 )
@@ -162,7 +260,7 @@ APPS = DatasetMeta(
 DS1000 = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="DS1000",
-    tier=3,
+    tier=0,
     groups={"text": 1, "code": 1, "english": 1},
     reference=None
 )
@@ -170,7 +268,7 @@ DS1000 = DatasetMeta(
 HumanEval = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="HumanEval",
-    tier=3,
+    tier=0,
     groups={"text": 1, "code": 1},
     reference=None
 )
@@ -178,7 +276,7 @@ HumanEval = DatasetMeta(
 MBPP = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="MBPP",
-    tier=3,
+    tier=0,
     groups={"text": 1, "code": 1},
     reference=None
 )
@@ -186,7 +284,7 @@ MBPP = DatasetMeta(
 WikiSQL = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="WikiSQL",
-    tier=3,
+    tier=0,
     groups={"text": 1, "code": 1, "english": 1},
     reference=None
 )
@@ -197,7 +295,7 @@ WikiSQL = DatasetMeta(
 ChatDoctor_HealthCareMagic = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="ChatDoctor_HealthCareMagic",
-    tier=3,
+    tier=0,
     groups={"text": 1, "healthcare": 1, "english": 1},
     reference=None
 )
@@ -208,7 +306,7 @@ ChatDoctor_HealthCareMagic = DatasetMeta(
 FrenchBoolQ = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="FrenchBoolQ",
-    tier=3,
+    tier=0,
     groups={"text": 1, "french": 1},
     reference=None
 )
