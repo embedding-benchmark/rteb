@@ -87,57 +87,57 @@ class TextRetrievalDataset(RetrievalDataset):
         return relevant_docs
 
 
-GermanLegalSentences = DatasetMeta(
+GermanLegal1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="GermanLegalSentences",
+    dataset_name="_GermanLegal1",
     tier=3,
     groups={"text": 1, "legal": 1, "german": 1},
     reference=None
 )
 
-JapanLaw = DatasetMeta(   # Google breaks with 'Request payload size exceeds the limit: 4194304 bytes.'
+JapaneseLegal1 = DatasetMeta(   # Google breaks with 'Request payload size exceeds the limit: 4194304 bytes.'
     loader=TextRetrievalDataset,
-    dataset_name="JapanLaw",
+    dataset_name="_JapaneseLegal1",
     tier=3,
     groups={"text": 1, "legal": 1, "japanese": 1},
     reference=None
 )
 
-FrenchTriviaQAWikicontext = DatasetMeta(
+French1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="FrenchTriviaQAWikicontext",
+    dataset_name="_French1",
     tier=3,
     groups={"text": 1, "french": 1},
     reference=None
 )
 
-FrenchOpenFiscalTexts = DatasetMeta(
+FrenchLegal1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="FrenchOpenFiscalTexts",
+    dataset_name="_FrenchLegal1",
     tier=3,
-    groups={"text": 1, "finance": 1, "french": 1},
+    groups={"text": 1, "legal": 1, "french": 1},
     reference=None
 )
 
-TAT_QA = DatasetMeta(
+EnglishFinance1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="TAT_QA",
-    tier=3,
-    groups={"text": 1, "finance": 1, "english": 1},
-    reference=None
-)
-
-ConvFinQA = DatasetMeta(
-    loader=TextRetrievalDataset,
-    dataset_name="ConvFinQA",
+    dataset_name="_EnglishFinance1",
     tier=3,
     groups={"text": 1, "finance": 1, "english": 1},
     reference=None
 )
 
-FiQAPersonalFinance = DatasetMeta(
+EnglishFinance2 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="FiQAPersonalFinance",
+    dataset_name="_EnglishFinance2",
+    tier=3,
+    groups={"text": 1, "finance": 1, "english": 1},
+    reference=None
+)
+
+EnglishFinance3 = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="_EnglishFinance3",
     tier=3,
     groups={"text": 1, "finance": 1, "english": 1},
     reference=None
@@ -151,33 +151,33 @@ FiQAPersonalFinance = DatasetMeta(
 #     reference=None
 # )
 
-JapaneseCoNaLa = DatasetMeta(
+JapaneseCode1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="JapaneseCoNaLa",
+    dataset_name="_JapaneseCode1",
     tier=3,
     groups={"text": 1, "code": 1, "japanese": 1},
     reference=None
 )
 
-COVID_QA = DatasetMeta(
+EnglishHealthcare1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="COVID_QA",
+    dataset_name="_EnglishHealthcare1",
     tier=3,
     groups={"text": 1, "healthcare": 1, "english": 1},
     reference=None
 )
 
-DialogsumGerman = DatasetMeta(
+German1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="DialogsumGerman",
+    dataset_name="_German1",
     tier=3,
     groups={"text": 1, "german": 1},
     reference=None
 )
 
-HealthCareGerman = DatasetMeta(
+GermanHealthcare1 = DatasetMeta(
     loader=TextRetrievalDataset,
-    dataset_name="HealthCareGerman",
+    dataset_name="_GermanHealthcare1",
     tier=3,
     groups={"text": 1, "healthcare": 1, "german": 1},
     reference=None

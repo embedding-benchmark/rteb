@@ -5,27 +5,16 @@
             "AILACasedocs",
             "AILAStatutes",
             "APPS",
-            "COVID_QA",
             "ChatDoctor_HealthCareMagic",
-            "ConvFinQA",
             "DS1000",
-            "DialogsumGerman",
-            "FiQAPersonalFinance",
             "FinQA",
             "FinanceBench",
             "FrenchBoolQ",
-            "FrenchOpenFiscalTexts",
-            "FrenchTriviaQAWikicontext",
-            "GermanLegalSentences",
             "HC3Finance",
-            "HealthCareGerman",
             "HumanEval",
-            "JapanLaw",
-            "JapaneseCoNaLa",
             "LegalQuAD",
             "LegalSummarization",
             "MBPP",
-            "TAT_QA",
             "WikiSQL"
         ],
         "leaderboard": "Text"
@@ -35,8 +24,6 @@
         "datasets": [
             "AILACasedocs",
             "AILAStatutes",
-            "GermanLegalSentences",
-            "JapanLaw",
             "LegalQuAD",
             "LegalSummarization"
         ],
@@ -48,16 +35,12 @@
             "AILACasedocs",
             "AILAStatutes",
             "APPS",
-            "COVID_QA",
             "ChatDoctor_HealthCareMagic",
-            "ConvFinQA",
             "DS1000",
-            "FiQAPersonalFinance",
             "FinQA",
             "FinanceBench",
             "HC3Finance",
             "LegalSummarization",
-            "TAT_QA",
             "WikiSQL"
         ],
         "leaderboard": "Text"
@@ -68,7 +51,6 @@
             "APPS",
             "DS1000",
             "HumanEval",
-            "JapaneseCoNaLa",
             "MBPP",
             "WikiSQL"
         ],
@@ -77,49 +59,30 @@
     {
         "name": "healthcare",
         "datasets": [
-            "COVID_QA",
-            "ChatDoctor_HealthCareMagic",
-            "HealthCareGerman"
+            "ChatDoctor_HealthCareMagic"
         ],
         "leaderboard": "Text"
     },
     {
         "name": "finance",
         "datasets": [
-            "ConvFinQA",
-            "FiQAPersonalFinance",
             "FinQA",
             "FinanceBench",
-            "FrenchOpenFiscalTexts",
-            "HC3Finance",
-            "TAT_QA"
-        ],
-        "leaderboard": "Text"
-    },
-    {
-        "name": "german",
-        "datasets": [
-            "DialogsumGerman",
-            "GermanLegalSentences",
-            "HealthCareGerman",
-            "LegalQuAD"
+            "HC3Finance"
         ],
         "leaderboard": "Text"
     },
     {
         "name": "french",
         "datasets": [
-            "FrenchBoolQ",
-            "FrenchOpenFiscalTexts",
-            "FrenchTriviaQAWikicontext"
+            "FrenchBoolQ"
         ],
         "leaderboard": "Text"
     },
     {
-        "name": "japanese",
+        "name": "german",
         "datasets": [
-            "JapanLaw",
-            "JapaneseCoNaLa"
+            "LegalQuAD"
         ],
         "leaderboard": "Text"
     }
