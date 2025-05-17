@@ -143,13 +143,21 @@ EnglishFinance3 = DatasetMeta(
     reference=None
 )
 
-# Github = DatasetMeta(
-#     loader=TextRetrievalDataset,
-#     dataset_name="Github",
-#     tier=3,
-#     groups={"text": 1, "code": 1},
-#     reference=None
-# )
+EnglishFinance4 = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="_EnglishFinance4",
+    tier=3,
+    groups={"text": 1, "finance": 1, "english": 1},
+    reference=None
+)
+
+Code1 = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="_Code1",
+    tier=3,
+    groups={"text": 1, "code": 1},
+    reference=None
+)
 
 JapaneseCode1 = DatasetMeta(
     loader=TextRetrievalDataset,
@@ -289,6 +297,14 @@ WikiSQL = DatasetMeta(
     reference=None
 )
 
+FreshStack = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="FreshStack",
+    tier=0,
+    groups={"text": 1, "code": 1},
+    reference=None
+)
+
 
 # Healthcare datasets
 
@@ -297,6 +313,30 @@ ChatDoctor_HealthCareMagic = DatasetMeta(
     dataset_name="ChatDoctor_HealthCareMagic",
     tier=0,
     groups={"text": 1, "healthcare": 1, "english": 1},
+    reference=None
+)
+
+CUREv1_en = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="CUREv1_en",
+    tier=0,
+    groups={"text": 1, "healthcare": 1, "english": 1},
+    reference=None
+)
+
+CUREv1_es = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="CUREv1_es",
+    tier=0,
+    groups={"text": 1, "healthcare": 1, "espanol": 1},
+    reference=None
+)
+
+CUREv1_fr = DatasetMeta(
+    loader=TextRetrievalDataset,
+    dataset_name="CUREv1_fr",
+    tier=0,
+    groups={"text": 1, "healthcare": 1, "french": 1},
     reference=None
 )
 

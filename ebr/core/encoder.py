@@ -3,6 +3,7 @@ import json
 import logging
 from typing import List
 
+from numpy import ndarray
 from pytorch_lightning import LightningModule
 
 from ebr.core.base import EmbeddingModel
@@ -106,7 +107,10 @@ class Encoder(LightningModule):
         embds = self._model(batch)
 
         for idx, embd in zip(indices, embds):
-            obj = {"id": idx, "embd": embd}
+            embd_list = embd
+            if isinstance(embd, ndarray):
+                embd_list = embd.tolist()
+            obj = {"id": idx, "embd": embd_list}
             if self.in_memory:
                 self.local_embds.append(obj)
             if self.save_embds:

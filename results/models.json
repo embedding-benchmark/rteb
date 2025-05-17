@@ -108,18 +108,6 @@
         "alias": null
     },
     {
-        "model_name": "embed-multilingual-v3.0",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": null,
-        "max_tokens": 512,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
-        "alias": null
-    },
-    {
         "model_name": "LaBSE",
         "embd_dtype": "float32",
         "embd_dim": 768,
@@ -141,78 +129,6 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1",
-        "alias": null
-    },
-    {
-        "model_name": "text-embedding-004",
-        "embd_dtype": "float32",
-        "embd_dim": 768,
-        "num_params": null,
-        "max_tokens": 2048,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
-        "alias": null
-    },
-    {
-        "model_name": "text-embedding-3-large",
-        "embd_dtype": "float32",
-        "embd_dim": 3072,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
-    },
-    {
-        "model_name": "text-embedding-3-large",
-        "embd_dtype": "float32",
-        "embd_dim": 512,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
-    },
-    {
-        "model_name": "text-embedding-3-small",
-        "embd_dtype": "float32",
-        "embd_dim": 1536,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
-    },
-    {
-        "model_name": "text-embedding-3-small",
-        "embd_dtype": "float32",
-        "embd_dim": 512,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
-    },
-    {
-        "model_name": "voyage-3",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": null,
-        "max_tokens": 32000,
-        "similarity": "cosine",
-        "query_instruct": "Represent the query for retrieving supporting documents: ",
-        "corpus_instruct": "Represent the document for retrieval: ",
-        "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null
     }
 ]

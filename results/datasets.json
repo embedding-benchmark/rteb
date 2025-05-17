@@ -5,13 +5,30 @@
             "AILACasedocs",
             "AILAStatutes",
             "APPS",
+            "CUREv1_en",
+            "CUREv1_es",
+            "CUREv1_fr",
             "ChatDoctor_HealthCareMagic",
+            "_Code1",
             "DS1000",
+            "_EnglishFinance1",
+            "_EnglishFinance2",
+            "_EnglishFinance3",
+            "_EnglishFinance4",
+            "_EnglishHealthcare1",
             "FinQA",
             "FinanceBench",
+            "_French1",
             "FrenchBoolQ",
+            "_FrenchLegal1",
+            "FreshStack",
+            "_German1",
+            "_GermanHealthcare1",
+            "_GermanLegal1",
             "HC3Finance",
             "HumanEval",
+            "_JapaneseCode1",
+            "_JapaneseLegal1",
             "LegalQuAD",
             "LegalSummarization",
             "MBPP",
@@ -24,6 +41,9 @@
         "datasets": [
             "AILACasedocs",
             "AILAStatutes",
+            "_FrenchLegal1",
+            "_GermanLegal1",
+            "_JapaneseLegal1",
             "LegalQuAD",
             "LegalSummarization"
         ],
@@ -35,8 +55,14 @@
             "AILACasedocs",
             "AILAStatutes",
             "APPS",
+            "CUREv1_en",
             "ChatDoctor_HealthCareMagic",
             "DS1000",
+            "_EnglishFinance1",
+            "_EnglishFinance2",
+            "_EnglishFinance3",
+            "_EnglishFinance4",
+            "_EnglishHealthcare1",
             "FinQA",
             "FinanceBench",
             "HC3Finance",
@@ -49,8 +75,11 @@
         "name": "code",
         "datasets": [
             "APPS",
+            "_Code1",
             "DS1000",
+            "FreshStack",
             "HumanEval",
+            "_JapaneseCode1",
             "MBPP",
             "WikiSQL"
         ],
@@ -59,13 +88,39 @@
     {
         "name": "healthcare",
         "datasets": [
-            "ChatDoctor_HealthCareMagic"
+            "CUREv1_en",
+            "CUREv1_es",
+            "CUREv1_fr",
+            "ChatDoctor_HealthCareMagic",
+            "_EnglishHealthcare1",
+            "_GermanHealthcare1"
+        ],
+        "leaderboard": "Text"
+    },
+    {
+        "name": "espanol",
+        "datasets": [
+            "CUREv1_es"
+        ],
+        "leaderboard": "Text"
+    },
+    {
+        "name": "french",
+        "datasets": [
+            "CUREv1_fr",
+            "_French1",
+            "FrenchBoolQ",
+            "_FrenchLegal1"
         ],
         "leaderboard": "Text"
     },
     {
         "name": "finance",
         "datasets": [
+            "_EnglishFinance1",
+            "_EnglishFinance2",
+            "_EnglishFinance3",
+            "_EnglishFinance4",
             "FinQA",
             "FinanceBench",
             "HC3Finance"
@@ -73,16 +128,20 @@
         "leaderboard": "Text"
     },
     {
-        "name": "french",
+        "name": "german",
         "datasets": [
-            "FrenchBoolQ"
+            "_German1",
+            "_GermanHealthcare1",
+            "_GermanLegal1",
+            "LegalQuAD"
         ],
         "leaderboard": "Text"
     },
     {
-        "name": "german",
+        "name": "japanese",
         "datasets": [
-            "LegalQuAD"
+            "_JapaneseCode1",
+            "_JapaneseLegal1"
         ],
         "leaderboard": "Text"
     }
