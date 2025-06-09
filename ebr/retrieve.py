@@ -152,8 +152,9 @@ def run_retrieve_task(
         trainer.print("Save path:", colored(task_save_path, "yellow"))
         trainer.print("Retrieval evaluation:")
         trainer.print(scores)
+        model_identifier = encoder.model.alias or encoder.model.model_name
         scores |= {
-            "model_name": encoder.model.model_name,
+            "model_name": model_identifier,
             "embd_dim": encoder.model.embd_dim,
             "embd_dtype": encoder.model.embd_dtype
         }

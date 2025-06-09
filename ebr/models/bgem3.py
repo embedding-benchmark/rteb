@@ -13,7 +13,7 @@ class BGEM3EmbeddingModel(EmbeddingModel):
     ):
         super().__init__(model_meta, **kwargs)
         self._model = BGEM3FlagModel(
-            model_name_or_path=model_meta.model_name,
+            model_name_or_path=f"BAAI/{model_meta.model_name}",
         )
 
     def embed(self, data: list[str], input_type: str) -> list[list[float]]:
@@ -23,7 +23,7 @@ class BGEM3EmbeddingModel(EmbeddingModel):
 
 bge_m3 = ModelMeta(
     loader=BGEM3EmbeddingModel,
-    model_name='BAAI/bge-m3',
+    model_name='bge-m3',
     embd_dtype="float32",
     embd_dim=1024,
     max_tokens=8192,
@@ -33,7 +33,7 @@ bge_m3 = ModelMeta(
 #
 # bge_m3_unsupervised = ModelMeta(
 #     loader=BGEM3EmbeddingModel,
-#     model_name='BAAI/bge-m3-unsupervised',
+#     model_name='bge-m3-unsupervised',
 #     embd_dtype="float32",
 #     embd_dim=1024,
 #     max_tokens=8192,
@@ -43,7 +43,7 @@ bge_m3 = ModelMeta(
 #
 # bge_m3_retromae = ModelMeta(
 #     loader=BGEM3EmbeddingModel,
-#     model_name='BAAI/bge-m3-retromae',
+#     model_name='bge-m3-retromae',
 #     embd_dtype="float32",
 #     max_tokens=8192,
 #     similarity="cosine",
@@ -52,7 +52,7 @@ bge_m3 = ModelMeta(
 #
 # bge_large_en_v15 = ModelMeta(
 #     loader=BGEM3EmbeddingModel,
-#     model_name='BAAI/bge-large-en-v1.5',
+#     model_name='bge-large-en-v1.5',
 #     embd_dtype="float32",
 #     embd_dim=1024,
 #     max_tokens=512,
@@ -62,7 +62,7 @@ bge_m3 = ModelMeta(
 #
 # bge_base_en_v15 = ModelMeta(
 #     loader=BGEM3EmbeddingModel,
-#     model_name='BAAI/bge-base-en-v1.5',
+#     model_name='bge-base-en-v1.5',
 #     embd_dtype="float32",
 #     embd_dim=768,
 #     max_tokens=512,
@@ -72,7 +72,7 @@ bge_m3 = ModelMeta(
 #
 # bge_small_en_v15 = ModelMeta(
 #     loader=BGEM3EmbeddingModel,
-#     model_name='BAAI/bge-small-en-v1.5',
+#     model_name='bge-small-en-v1.5',
 #     embd_dtype="float32",
 #     embd_dim=384,
 #     max_tokens=512,

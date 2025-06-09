@@ -74,6 +74,7 @@ text_embedding_3_large = ModelMeta(
     embd_dim=3072,
     max_tokens=8191,
     similarity="cosine",
+    alias="text-embedding-3-large (3072d)",
     reference="https://platform.openai.com/docs/guides/embeddings"
 )
 
@@ -85,6 +86,7 @@ text_embedding_3_large_512d = ModelMeta(
     embd_dim=512,
     max_tokens=8191,
     similarity="cosine",
+    alias="text-embedding-3-large (512d)",
     reference="https://platform.openai.com/docs/guides/embeddings"
 )
 
@@ -96,6 +98,7 @@ text_embedding_3_small = ModelMeta(
     embd_dim=1536,
     max_tokens=8191,
     similarity="cosine",
+    alias="text-embedding-3-small (1536d)",
     reference="https://platform.openai.com/docs/guides/embeddings"
 )
 
@@ -107,5 +110,6 @@ text_embedding_3_small_512d = ModelMeta(
     embd_dim=512,
     max_tokens=8191,
     similarity="cosine",
+    alias="text-embedding-3-small (512d)",
     reference="https://platform.openai.com/docs/guides/embeddings"
 )
