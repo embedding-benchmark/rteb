@@ -1,0 +1,41 @@
+services:
+  ebr-profiler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ebr
+    
+    # Memory limits
+    deploy:
+      resources:
+        limits:
+          memory: 20G
+        reservations:
+          memory: 20G
+          devices:
+            - driver: nvidia
+              count: all # or specify a number, e.g., 1
+              capabilities: [gpu]
+
+    # For Docker Desktop on Mac, use this instead:
+    mem_limit: 20g
+    memswap_limit: 20g
+
+    # Volumes for persisting profiling results
+    volumes:
+      - ./data:/app/data:ro
+      - ./api_keys:/app/api_keys:ro
+      
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    
+    # Restart policy
+    restart: "no"
