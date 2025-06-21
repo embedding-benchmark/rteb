@@ -10,7 +10,11 @@ from ebr.core.meta import ModelMeta
 
 from google import genai
 from google.genai.types import EmbedContentConfig
-from google.genai.errors import APIError
+import vertexai
+from vertexai.language_models import TextEmbeddingModel
+from google.oauth2 import service_account
+
+USE_VERTEX = True
 
 
 class GoogleEmbeddingModel(APIEmbeddingModel):
@@ -28,6 +32,9 @@ class GoogleEmbeddingModel(APIEmbeddingModel):
             **kwargs
         )
         self._client = None
+        if USE_VERTEX:
+            credentials = service_account.Credentials.from_service_account_file("/Users/fodizoltan/Downloads/gemini-430116-95a3f0ae96f3.json")
+            vertexai.init(credentials=credentials, project="gemini-430116")
 
     @property
     def client(self) -> genai.Client:
@@ -37,15 +44,24 @@ class GoogleEmbeddingModel(APIEmbeddingModel):
         return self._client
 
     def embed(self, data: Any, input_type: str) -> list[list[float]]:
-        response = self.client.models.embed_content(
-            model=self._model_meta.model_name,
-            contents=data,
-            config=EmbedContentConfig(
-                task_type="RETRIEVAL_QUERY" if input_type == "query" else "RETRIEVAL_DOCUMENT",
-                output_dimensionality=self.embd_dim,
-            ),
-        )
-        return [embedding.values for embedding in response.embeddings]
+        data = [text if len(text) > 0 else 'none' for text in data ]
+        if USE_VERTEX:
+            model = TextEmbeddingModel.from_pretrained(self._model_meta.model_name)
+            embeddings = model.get_embeddings(
+                texts=data,
+                auto_truncate=True,
+            )
+            return [embedding.values for embedding in embeddings]
+        else:
+            response = self.client.models.embed_content(
+                model=self._model_meta.model_name,
+                contents=data,
+                config=EmbedContentConfig(
+                    task_type="RETRIEVAL_QUERY" if input_type == "query" else "RETRIEVAL_DOCUMENT",
+                    output_dimensionality=self.embd_dim,
+                ),
+            )
+            return [embedding.values for embedding in response.embeddings]
 
     def forward(self, batch: dict[str, Any]) -> list[list[float]]:
         num_tries = 0
@@ -56,11 +72,11 @@ class GoogleEmbeddingModel(APIEmbeddingModel):
                 return result
             except Exception as e:
                 logging.error(e)
-                if isinstance(e, APIError):
-                    if e.code == 429:
+                if hasattr(e, "code"):
+                    if str(e.code) == "429":
                         print("RLE")
                         time.sleep(60)
-                    elif e.code >= 500:
+                    elif str(e.code) >= "500":
                         print("Other error")
                         time.sleep(300)
                     else:
@@ -70,11 +86,22 @@ class GoogleEmbeddingModel(APIEmbeddingModel):
         raise Exception(f"Calling the API failed {num_tries} times")
 
 
+"""
 text_embedding_004 = ModelMeta(
     loader=GoogleEmbeddingModel,
     model_name="text-embedding-004",
     embd_dtype="float32",
     embd_dim=768,
+    max_tokens=2048,
+    similarity="cosine",
+    reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings"
+)
+"""
+text_embedding_001 = ModelMeta(
+    loader=GoogleEmbeddingModel,
+    model_name="text-embedding-001",
+    embd_dtype="float32",
+    embd_dim=3072,
     max_tokens=2048,
     similarity="cosine",
     reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings"
