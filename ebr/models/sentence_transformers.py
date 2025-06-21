@@ -53,7 +53,7 @@ qwen3_embedding_8B = ModelMeta(
     max_tokens=32768,
     num_params=8_000_000_000,
     similarity="cosine",
-    reference="https://huggingface.co/intfloat/e5-mistral-7b-instruct"
+    reference="https://huggingface.co/Qwen/Qwen3-Embedding-8B"
 )
 
 
