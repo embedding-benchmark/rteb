@@ -1,5 +1,8 @@
 version: '3.8'
 
+# Define memory limit in one place
+x-memory-limit: &memory_limit 20G
+
 services:
   ebr:
     build:
@@ -11,17 +14,17 @@ services:
     deploy:
       resources:
         limits:
-          memory: 20G
+          memory: *memory_limit
         reservations:
-          memory: 20G
+          memory: *memory_limit
           devices:
             - driver: nvidia
               count: all # or specify a number, e.g., 1
               capabilities: [gpu]
 
     # For Docker Desktop on Mac, use this instead:
-    mem_limit: 20g
-    memswap_limit: 20g
+    mem_limit: *memory_limit
+    memswap_limit: *memory_limit
 
     # Volumes for persisting data and results
     volumes:
