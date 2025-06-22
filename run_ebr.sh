@@ -73,6 +73,17 @@ echo -e "${YELLOW}Starting EBR...${NC}"
 echo "This may take a while depending on the dataset size."
 echo ""
 
+# Check if GPU is requested
+if echo "$@" | grep -q "\-\-gpus"; then
+    # GPU mode requested
+    echo -e "${YELLOW}GPU mode detected${NC}"
+    export NVIDIA_VISIBLE_DEVICES=all
+else
+    # CPU mode (default)
+    echo -e "${YELLOW}CPU mode detected${NC}"
+    export NVIDIA_VISIBLE_DEVICES=none
+fi
+
 # Run with docker-compose and pass any arguments to the container
 echo -e "${YELLOW}Running with arguments: $@${NC}"
 $DOCKER_COMPOSE_CMD run --rm ebr "$@"

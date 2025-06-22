@@ -17,10 +17,6 @@ services:
           memory: *memory_limit
         reservations:
           memory: *memory_limit
-          devices:
-            - driver: nvidia
-              count: all # or specify a number, e.g., 1
-              capabilities: [gpu]
 
     # For Docker Desktop on Mac, use this instead:
     mem_limit: *memory_limit
@@ -47,6 +43,6 @@ services:
     # Restart policy - don't restart automatically
     restart: "no"
     
-    # Set environment variables for GPU usage
+    # Environment variables
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES:-none}

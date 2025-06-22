@@ -6,7 +6,7 @@ This document explains how to run the EBR (Embedding Benchmark and Retrieval) ap
 
 - Docker installed on your system
 - Docker Compose installed on your system
-- NVIDIA Docker runtime (for GPU support)
+- NVIDIA Docker runtime (only if you need GPU support)
 
 ## Quick Start
 
@@ -30,7 +30,7 @@ This document explains how to run the EBR (Embedding Benchmark and Retrieval) ap
 
 All arguments supported by the EBR application can be passed directly to the Docker container. Here are some common ones:
 
-- `--gpus <num>`: Number of GPUs to use (default: 0)
+- `--gpus <num>`: Number of GPUs to use (default: 0, requires NVIDIA Docker runtime)
 - `--cpus <num>`: Number of CPUs to use (default: 1)
 - `--batch_size <num>`: Batch size for encoding (default: 16)
 - `--data_path <path>`: Path to the dataset (default: /app/data)
@@ -50,7 +50,7 @@ The Docker setup includes:
 
 1. A Docker image with all necessary dependencies
 2. Volume mounts for data and output
-3. GPU support for accelerated processing
+3. Optional GPU support for accelerated processing (requires NVIDIA Docker runtime)
 4. Memory limits to prevent out-of-memory errors
 
 ## Customizing the Docker Environment
