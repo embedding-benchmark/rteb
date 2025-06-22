@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script to run memory profiling for EBR with Docker
+# Script to run EBR with Docker
 
 # Colors for output
 RED='\033[0;31m'
@@ -35,17 +35,17 @@ fi
 
 echo -e "${GREEN}✓ Docker image built successfully${NC}"
 
-# Run the profiling
+# Run the application
 echo ""
-echo -e "${YELLOW}Starting memory profiling...${NC}"
+echo -e "${YELLOW}Starting EBR...${NC}"
 echo "This may take a while depending on the dataset size."
-echo "Profiling results will be saved to ./profiling_results/"
 echo ""
 
-# Run with docker-compose
-sudo docker-compose up
+# Run with docker-compose and pass any arguments to the container
+echo -e "${YELLOW}Running with arguments: $@${NC}"
+sudo docker-compose run --rm ebr "$@"
 
-# Check if profiling completed
+# Check if execution completed
 if [ $? -eq 0 ]; then
     echo ""
     echo -e "${GREEN}✓ Completed successfully!${NC}"

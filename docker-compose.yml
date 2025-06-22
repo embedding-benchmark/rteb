@@ -1,5 +1,7 @@
+version: '3.8'
+
 services:
-  ebr-profiler:
+  ebr:
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,21 +23,27 @@ services:
     mem_limit: 20g
     memswap_limit: 20g
 
-    # Volumes for persisting profiling results
+    # Volumes for persisting data and results
     volumes:
-      - ./data:/app/data:ro
+      - ./data:/app/data:ro  # Data is mounted as read-only for better performance
       - ./api_keys:/app/api_keys:ro
+      - ./output:/app/output  # Mount output directory to persist results
+      - ./frank_output:/app/frank_output  # Mount additional output if needed
       
     # Security options
     security_opt:
       - no-new-privileges:true
     
-    # Logging
+    # Logging with size limits to prevent disk space issues
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "3"
     
-    # Restart policy
+    # Restart policy - don't restart automatically
     restart: "no"
+    
+    # Set environment variables for GPU usage
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
