@@ -1,0 +1,46 @@
+# Define memory limit in one place
+x-memory-limit: &memory_limit 20G
+
+services:
+  ebr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ebr
+    
+    # Memory limits
+    deploy:
+      resources:
+        limits:
+          memory: *memory_limit
+        reservations:
+          memory: *memory_limit
+
+    # For Docker Desktop on Mac, use this instead:
+    mem_limit: *memory_limit
+    memswap_limit: *memory_limit
+
+    # Volumes for persisting data and results
+    volumes:
+      - ./data:/app/data:ro  # Data is mounted as read-only for better performance
+      - ./api_keys:/app/api_keys:ro
+      - ./output:/app/output  # Mount output directory to persist results
+      - ./frank_output:/app/frank_output  # Mount additional output if needed
+      
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    
+    # Logging with size limits to prevent disk space issues
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+    
+    # Restart policy - don't restart automatically
+    restart: "no"
+    
+    # Environment variables
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_VISIBLE_DEVICES:-none}

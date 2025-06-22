@@ -16,3 +16,6 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/embedding-benchmark/ebr"
 Issues = "https://github.com/embedding-benchmark/ebr/issues"
+
+[tool.setuptools]
+packages = ["ebr"]
