@@ -53,10 +53,21 @@ class VoyageAIEmbeddingModel(APIEmbeddingModel):
         return voyageai.error.ServiceUnavailableError
 
 
-
 voyage_3 = ModelMeta(
     loader=VoyageAIEmbeddingModel,
     model_name="voyage-3",
+    embd_dtype="float32",
+    embd_dim=1024,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings"
+)
+
+voyage_35 = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-3.5",
     embd_dtype="float32",
     embd_dim=1024,
     max_tokens=32_000,

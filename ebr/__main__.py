@@ -18,6 +18,78 @@ logger = logging.getLogger(__name__)
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
+def list_available_models():
+    """Print a list of available models for the user."""
+    print("\nAVAILABLE MODELS")
+    print("===============")
+    print("Use these model IDs with the --models argument (e.g., --models model_id1,model_id2)")
+    print("\nFormat: MODEL_ID: ALIAS [DIMENSIONS]")
+    print("-" * 80)
+    
+    # Group models by provider for better organization
+    models_by_provider = {}
+    for model_id, model_meta in MODEL_REGISTRY.items():
+        provider = model_id.split('_')[0] if '_' in model_id else "Other"
+        if "__" in provider:
+            provider = provider.split("__")[0]
+        
+        if provider not in models_by_provider:
+            models_by_provider[provider] = []
+        
+        alias = model_meta.alias if model_meta.alias else model_id
+        dim_info = f"{model_meta.embd_dim}d" if model_meta.embd_dim else ""
+        models_by_provider[provider].append((model_id, alias, dim_info))
+    
+    # Print models grouped by provider
+    for provider, models in sorted(models_by_provider.items()):
+        print(f"\n{provider.upper()} Models:")
+        for model_id, alias, dim_info in sorted(models):
+            print(f"  - {model_id}: {alias} [{dim_info}]")
+
+
+def list_available_tasks():
+    """Print a list of available tasks/datasets for the user."""
+    print("\nAVAILABLE TASKS/DATASETS")
+    print("=====================")
+    print("Use these task names with the --task_name argument (e.g., --task_name task1,task2)")
+    print("\nFormat: TASK_NAME: [TIER] (GROUPS)")
+    print("-" * 80)
+    
+    # Group datasets by their groups for better organization
+    tasks_by_group = {}
+    for task_id, task_meta in DATASET_REGISTRY.items():
+        groups = list(task_meta.groups.keys())
+        group_key = ", ".join(sorted(groups)) if groups else "Ungrouped"
+        
+        if group_key not in tasks_by_group:
+            tasks_by_group[group_key] = []
+        
+        # Get tier information
+        tier_info = f"Tier {task_meta.tier}"
+        if task_meta.tier == 0:
+            tier_info += " (fully open)"
+        elif task_meta.tier == 1:
+            tier_info += " (docs & queries open)"
+        elif task_meta.tier == 2:
+            tier_info += " (only docs open)"
+        elif task_meta.tier == 3:
+            tier_info += " (fully held out)"
+        
+        tasks_by_group[group_key].append((task_id, tier_info, groups))
+    
+    # Print tasks grouped by their groups
+    for group, tasks in sorted(tasks_by_group.items()):
+        print(f"\n{group} Tasks:")
+        for task_id, tier_info, groups in sorted(tasks):
+            groups_str = f"({', '.join(groups)})" if groups else ""
+            print(f"  - {task_id}: [{tier_info}] {groups_str}")
+            
+            # Add reference if available
+            if DATASET_REGISTRY[task_id].reference:
+                print(f"    Reference: {DATASET_REGISTRY[task_id].reference}")
+    
+    print("\nNote: Tasks are grouped by their category. The tier indicates data availability.")
+
 def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
 
@@ -37,6 +109,16 @@ def get_args() -> argparse.Namespace:
         help="Embeddings will be stored in memory if the amount is below this threshold.")
 
     # Model
+    parser.add_argument(
+        "--models", type=str, default=None, 
+        help="Comma-separated list of model IDs to evaluate (e.g., 'text-embedding-3-small_float32_512d,bge-m3_float32_1024d'). "
+             "Use --list-models to see all available model IDs. If not specified, all models will be evaluated.")
+    parser.add_argument(
+        "--list-models", action="store_true",
+        help="List all available models with their IDs and aliases, then exit. Use these IDs with the --models argument.")
+    parser.add_argument(
+        "--list-tasks", action="store_true",
+        help="List all available tasks/datasets with their details, then exit. Use these names with the --task_name argument.")
     #parser.add_argument(
     #    "--model_name", type=str, default=None, help="Model name or path.")
     #parser.add_argument(
@@ -146,8 +228,23 @@ def main(args: argparse.Namespace):
     if not trainer.is_global_zero:
         logging.basicConfig(level=logging.ERROR)
 
+    # Filter models based on the --models argument
+    models_to_evaluate = MODEL_REGISTRY
+    if args.models:
+        model_ids = [model_id.strip() for model_id in args.models.split(',')]
+        models_to_evaluate = {model_id: MODEL_REGISTRY[model_id] for model_id in model_ids if model_id in MODEL_REGISTRY}
+        if not models_to_evaluate:
+            logger.error(f"No valid models found in the provided list: {args.models}")
+            logger.info(f"Available models: {list(MODEL_REGISTRY.keys())}")
+            return
+        
+        if trainer.is_global_zero:
+            trainer.print(f"Evaluating {len(models_to_evaluate)} models: {list(models_to_evaluate.keys())}")
+    
     # Evaluate each model on the specified datasets
-    for model_meta in MODEL_REGISTRY.values():
+    for model_id, model_meta in models_to_evaluate.items():
+        if trainer.is_global_zero:
+            trainer.print(f"Evaluating model: {model_id}")
 
         encoder = Encoder(
             model_meta.load_model(),
@@ -163,8 +260,8 @@ def main(args: argparse.Namespace):
         eval_results = {}
         for dataset_meta in DATASET_REGISTRY.values():
 
-            #if trainer.is_global_zero:
-            #    trainer.print(f"Evaluating {model_meta.model_name} on {dataset_meta.dataset_name}")
+            if trainer.is_global_zero:
+                trainer.print(f"Evaluating {model_meta.model_name} on {dataset_meta.dataset_name}")
 
             result = run_retrieve_task(dataset_meta, trainer, encoder, retriever, args)
             eval_results[dataset_meta.dataset_name] = result
@@ -184,4 +281,15 @@ def main(args: argparse.Namespace):
 
 if __name__ == "__main__":
     args = get_args()
-    main(args)
+    
+    # Handle listing flags
+    if args.list_models or args.list_tasks:
+        if args.list_models:
+            list_available_models()
+            # Add a separator if both flags are passed
+            if args.list_tasks:
+                print("\n" + "=" * 80 + "\n")
+        if args.list_tasks:
+            list_available_tasks()
+    else:
+        main(args)
