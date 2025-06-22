@@ -55,7 +55,6 @@ class CohereEmbeddingModel(APIEmbeddingModel):
         return cohere.errors.too_many_requests_error.TooManyRequestsError
 
 
-"""
 embed_multilingual_v3_0 = ModelMeta(
     loader=CohereEmbeddingModel,
     model_name="embed-multilingual-v3.0",
@@ -65,5 +64,4 @@ embed_multilingual_v3_0 = ModelMeta(
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed"
 )
-"""
 

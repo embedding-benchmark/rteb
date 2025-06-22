@@ -86,7 +86,6 @@ class GoogleEmbeddingModel(APIEmbeddingModel):
         raise Exception(f"Calling the API failed {num_tries} times")
 
 
-"""
 text_embedding_004 = ModelMeta(
     loader=GoogleEmbeddingModel,
     model_name="text-embedding-004",
@@ -96,7 +95,7 @@ text_embedding_004 = ModelMeta(
     similarity="cosine",
     reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings"
 )
-"""
+
 text_embedding_001 = ModelMeta(
     loader=GoogleEmbeddingModel,
     model_name="text-embedding-001",
