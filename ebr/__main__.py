@@ -51,7 +51,7 @@ def list_available_tasks():
     """Print a list of available tasks/datasets for the user."""
     print("\nAVAILABLE TASKS/DATASETS")
     print("=====================")
-    print("Use these task names with the --task_name argument (e.g., --task_name task1,task2)")
+    print("Use these task names with the --tasks argument (e.g., --tasks task1,task2)")
     print("\nFormat: TASK_NAME: [TIER] (GROUPS)")
     print("-" * 80)
     
@@ -118,7 +118,7 @@ def get_args() -> argparse.Namespace:
         help="List all available models with their IDs and aliases, then exit. Use these IDs with the --models argument.")
     parser.add_argument(
         "--list-tasks", action="store_true",
-        help="List all available tasks/datasets with their details, then exit. Use these names with the --task_name argument.")
+        help="List all available tasks/datasets with their details, then exit. Use these names with the --tasks argument.")
     #parser.add_argument(
     #    "--model_name", type=str, default=None, help="Model name or path.")
     #parser.add_argument(
@@ -132,7 +132,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "--data_path", type=str, default="data/", help="Path of the dataset, must be specified for custom tasks.")
     parser.add_argument(
-        "--task_name", type=str, default=None, help="Name of the task. Can be multiple tasks splitted by `,`.")
+        "--tasks", type=str, default=None, help="Comma-separated list of task names to evaluate (e.g., 'task1,task2'). Use --list-tasks to see all available task names. If not specified, all tasks will be evaluated.")
     parser.add_argument(
         "--data_type", default="eval", choices=["eval", "train", "chunk", "merge"], help="Dataset type.")
     parser.add_argument(
@@ -187,6 +187,9 @@ def _compile_results(
 ):
     results = []
     for dataset_output_dir in Path(output_dir).iterdir():
+        # Skip if the dataset is not in the registry
+        if dataset_output_dir.name not in DATASET_REGISTRY:
+            continue
 
         dataset_results = []
         for one_result in dataset_output_dir.iterdir():
@@ -257,9 +260,21 @@ def main(args: argparse.Namespace):
             save_prediction=args.save_prediction
         )
 
+        # Filter datasets based on the --tasks argument
+        datasets_to_evaluate = DATASET_REGISTRY
+        if args.tasks:
+            task_names = [task_name.strip() for task_name in args.tasks.split(',')]
+            datasets_to_evaluate = {task_name: DATASET_REGISTRY[task_name] for task_name in task_names if task_name in DATASET_REGISTRY}
+            if not datasets_to_evaluate:
+                logger.error(f"No valid tasks found in the provided list: {args.tasks}")
+                logger.info(f"Available tasks: {list(DATASET_REGISTRY.keys())}")
+                return
+            
+            if trainer.is_global_zero:
+                trainer.print(f"Evaluating on {len(datasets_to_evaluate)} tasks: {list(datasets_to_evaluate.keys())}")
+        
         eval_results = {}
-        for dataset_meta in DATASET_REGISTRY.values():
-
+        for dataset_name, dataset_meta in datasets_to_evaluate.items():
             if trainer.is_global_zero:
                 trainer.print(f"Evaluating {model_meta.model_name} on {dataset_meta.dataset_name}")
 

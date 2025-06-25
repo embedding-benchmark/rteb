@@ -45,6 +45,17 @@ class QwenEmbeddingModel(SentenceTransformersEmbeddingModel):
         return "Qwen"
 
 
+qwen3_embedding_06B = ModelMeta(
+    loader=QwenEmbeddingModel,
+    model_name="Qwen3-Embedding-0.6B",
+    embd_dtype="float32",
+    embd_dim=1024,
+    max_tokens=32768,
+    num_params=600_000_000,
+    similarity="cosine",
+    reference="https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"
+)
+
 qwen3_embedding_8B = ModelMeta(
     loader=QwenEmbeddingModel,
     model_name="Qwen3-Embedding-8B",
