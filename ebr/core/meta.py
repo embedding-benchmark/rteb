@@ -34,7 +34,11 @@ class DatasetMeta(BaseModel):
     """Dataset metadata object.
 
     Attributes:
-        TODO
+        loader: Callable that loads the dataset instance.
+        dataset_name: Name of the dataset.
+        tier: Dataset availability tier (0=fully open, 1=docs+queries open, 2=docs only, 3=held out).
+        groups: Dictionary mapping group names to their weights/priorities.
+        reference: Optional reference URL or citation for the dataset.
     """
 
     model_config: ConfigDict = ConfigDict(protected_namespaces=())

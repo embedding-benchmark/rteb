@@ -9,11 +9,15 @@ class BGEM3EmbeddingModel(EmbeddingModel):
     def __init__(
         self,
         model_meta: ModelMeta,
+        device: str = None,
         **kwargs
     ):
         super().__init__(model_meta, **kwargs)
+        # BGEM3FlagModel uses 'devices' parameter (plural) and expects a list
+        devices = [device] if device else None
         self._model = BGEM3FlagModel(
             model_name_or_path=f"BAAI/{model_meta.model_name}",
+            devices=devices,
         )
 
     def embed(self, data: list[str], input_type: str) -> list[list[float]]:

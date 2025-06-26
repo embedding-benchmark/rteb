@@ -4,11 +4,14 @@ from ebr.core.meta import ModelMeta
 
 GritLM = LazyImport("gritlm", attribute="GritLM")
 
+from gritlm import GritLM
+
 
 class GRITLMEmbeddingModel(EmbeddingModel):
     def __init__(
         self,
         model_meta: ModelMeta,
+        device: str = None,
         **kwargs
     ):
         super().__init__(model_meta, **kwargs)
@@ -17,6 +20,7 @@ class GRITLMEmbeddingModel(EmbeddingModel):
             normalized=False,
             torch_dtype=model_meta.embd_dtype,
             mode="embedding",
+            device=device,
         )
 
     def embed(self, data: list[str], input_type: str) -> list[list[float]]:

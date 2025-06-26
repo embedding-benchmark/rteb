@@ -10,10 +10,15 @@ class SentenceTransformersEmbeddingModel(EmbeddingModel):
     def __init__(
         self,
         model_meta: ModelMeta,
+        device: str = None,
         **kwargs
     ):
         super().__init__(model_meta, **kwargs)
-        self._model = SentenceTransformer(f"{self.model_name_prefix}/{self.model_name}", trust_remote_code=True)
+        self._model = SentenceTransformer(
+            f"{self.model_name_prefix}/{self.model_name}", 
+            device=device,
+            trust_remote_code=True
+        )
 
     def embed(self, data: str, input_type: str) -> list[list[float]]:
         return self._model.encode(data)

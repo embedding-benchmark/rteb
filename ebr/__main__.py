@@ -249,8 +249,11 @@ def main(args: argparse.Namespace):
         if trainer.is_global_zero:
             trainer.print(f"Evaluating model: {model_id}")
 
+        # Determine device based on GPU/CPU arguments
+        device = "cuda" if args.gpus > 0 else "cpu"
+        
         encoder = Encoder(
-            model_meta.load_model(),
+            model_meta.load_model(device=device),
             save_embds=args.save_embds,
             load_embds=args.load_embds
         )
@@ -293,6 +296,7 @@ def main(args: argparse.Namespace):
                     trainer.print(f"{task:<32}{eval_results[task][metric]:.4f}")
 
     _compile_results()
+
 
 if __name__ == "__main__":
     args = get_args()
