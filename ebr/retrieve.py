@@ -57,6 +57,10 @@ def run_retrieve_task(
             if pred_file.exists():
                 return
 
+    model_identifier = encoder.model.alias or encoder.model.model_name
+    embd_dim = encoder.model.embd_dim
+    embd_dtype = encoder.model.embd_dtype
+
     # DataModule manages the datasets
     dataset_kwargs = {
         "query_instruct": encoder.model.query_instruct,
@@ -130,6 +134,11 @@ def run_retrieve_task(
             corpus_embds_files = encoder.get_embd_files()
             dm.set_corpus_embds(corpus_embds=encoder.embds, corpus_embds_files=corpus_embds_files)
 
+        # Offload model to save memory before retrieval phase
+        if hasattr(args, 'offload_model') and args.offload_model:
+            trainer.print(colored("Offloading model to save memory before retrieval...", "yellow"))
+            encoder.offload_model()
+
         # Run retriever
         trainer.print(colored("Retrieve", "yellow"))
         retriever.corpus_embd_dataloader = dm.corpus_embd_dataloader()
@@ -148,15 +157,14 @@ def run_retrieve_task(
         scores = run_retrieve_evaluation(dm.dataset.relevance, retriever.prediction)
         trainer.print("-" * 40)
         trainer.print("Dataset:", colored(f"{dataset_name}", "red"))
-        trainer.print("Model:", colored(f"{encoder.model.model_name}", "red"))
+        trainer.print("Model:", colored(f"{model_identifier}", "red"))
         trainer.print("Save path:", colored(task_save_path, "yellow"))
         trainer.print("Retrieval evaluation:")
         trainer.print(scores)
-        model_identifier = encoder.model.alias or encoder.model.model_name
         scores |= {
             "model_name": model_identifier,
-            "embd_dim": encoder.model.embd_dim,
-            "embd_dtype": encoder.model.embd_dtype
+            "embd_dim": embd_dim,
+            "embd_dtype": embd_dtype
         }
         with open(os.path.join(task_save_path, RETRIEVE_EVAL_FILENAME), "w") as f:
             json.dump(scores, f)

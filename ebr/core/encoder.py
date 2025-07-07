@@ -122,3 +122,40 @@ class Encoder(LightningModule):
         if self.in_memory:
             self.embds = gather_list(self.local_embds, self.trainer.num_devices)
         self.trainer.strategy.barrier()
+
+    def offload_model(self):
+        """Offload the model to free memory after encoding is complete."""
+        if hasattr(self, "_model") and self._model is not None:
+            print("Offloading model to free memory...")
+
+            # Get memory before offloading
+            import psutil
+            import os
+            process = psutil.Process(os.getpid())
+            memory_before = process.memory_info().rss / 1024 / 1024  # MB
+
+            # Store model metadata before offloading
+            if not hasattr(self, '_model_meta'):
+                self._model_meta = self._model._model_meta if hasattr(self._model, '_model_meta') else None
+
+            # For sentence-transformers models
+            if hasattr(self._model, "_modules"):
+                # Clear the model modules
+                for module_name in list(self._model._modules.keys()):
+                    if hasattr(self._model, module_name):
+                        delattr(self._model, module_name)
+
+            # Clear the model reference
+            self._model = None
+
+            # Force garbage collection
+            import gc
+            gc.collect()
+
+            # Get memory after offloading
+            memory_after = process.memory_info().rss / 1024 / 1024  # MB
+            memory_saved = memory_before - memory_after
+
+            print(f"Model offloaded successfully, saved {memory_saved:.1f} MB")
+        else:
+            print("No model to offload")

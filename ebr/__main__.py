@@ -151,7 +151,10 @@ def get_args() -> argparse.Namespace:
         "--topk", type=int, default=100, help="Number of top documents per query.")
     parser.add_argument(
         "--overwrite", action="store_true", help="Whether to overwrite the results.")
-    
+    parser.add_argument(
+        "--offload-model", action="store_true",
+        help="Offload model after encoding to save memory during retrieval phase.")
+
     args = parser.parse_args()
     return args
 
