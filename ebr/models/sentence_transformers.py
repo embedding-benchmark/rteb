@@ -1,8 +1,13 @@
+import logging
+
 from ebr.core.base import EmbeddingModel
 from ebr.utils.lazy_import import LazyImport
 from ebr.core.meta import ModelMeta
+from ebr.utils.memory import force_garbage_collection
 
 SentenceTransformer = LazyImport("sentence_transformers", attribute="SentenceTransformer")
+
+logger = logging.getLogger(__name__)
 
 
 class SentenceTransformersEmbeddingModel(EmbeddingModel):
@@ -10,10 +15,12 @@ class SentenceTransformersEmbeddingModel(EmbeddingModel):
     def __init__(
         self,
         model_meta: ModelMeta,
+        device: str = None,
         **kwargs
     ):
         super().__init__(model_meta, **kwargs)
-        self._model = SentenceTransformer(f"{self.model_name_prefix}/{self.model_name}", trust_remote_code=True)
+        self.device = device
+        self.__model = None  # Initialize for lazy loading
 
     def embed(self, data: str, input_type: str) -> list[list[float]]:
         return self._model.encode(data)
@@ -23,8 +30,43 @@ class SentenceTransformersEmbeddingModel(EmbeddingModel):
         return "sentence-transformers"
 
     @property
+    def _model(self):
+        if self.__model is None:
+            logger.info("Loading in the SentenceTransformer model...")
+            self.__model = SentenceTransformer(
+                f"{self.model_name_prefix}/{self.model_name}",
+                device=self.device,
+                trust_remote_code=True
+            )
+        return self.__model
+
+    @property
     def _id(self) -> str:
         return f"{self.model_name_prefix}__{self._model_meta._id}"
+
+    def offload(self) -> None:
+        """Offload the SentenceTransformer model to free memory."""
+        if self.__model is not None:
+            logger.info("Offloading SentenceTransformer model...")
+            
+            # Get memory before offloading for reporting
+            import torch
+            memory_before = torch.cuda.memory_allocated() if torch.cuda.is_available() else 0
+            
+            # Delete the model
+            del self.__model
+            self.__model = None
+            
+            # Force comprehensive garbage collection
+            force_garbage_collection()
+            
+            # Report memory savings
+            if torch.cuda.is_available():
+                memory_after = torch.cuda.memory_allocated()
+                memory_saved = memory_before - memory_after
+                logger.info(f"Model offloaded successfully, saved {memory_saved / 1024**3:.1f} GB")
+            else:
+                logger.info("Model offloaded successfully")
 
 
 class E5EmbeddingModel(SentenceTransformersEmbeddingModel):

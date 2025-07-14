@@ -142,15 +142,18 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "--save_path", type=str, default="output/", help="Path to save the output.")
     parser.add_argument(
-        "--save_embds", action="store_true", help="Whether to save the embeddings.")
-    parser.add_argument(
         "--load_embds", action="store_true", help="Whether to load the computed embeddings.")
+    parser.add_argument(
+        "--keep_embds", action="store_true", help="Keep embedding files after retrieval (default: delete them).")
     parser.add_argument(
         "--save_prediction", action="store_true", help="Whether to save the predictions.")
     parser.add_argument(
         "--topk", type=int, default=100, help="Number of top documents per query.")
     parser.add_argument(
         "--overwrite", action="store_true", help="Whether to overwrite the results.")
+    parser.add_argument(
+        "--offload-model", action="store_true", 
+        help="Offload model after encoding to save memory during retrieval phase.")
     
     args = parser.parse_args()
     return args
@@ -249,9 +252,11 @@ def main(args: argparse.Namespace):
         if trainer.is_global_zero:
             trainer.print(f"Evaluating model: {model_id}")
 
+        # Determine device based on GPU/CPU arguments
+        device = "cuda" if args.gpus > 0 else "cpu"
+        
         encoder = Encoder(
-            model_meta.load_model(),
-            save_embds=args.save_embds,
+            model_meta.load_model(device=device),
             load_embds=args.load_embds
         )
         retriever = Retriever(
@@ -269,10 +274,10 @@ def main(args: argparse.Namespace):
                 logger.error(f"No valid tasks found in the provided list: {args.tasks}")
                 logger.info(f"Available tasks: {list(DATASET_REGISTRY.keys())}")
                 return
-            
+
             if trainer.is_global_zero:
                 trainer.print(f"Evaluating on {len(datasets_to_evaluate)} tasks: {list(datasets_to_evaluate.keys())}")
-        
+
         eval_results = {}
         for dataset_name, dataset_meta in datasets_to_evaluate.items():
             if trainer.is_global_zero:
@@ -293,6 +298,7 @@ def main(args: argparse.Namespace):
                     trainer.print(f"{task:<32}{eval_results[task][metric]:.4f}")
 
     _compile_results()
+
 
 if __name__ == "__main__":
     args = get_args()
