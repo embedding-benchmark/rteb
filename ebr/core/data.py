@@ -74,17 +74,29 @@ class RetrieveDataModule(LightningDataModule):
     def prepare_data(self):
         self.dataset.prepare_data()
 
-    def queries_dataloader(self):
+    def queries_dataloader(self, exclude_ids=None):
+        dataset = self.dataset.queries
+        if exclude_ids:
+            # Create filtered dataset excluding already processed IDs
+            dataset = EmptyDataset(
+                [item for item in self.dataset.queries if item["id"] not in exclude_ids]
+            )
         return torch.utils.data.DataLoader(
-            self.dataset.queries,
+            dataset,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
             collate_fn=self.query_collator,
         )
 
-    def corpus_dataloader(self):
+    def corpus_dataloader(self, exclude_ids=None):
+        dataset = self.dataset.corpus
+        if exclude_ids:
+            # Create filtered dataset excluding already processed IDs
+            dataset = EmptyDataset(
+                [item for item in self.dataset.corpus if item["id"] not in exclude_ids]
+            )
         return torch.utils.data.DataLoader(
-            self.dataset.corpus, 
+            dataset, 
             batch_size=self.batch_size, 
             num_workers=self.num_workers,
             collate_fn=self.corpus_collator,
