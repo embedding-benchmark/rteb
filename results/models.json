@@ -132,6 +132,18 @@
         "alias": null
     },
     {
+        "model_name": "embed-v4.0",
+        "embd_dtype": "float32",
+        "embd_dim": 1536,
+        "num_params": null,
+        "max_tokens": 128000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
+        "alias": null
+    },
+    {
         "model_name": "GritLM-7B",
         "embd_dtype": "float32",
         "embd_dim": 384,
