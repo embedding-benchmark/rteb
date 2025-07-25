@@ -600,7 +600,7 @@
                 "precision_at_50": 0.02935,
                 "precision_at_100": 0.0214,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -778,7 +778,7 @@
                 "precision_at_50": 0.01547,
                 "precision_at_100": 0.00907,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -1483,7 +1483,7 @@
                 "precision_at_50": 0.01831,
                 "precision_at_100": 0.00955,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -2651,7 +2651,7 @@
                 "precision_at_50": 0.0912,
                 "precision_at_100": 0.06473,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -2829,7 +2829,7 @@
                 "precision_at_50": 0.017,
                 "precision_at_100": 0.00892,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -3535,7 +3535,7 @@
                 "precision_at_50": 0.01755,
                 "precision_at_100": 0.00937,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -4240,7 +4240,7 @@
                 "precision_at_50": 0.01734,
                 "precision_at_100": 0.00962,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -4946,7 +4946,7 @@
                 "precision_at_50": 0.00653,
                 "precision_at_100": 0.00368,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -5652,7 +5652,7 @@
                 "precision_at_50": 0.01222,
                 "precision_at_100": 0.00705,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -6358,7 +6358,7 @@
                 "precision_at_50": 0.01176,
                 "precision_at_100": 0.0067,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -7064,7 +7064,7 @@
                 "precision_at_50": 0.0063,
                 "precision_at_100": 0.00385,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -7770,7 +7770,7 @@
                 "precision_at_50": 0.0452,
                 "precision_at_100": 0.0312,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -8475,7 +8475,7 @@
                 "precision_at_50": 0.0166,
                 "precision_at_100": 0.00873,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -9181,7 +9181,7 @@
                 "precision_at_50": 0.02317,
                 "precision_at_100": 0.01299,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -9887,7 +9887,7 @@
                 "precision_at_50": 0.00884,
                 "precision_at_100": 0.00494,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -10593,7 +10593,7 @@
                 "precision_at_50": 0.00633,
                 "precision_at_100": 0.0038,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -11299,7 +11299,7 @@
                 "precision_at_50": 0.0146,
                 "precision_at_100": 0.0085,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -12005,7 +12005,7 @@
                 "precision_at_50": 0.01499,
                 "precision_at_100": 0.00837,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -12710,7 +12710,7 @@
                 "precision_at_50": 0.00787,
                 "precision_at_100": 0.00453,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -13350,7 +13350,7 @@
                 "precision_at_50": 0.0155,
                 "precision_at_100": 0.00921,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -14517,7 +14517,7 @@
                 "precision_at_50": 0.02211,
                 "precision_at_100": 0.01469,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -14695,7 +14695,7 @@
                 "precision_at_50": 0.01571,
                 "precision_at_100": 0.00839,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -15401,7 +15401,7 @@
                 "precision_at_50": 0.00916,
                 "precision_at_100": 0.00578,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -16107,7 +16107,7 @@
                 "precision_at_50": 0.00684,
                 "precision_at_100": 0.00381,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -16747,7 +16747,7 @@
                 "precision_at_50": 0.01077,
                 "precision_at_100": 0.00617,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -17452,7 +17452,7 @@
                 "precision_at_50": 0.01236,
                 "precision_at_100": 0.00704,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -18158,7 +18158,7 @@
                 "precision_at_50": 0.01902,
                 "precision_at_100": 0.01009,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -18864,7 +18864,7 @@
                 "precision_at_50": 0.00259,
                 "precision_at_100": 0.00198,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
@@ -19570,7 +19570,7 @@
                 "precision_at_50": 0.0448,
                 "precision_at_100": 0.0434,
                 "model_name": "bge-m3-retromae",
-                "embd_dim": null,
+                "embd_dim": 1024,
                 "embd_dtype": "float32"
             },
             {
