@@ -74,11 +74,6 @@ class NvidiaEmbeddingModel(SentenceTransformersEmbeddingModel):
     def model_name_prefix(self) -> str:
         return "nvidia"
 
-    def embed(self, data: str, input_type: str) -> list[list[float]]:
-        self._model.max_seq_length = 32768
-        self._model.tokenizer.padding_side = "right"
-        return self._model.encode(data)
-
 
 class E5EmbeddingModel(SentenceTransformersEmbeddingModel):
     @property
