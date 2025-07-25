@@ -74,7 +74,7 @@
     {
         "model_name": "bge-m3-retromae",
         "embd_dtype": "float32",
-        "embd_dim": null,
+        "embd_dim": 1024,
         "num_params": null,
         "max_tokens": 8192,
         "similarity": "cosine",
@@ -132,7 +132,19 @@
         "alias": null
     },
     {
-        "model_name": "GritLM/GritLM-7B",
+        "model_name": "embed-v4.0",
+        "embd_dtype": "float32",
+        "embd_dim": 1536,
+        "num_params": null,
+        "max_tokens": 128000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
+        "alias": null
+    },
+    {
+        "model_name": "GritLM-7B",
         "embd_dtype": "float32",
         "embd_dim": 384,
         "num_params": 7240000000,
@@ -141,18 +153,6 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/GritLM/GritLM-7B",
-        "alias": null
-    },
-    {
-        "model_name": "GritLM/GritLM-8x7B",
-        "embd_dtype": "float32",
-        "embd_dim": 384,
-        "num_params": 46700000000,
-        "max_tokens": null,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/GritLM/GritLM-8x7B",
         "alias": null
     },
     {
@@ -204,9 +204,21 @@
         "alias": null
     },
     {
-        "model_name": "text-embedding-004",
+        "model_name": "Qwen3-Embedding-8B",
         "embd_dtype": "float32",
-        "embd_dim": 768,
+        "embd_dim": 4096,
+        "num_params": 8000000000,
+        "max_tokens": 32768,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+        "alias": null
+    },
+    {
+        "model_name": "text-embedding-001",
+        "embd_dtype": "float32",
+        "embd_dim": 3072,
         "num_params": null,
         "max_tokens": 2048,
         "similarity": "cosine",
@@ -225,7 +237,7 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
+        "alias": "text-embedding-3-large (3072d)"
     },
     {
         "model_name": "text-embedding-3-large",
@@ -237,7 +249,7 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
+        "alias": "text-embedding-3-large (512d)"
     },
     {
         "model_name": "text-embedding-3-small",
@@ -249,7 +261,7 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
+        "alias": "text-embedding-3-small (1536d)"
     },
     {
         "model_name": "text-embedding-3-small",
@@ -261,7 +273,7 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": null
+        "alias": "text-embedding-3-small (512d)"
     },
     {
         "model_name": "voyage-3.5",
