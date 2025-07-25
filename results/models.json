@@ -74,7 +74,7 @@
     {
         "model_name": "bge-m3-retromae",
         "embd_dtype": "float32",
-        "embd_dim": null,
+        "embd_dim": 1024,
         "num_params": null,
         "max_tokens": 8192,
         "similarity": "cosine",
