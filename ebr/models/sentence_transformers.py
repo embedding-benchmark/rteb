@@ -69,6 +69,12 @@ class SentenceTransformersEmbeddingModel(EmbeddingModel):
                 logger.info("Model offloaded successfully")
 
 
+class NvidiaEmbeddingModel(SentenceTransformersEmbeddingModel):
+    @property
+    def model_name_prefix(self) -> str:
+        return "nvidia"
+
+
 class E5EmbeddingModel(SentenceTransformersEmbeddingModel):
     @property
     def model_name_prefix(self) -> str:
@@ -85,6 +91,18 @@ class QwenEmbeddingModel(SentenceTransformersEmbeddingModel):
     @property
     def model_name_prefix(self) -> str:
         return "Qwen"
+
+
+NV_Embed_v2 = ModelMeta(
+    loader=NvidiaEmbeddingModel,
+    model_name="NV-Embed-v2",
+    embd_dtype="float32",
+    embd_dim=4096,
+    num_params=7_850_000_000,
+    max_tokens=32768,
+    similarity="cosine",
+    reference="https://huggingface.co/nvidia/NV-Embed-v2"
+)
 
 
 qwen3_embedding_06B = ModelMeta(
