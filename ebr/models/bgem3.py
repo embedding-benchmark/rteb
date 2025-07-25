@@ -45,6 +45,7 @@ bge_m3_retromae = ModelMeta(
     loader=BGEM3EmbeddingModel,
     model_name='bge-m3-retromae',
     embd_dtype="float32",
+    embd_dim=1024,
     max_tokens=8192,
     similarity="cosine",
     reference="https://huggingface.co/BAAI/bge-m3-retromae"
