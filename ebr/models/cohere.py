@@ -65,3 +65,13 @@ embed_multilingual_v3_0 = ModelMeta(
     reference="https://docs.cohere.com/v2/docs/cohere-embed"
 )
 
+embed_v4_0 = ModelMeta(
+    loader=CohereEmbeddingModel,
+    model_name="embed-v4.0",
+    embd_dtype="float32",
+    embd_dim=1536,
+    max_tokens=128_000,
+    similarity="cosine",
+    reference="https://docs.cohere.com/v2/docs/cohere-embed"
+)
+
