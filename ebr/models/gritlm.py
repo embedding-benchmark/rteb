@@ -13,7 +13,7 @@ class GRITLMEmbeddingModel(EmbeddingModel):
     ):
         super().__init__(model_meta, **kwargs)
         self._model = GritLM(
-            model_name_or_path= "GritLM/GritLM-7B",
+            model_name_or_path= model_meta.model_name,
             normalized=False,
             torch_dtype=model_meta.embd_dtype,
             mode="embedding",
