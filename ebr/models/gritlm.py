@@ -13,7 +13,7 @@ class GRITLMEmbeddingModel(EmbeddingModel):
     ):
         super().__init__(model_meta, **kwargs)
         self._model = GritLM(
-            model_name_or_path= model_meta.model_name,
+            model_name_or_path= "GritLM/"+model_meta.model_name,
             normalized=False,
             torch_dtype=model_meta.embd_dtype,
             mode="embedding",
@@ -26,17 +26,18 @@ class GRITLMEmbeddingModel(EmbeddingModel):
 
 gritlm_7b = ModelMeta(
     loader=GRITLMEmbeddingModel,
-    model_name="GritLM/GritLM-7B",
+    model_name="GritLM-7B",
     embd_dtype="float32",
     embd_dim=384,
     num_params=7_240_000_000,
+    max_tokens=8192,
     similarity="cosine",
     reference="https://huggingface.co/GritLM/GritLM-7B",
 )
 
 gritlm_8x7b = ModelMeta(
     loader=GRITLMEmbeddingModel,
-    model_name="GritLM/GritLM-8x7B",
+    model_name="GritLM-8x7B",
     embd_dtype="float32",
     embd_dim=384,
     num_params=46_700_000_000,
