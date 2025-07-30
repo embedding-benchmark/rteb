@@ -301,17 +301,16 @@ def main(args: argparse.Namespace):
 
 
 if __name__ == "__main__":
-    _dump_model_meta()
-    # args = get_args()
-    #
-    # # Handle listing flags
-    # if args.list_models or args.list_tasks:
-    #     if args.list_models:
-    #         list_available_models()
-    #         # Add a separator if both flags are passed
-    #         if args.list_tasks:
-    #             print("\n" + "=" * 80 + "\n")
-    #     if args.list_tasks:
-    #         list_available_tasks()
-    # else:
-    #     main(args)
+    args = get_args()
+
+    # Handle listing flags
+    if args.list_models or args.list_tasks:
+        if args.list_models:
+            list_available_models()
+            # Add a separator if both flags are passed
+            if args.list_tasks:
+                print("\n" + "=" * 80 + "\n")
+        if args.list_tasks:
+            list_available_tasks()
+    else:
+        main(args)
