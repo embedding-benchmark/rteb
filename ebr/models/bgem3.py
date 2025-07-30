@@ -28,7 +28,8 @@ bge_m3 = ModelMeta(
     embd_dim=1024,
     max_tokens=8192,
     similarity="cosine",
-    reference="https://huggingface.co/BAAI/bge-m3"
+    reference="https://huggingface.co/BAAI/bge-m3",
+    vendor="BAAI",
 )
 
 bge_m3_unsupervised = ModelMeta(
@@ -38,7 +39,8 @@ bge_m3_unsupervised = ModelMeta(
     embd_dim=1024,
     max_tokens=8192,
     similarity="cosine",
-    reference="https://huggingface.co/BAAI/bge-m3-unsupervised"
+    reference="https://huggingface.co/BAAI/bge-m3-unsupervised",
+    vendor = "BAAI",
 )
 
 bge_m3_retromae = ModelMeta(
@@ -48,7 +50,8 @@ bge_m3_retromae = ModelMeta(
     embd_dim=1024,
     max_tokens=8192,
     similarity="cosine",
-    reference="https://huggingface.co/BAAI/bge-m3-retromae"
+    reference="https://huggingface.co/BAAI/bge-m3-retromae",
+    vendor="BAAI",
 )
 
 bge_large_en_v15 = ModelMeta(
@@ -58,7 +61,8 @@ bge_large_en_v15 = ModelMeta(
     embd_dim=1024,
     max_tokens=512,
     similarity="cosine",
-    reference="https://huggingface.co/BAAI/bge-large-en-v1.5"
+    reference="https://huggingface.co/BAAI/bge-large-en-v1.5",
+    vendor="BAAI",
 )
 
 bge_base_en_v15 = ModelMeta(
@@ -68,7 +72,8 @@ bge_base_en_v15 = ModelMeta(
     embd_dim=768,
     max_tokens=512,
     similarity="cosine",
-    reference="https://huggingface.co/BAAI/bge-base-en-v1.5"
+    reference="https://huggingface.co/BAAI/bge-base-en-v1.5",
+    vendor="BAAI",
 )
 
 bge_small_en_v15 = ModelMeta(
@@ -78,5 +83,6 @@ bge_small_en_v15 = ModelMeta(
     embd_dim=384,
     max_tokens=512,
     similarity="cosine",
-    reference="https://huggingface.co/BAAI/bge-small-en-v1.5"
+    reference="https://huggingface.co/BAAI/bge-small-en-v1.5",
+    vendor="BAAI",
 )

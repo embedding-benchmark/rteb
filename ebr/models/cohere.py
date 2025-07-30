@@ -62,7 +62,8 @@ embed_multilingual_v3_0 = ModelMeta(
     embd_dim=1024,
     max_tokens=512,
     similarity="cosine",
-    reference="https://docs.cohere.com/v2/docs/cohere-embed"
+    reference="https://docs.cohere.com/v2/docs/cohere-embed",
+    vendor="Cohere",
 )
 
 embed_v4_0 = ModelMeta(
@@ -72,6 +73,7 @@ embed_v4_0 = ModelMeta(
     embd_dim=1536,
     max_tokens=128_000,
     similarity="cosine",
-    reference="https://docs.cohere.com/v2/docs/cohere-embed"
+    reference="https://docs.cohere.com/v2/docs/cohere-embed",
+    vendor="Cohere",
 )
 

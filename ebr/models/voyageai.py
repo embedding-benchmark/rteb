@@ -62,7 +62,8 @@ voyage_3 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI",
 )
 
 voyage_35 = ModelMeta(
@@ -74,5 +75,6 @@ voyage_35 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI",
 )

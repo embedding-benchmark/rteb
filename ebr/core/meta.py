@@ -89,6 +89,7 @@ class ModelMeta(BaseModel):
     corpus_instruct: str | None = None
     reference: str | None = None
     alias: str | None = None
+    vendor: str | None = None
 
     def model_dump(self, **kwargs) -> dict[str, Any]:
         exclude = kwargs.pop("exclude", set()) | {"loader"}
