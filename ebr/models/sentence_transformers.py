@@ -136,7 +136,8 @@ e5_mistral_7b_instruct = ModelMeta(
     embd_dtype="float32",
     embd_dim=4096,
     similarity="cosine",
-    reference="https://huggingface.co/intfloat/e5-mistral-7b-instruct"
+    reference="https://huggingface.co/intfloat/e5-mistral-7b-instruct",
+    vendor="Microsoft"
 )
 
 

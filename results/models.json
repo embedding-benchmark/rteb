@@ -169,7 +169,7 @@
         "vendor": "Cohere"
     },
     {
-        "model_name": "GritLM/GritLM-7B",
+        "model_name": "GritLM-7B",
         "embd_dtype": "float32",
         "embd_dim": 384,
         "num_params": 7240000000,
