@@ -140,7 +140,7 @@
         "corpus_instruct": null,
         "reference": "https://huggingface.co/intfloat/e5-mistral-7b-instruct",
         "alias": null,
-        "vendor": null
+        "vendor": "Microsoft"
     },
     {
         "model_name": "embed-multilingual-v3.0",
