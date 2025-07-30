@@ -95,7 +95,8 @@ qwen3_embedding_06B = ModelMeta(
     max_tokens=32768,
     num_params=600_000_000,
     similarity="cosine",
-    reference="https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"
+    reference="https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+    vendor="Alibaba",
 )
 
 qwen3_embedding_8B = ModelMeta(
@@ -106,7 +107,8 @@ qwen3_embedding_8B = ModelMeta(
     max_tokens=32768,
     num_params=8_000_000_000,
     similarity="cosine",
-    reference="https://huggingface.co/Qwen/Qwen3-Embedding-8B"
+    reference="https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+    vendor="Alibaba",
 )
 
 
@@ -152,7 +154,8 @@ labse = ModelMeta(
     num_params=471_000_000,
     max_tokens=512,
     similarity="cosine",
-    reference="https://huggingface.co/sentence-transformers/LaBSE"
+    reference="https://huggingface.co/sentence-transformers/LaBSE",
+    vendor="Google",
 )
 
 
@@ -188,7 +191,8 @@ jina_embeddings_v2_base_en = ModelMeta(
     num_params=137_000_000,
     max_tokens=8192,
     similarity="cosine",
-    reference="https://huggingface.co/jinaai/jina-embeddings-v2-base-en"
+    reference="https://huggingface.co/jinaai/jina-embeddings-v2-base-en",
+    vendor="Jina AI",
 )
 
 
@@ -200,7 +204,8 @@ jina_embeddings_v2_small_en = ModelMeta(
     num_params=32_700_000,
     max_tokens=8192,
     similarity="cosine",
-    reference="https://huggingface.co/jinaai/jina-embeddings-v2-small-en"
+    reference="https://huggingface.co/jinaai/jina-embeddings-v2-small-en",
+    vendor="Jina AI",
 )
 
 

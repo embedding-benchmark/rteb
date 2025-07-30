@@ -1,17 +1,5 @@
 [
     {
-        "model_name": "NV-Embed-v2",
-        "embd_dtype": "float32",
-        "embd_dim": 4096,
-        "num_params": 7850000000,
-        "max_tokens": 32768,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/nvidia/NV-Embed-v2",
-        "alias": null
-    },
-    {
         "model_name": "all-MiniLM-L12-v2",
         "embd_dtype": "float32",
         "embd_dim": 384,
@@ -21,7 +9,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2",
-        "alias": null
+        "alias": null,
+        "vendor": null
     },
     {
         "model_name": "all-MiniLM-L6-v2",
@@ -33,7 +22,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
-        "alias": null
+        "alias": null,
+        "vendor": null
     },
     {
         "model_name": "all-mpnet-base-v2",
@@ -45,7 +35,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/sentence-transformers/all-mpnet-base-v2",
-        "alias": null
+        "alias": null,
+        "vendor": null
     },
     {
         "model_name": "bge-base-en-v1.5",
@@ -57,7 +48,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/BAAI/bge-base-en-v1.5",
-        "alias": null
+        "alias": null,
+        "vendor": "BAAI"
     },
     {
         "model_name": "bge-large-en-v1.5",
@@ -69,7 +61,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/BAAI/bge-large-en-v1.5",
-        "alias": null
+        "alias": null,
+        "vendor": "BAAI"
     },
     {
         "model_name": "bge-m3",
@@ -81,7 +74,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/BAAI/bge-m3",
-        "alias": null
+        "alias": null,
+        "vendor": "BAAI"
     },
     {
         "model_name": "bge-m3-retromae",
@@ -93,7 +87,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/BAAI/bge-m3-retromae",
-        "alias": null
+        "alias": null,
+        "vendor": "BAAI"
     },
     {
         "model_name": "bge-m3-unsupervised",
@@ -105,7 +100,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/BAAI/bge-m3-unsupervised",
-        "alias": null
+        "alias": null,
+        "vendor": "BAAI"
     },
     {
         "model_name": "bge-small-en-v1.5",
@@ -117,7 +113,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/BAAI/bge-small-en-v1.5",
-        "alias": null
+        "alias": null,
+        "vendor": "BAAI"
     },
     {
         "model_name": "e5-mistral-7b-instruct",
@@ -129,7 +126,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/intfloat/e5-mistral-7b-instruct",
-        "alias": null
+        "alias": null,
+        "vendor": null
     },
     {
         "model_name": "embed-multilingual-v3.0",
@@ -141,7 +139,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
-        "alias": null
+        "alias": null,
+        "vendor": "Cohere"
     },
     {
         "model_name": "embed-v4.0",
@@ -153,10 +152,11 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
-        "alias": null
+        "alias": null,
+        "vendor": "Cohere"
     },
     {
-        "model_name": "GritLM-7B",
+        "model_name": "GritLM/GritLM-7B",
         "embd_dtype": "float32",
         "embd_dim": 384,
         "num_params": 7240000000,
@@ -165,7 +165,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/GritLM/GritLM-7B",
-        "alias": null
+        "alias": null,
+        "vendor": null
     },
     {
         "model_name": "jina-embeddings-v2-base-en",
@@ -177,7 +178,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/jinaai/jina-embeddings-v2-base-en",
-        "alias": null
+        "alias": null,
+        "vendor": "Jina AI"
     },
     {
         "model_name": "jina-embeddings-v2-small-en",
@@ -189,7 +191,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/jinaai/jina-embeddings-v2-small-en",
-        "alias": null
+        "alias": null,
+        "vendor": "Jina AI"
     },
     {
         "model_name": "LaBSE",
@@ -201,7 +204,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/sentence-transformers/LaBSE",
-        "alias": null
+        "alias": null,
+        "vendor": "Google"
     },
     {
         "model_name": "multi-qa-MiniLM-L6-cos-v1",
@@ -213,7 +217,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1",
-        "alias": null
+        "alias": null,
+        "vendor": null
     },
     {
         "model_name": "Qwen3-Embedding-8B",
@@ -225,7 +230,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
-        "alias": null
+        "alias": null,
+        "vendor": "Alibaba"
     },
     {
         "model_name": "text-embedding-001",
@@ -237,7 +243,21 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
-        "alias": null
+        "alias": null,
+        "vendor": "Google"
+    },
+    {
+        "model_name": "text-embedding-004",
+        "embd_dtype": "float32",
+        "embd_dim": 768,
+        "num_params": null,
+        "max_tokens": 2048,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+        "alias": null,
+        "vendor": "Google"
     },
     {
         "model_name": "text-embedding-3-large",
@@ -249,7 +269,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-large (3072d)"
+        "alias": "text-embedding-3-large (3072d)",
+        "vendor": "OpenAI"
     },
     {
         "model_name": "text-embedding-3-large",
@@ -261,7 +282,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-large (512d)"
+        "alias": "text-embedding-3-large (512d)",
+        "vendor": "OpenAI"
     },
     {
         "model_name": "text-embedding-3-small",
@@ -273,7 +295,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-small (1536d)"
+        "alias": "text-embedding-3-small (1536d)",
+        "vendor": "OpenAI"
     },
     {
         "model_name": "text-embedding-3-small",
@@ -285,7 +308,8 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-small (512d)"
+        "alias": "text-embedding-3-small (512d)",
+        "vendor": "OpenAI"
     },
     {
         "model_name": "voyage-3.5",
@@ -297,6 +321,7 @@
         "query_instruct": "Represent the query for retrieving supporting documents: ",
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
-        "alias": null
+        "alias": null,
+        "vendor": "Voyage AI"
     }
 ]

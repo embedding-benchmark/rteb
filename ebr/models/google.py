@@ -93,7 +93,8 @@ text_embedding_004 = ModelMeta(
     embd_dim=768,
     max_tokens=2048,
     similarity="cosine",
-    reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings"
+    reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+    vendor="Google",
 )
 
 text_embedding_001 = ModelMeta(
@@ -103,5 +104,6 @@ text_embedding_001 = ModelMeta(
     embd_dim=3072,
     max_tokens=2048,
     similarity="cosine",
-    reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings"
+    reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+    vendor="Google",
 )
