@@ -159,13 +159,114 @@ def get_args() -> argparse.Namespace:
     return args
 
 
+def _get_complete_models(
+    output_dir: str = "output",
+    results_dir: str = "results",
+    show_report: bool = True
+) -> set[str]:
+    """Get models that have results for all datasets."""
+    from collections import defaultdict
+    
+    # Count total datasets in registry
+    total_datasets = len(DATASET_REGISTRY)
+    all_datasets = set(DATASET_REGISTRY.keys())
+    
+    # Track which datasets each model has results for - start with all possible models
+    model_datasets = defaultdict(set)
+    
+    # First, check existing results.json to get baseline coverage
+    results_file = Path(results_dir) / "results.json"
+    if results_file.exists():
+        with open(results_file) as f:
+            results_data = json.load(f)
+            
+        for dataset_entry in results_data:
+            dataset_name = dataset_entry.get("dataset_name")
+            if dataset_name in DATASET_REGISTRY:
+                for result in dataset_entry.get("results", []):
+                    if "model_name" in result:
+                        model_name = result["model_name"]
+                        model_datasets[model_name].add(dataset_name)
+    
+    # Then, update with any new results from output directory
+    output_path = Path(output_dir)
+    if output_path.exists() and output_path.is_dir():
+        for dataset_output_dir in output_path.iterdir():
+            # Skip if the dataset is not in the registry
+            if dataset_output_dir.name not in DATASET_REGISTRY:
+                continue
+                
+            dataset_name = dataset_output_dir.name
+            for one_result in dataset_output_dir.iterdir():
+                eval_file = one_result / "retrieve_eval.json"
+                if eval_file.exists():
+                    with open(eval_file) as f:
+                        result_data = json.load(f)
+                        if "model_name" in result_data:
+                            model_name = result_data["model_name"]
+                            model_datasets[model_name].add(dataset_name)
+    
+    # Separate complete and incomplete models
+    complete_models = {model for model, datasets in model_datasets.items() 
+                      if len(datasets) >= total_datasets}
+    
+    incomplete_models = {model: datasets for model, datasets in model_datasets.items() 
+                        if len(datasets) < total_datasets}
+    
+    # Generate detailed report using print to ensure visibility
+    if show_report:
+        print("=" * 80)
+        print("MODEL COMPLETENESS REPORT")
+        print("=" * 80)
+        print(f"Total datasets in registry: {total_datasets}")
+        print(f"Complete models (will be included): {len(complete_models)}")
+        print(f"Incomplete models (will be excluded): {len(incomplete_models)}")
+        print("")
+        
+        if complete_models:
+            print("COMPLETE MODELS:")
+            for model in sorted(complete_models):
+                print(f"  ✓ {model} ({len(model_datasets[model])}/{total_datasets} datasets)")
+            print("")
+        
+        if incomplete_models:
+            print("INCOMPLETE MODELS (EXCLUDED):")
+            for model in sorted(incomplete_models.keys()):
+                model_dataset_set = incomplete_models[model]
+                missing_datasets = all_datasets - model_dataset_set
+                print(f"  ✗ {model} ({len(model_dataset_set)}/{total_datasets} datasets)")
+                print(f"    Missing datasets ({len(missing_datasets)}):")
+                for missing in sorted(missing_datasets):
+                    print(f"      - {missing}")
+                print("")
+        
+        print("=" * 80)
+    
+    return complete_models
+
+
 def _dump_model_meta(
     results_dir: str = "results",
     model_registry: dict[str, ModelMeta] = MODEL_REGISTRY,
+    output_dir: str = "output"
 ):
-    models = [meta.model_dump() for meta in model_registry.values()]
+    print("Generating models.json with completeness filtering...")
+    
+    # Get models with complete results (this will print the detailed report)
+    complete_models = _get_complete_models(output_dir, results_dir, show_report=True)
+    
+    # Filter model registry to only include complete models
+    complete_model_metas = []
+    for meta in model_registry.values():
+        # Check if this model has complete results
+        model_alias = meta.alias if meta.alias else meta.model_name
+        if meta.model_name in complete_models or model_alias in complete_models:
+            complete_model_metas.append(meta.model_dump())
+    
+    print(f"✓ Writing {len(complete_model_metas)} complete models to {results_dir}/models.json")
+    
     with open(Path(results_dir) / "models.json", "w") as f:
-        f.write(json.dumps(models, indent=4))
+        f.write(json.dumps(complete_model_metas, indent=4))
 
 def _dump_dataset_info(
     results_dir: str = "results",
@@ -188,6 +289,11 @@ def _compile_results(
     results_dir: str = "results",
     output_dir: str = "output"
 ):
+    print("Generating results.json with completeness filtering...")
+    
+    # Get models with complete results (report will be shown later)
+    complete_models = _get_complete_models(output_dir, results_dir, show_report=False)
+    
     results = []
     for dataset_output_dir in Path(output_dir).iterdir():
         # Skip if the dataset is not in the registry
@@ -196,17 +302,26 @@ def _compile_results(
 
         dataset_results = []
         for one_result in dataset_output_dir.iterdir():
-
             eval_file = one_result / "retrieve_eval.json"
             if eval_file.exists():
                 with open(eval_file) as f:
-                    dataset_results.append(json.load(f))
+                    result_data = json.load(f)
+                    # Only include results from models with complete coverage
+                    model_name = result_data.get("model_name")
+                    model_alias = result_data.get("alias", model_name)
+                    
+                    if model_name in complete_models or model_alias in complete_models:
+                        dataset_results.append(result_data)
 
-        results.append({
-            **DATASET_REGISTRY[dataset_output_dir.name].model_dump(),
-            "results": dataset_results,
-            "is_closed": DATASET_REGISTRY[dataset_output_dir.name].tier != 0
-        })
+        # Only include dataset if it has results from complete models
+        if dataset_results:
+            results.append({
+                **DATASET_REGISTRY[dataset_output_dir.name].model_dump(),
+                "results": dataset_results,
+                "is_closed": DATASET_REGISTRY[dataset_output_dir.name].tier != 0
+            })
+    
+    print(f"✓ Writing results for {len(results)} datasets with complete model coverage to {results_dir}/results.json")
 
     with open(Path(results_dir) / "results.json", "w") as f:
         f.write(json.dumps(results, indent=4))
@@ -214,7 +329,6 @@ def _compile_results(
 
 def main(args: argparse.Namespace):
 
-    _dump_model_meta()
     _dump_dataset_info()
 
     if args.gpus:
@@ -298,6 +412,7 @@ def main(args: argparse.Namespace):
                     trainer.print(f"{task:<32}{eval_results[task][metric]:.4f}")
 
     _compile_results()
+    _dump_model_meta(output_dir=args.save_path)
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@
         "corpus_instruct": null,
         "reference": "https://huggingface.co/nvidia/NV-Embed-v2",
         "alias": null,
-        "vendor": "Nvidia"
+        "vendor": "NVidia"
     },
     {
         "model_name": "all-MiniLM-L12-v2",
@@ -245,19 +245,6 @@
         "reference": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
         "alias": null,
         "vendor": "Alibaba"
-    },
-    {
-        "model_name": "text-embedding-001",
-        "embd_dtype": "float32",
-        "embd_dim": 3072,
-        "num_params": null,
-        "max_tokens": 2048,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
-        "alias": null,
-        "vendor": "Google"
     },
     {
         "model_name": "text-embedding-004",
