@@ -1742,7 +1742,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 9 (German Dialog Summarization)",
+        "dataset_name": "ClosedDataset 9 (German)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -3483,7 +3483,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 13 (Japanese Law)",
+        "dataset_name": "ClosedDataset 13 (Japanese, Legal)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -4354,7 +4354,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "ClosedDataset 5 (Table QA)",
+        "dataset_name": "ClosedDataset 5 (English, Finance)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -6095,7 +6095,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 6 (French Fiscal Texts)",
+        "dataset_name": "ClosedDataset 6 (French, Legal)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -6966,7 +6966,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "ClosedDataset 10 (German Health Care)",
+        "dataset_name": "ClosedDataset 10 (German, Healthcare)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -7837,7 +7837,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "ClosedDataset 12 (Japanese Code Descriptions)",
+        "dataset_name": "ClosedDataset 12 (Japanese, Code)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -10450,7 +10450,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 14 (French Trivia)",
+        "dataset_name": "ClosedDataset 4 (French)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -15675,7 +15675,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 16 (Github Docstrings)",
+        "dataset_name": "ClosedDataset 1 (Code)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -16545,7 +16545,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "ClosedDataset 11 (COVID QA)",
+        "dataset_name": "ClosedDataset 11 (English, Healthcare)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -18286,7 +18286,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 7 (Conversational Finance)",
+        "dataset_name": "ClosedDataset 7 (English, Finance)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -20028,7 +20028,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 15 (Finance Alpaca)",
+        "dataset_name": "ClosedDataset 3 (English, Finance)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -20899,7 +20899,7 @@
         "is_closed": true
     },
     {
-        "dataset_name": "ClosedDataset 8 (Personal Finance)",
+        "dataset_name": "ClosedDataset 8 (English, Finance)",
         "tier": 3,
         "groups": {
             "text": 1,
@@ -22640,7 +22640,7 @@
         "is_closed": false
     },
     {
-        "dataset_name": "ClosedDataset 2 (German Legal Sentences)",
+        "dataset_name": "ClosedDataset 2 (German, Legal)",
         "tier": 3,
         "groups": {
             "text": 1,

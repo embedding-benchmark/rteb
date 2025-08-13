@@ -8,25 +8,25 @@
             "CUREv1_en",
             "CUREv1_fr",
             "ChatDoctor_HealthCareMagic",
-            "ClosedDataset 16 (Github Docstrings)",
+            "ClosedDataset 1 (Code)",
             "DS1000",
-            "ClosedDataset 5 (Table QA)",
-            "ClosedDataset 7 (Conversational Finance)",
-            "ClosedDataset 8 (Personal Finance)",
-            "ClosedDataset 15 (Finance Alpaca)",
-            "ClosedDataset 11 (COVID QA)",
+            "ClosedDataset 5 (English, Finance)",
+            "ClosedDataset 7 (English, Finance)",
+            "ClosedDataset 8 (English, Finance)",
+            "ClosedDataset 3 (English, Finance)",
+            "ClosedDataset 11 (English, Healthcare)",
             "FinQA",
             "FinanceBench",
-            "ClosedDataset 14 (French Trivia)",
-            "ClosedDataset 6 (French Fiscal Texts)",
+            "ClosedDataset 4 (French)",
+            "ClosedDataset 6 (French, Legal)",
             "FreshStack",
-            "ClosedDataset 9 (German Dialog Summarization)",
-            "ClosedDataset 10 (German Health Care)",
-            "ClosedDataset 2 (German Legal Sentences)",
+            "ClosedDataset 9 (German)",
+            "ClosedDataset 10 (German, Healthcare)",
+            "ClosedDataset 2 (German, Legal)",
             "HC3Finance",
             "HumanEval",
-            "ClosedDataset 12 (Japanese Code Descriptions)",
-            "ClosedDataset 13 (Japanese Law)",
+            "ClosedDataset 12 (Japanese, Code)",
+            "ClosedDataset 13 (Japanese, Legal)",
             "LegalQuAD",
             "LegalSummarization",
             "MBPP",
@@ -39,9 +39,9 @@
         "datasets": [
             "AILACasedocs",
             "AILAStatutes",
-            "ClosedDataset 6 (French Fiscal Texts)",
-            "ClosedDataset 2 (German Legal Sentences)",
-            "ClosedDataset 13 (Japanese Law)",
+            "ClosedDataset 6 (French, Legal)",
+            "ClosedDataset 2 (German, Legal)",
+            "ClosedDataset 13 (Japanese, Legal)",
             "LegalQuAD",
             "LegalSummarization"
         ],
@@ -56,11 +56,11 @@
             "CUREv1_en",
             "ChatDoctor_HealthCareMagic",
             "DS1000",
-            "ClosedDataset 5 (Table QA)",
-            "ClosedDataset 7 (Conversational Finance)",
-            "ClosedDataset 8 (Personal Finance)",
-            "ClosedDataset 15 (Finance Alpaca)",
-            "ClosedDataset 11 (COVID QA)",
+            "ClosedDataset 5 (English, Finance)",
+            "ClosedDataset 7 (English, Finance)",
+            "ClosedDataset 8 (English, Finance)",
+            "ClosedDataset 3 (English, Finance)",
+            "ClosedDataset 11 (English, Healthcare)",
             "FinQA",
             "FinanceBench",
             "HC3Finance",
@@ -73,11 +73,11 @@
         "name": "code",
         "datasets": [
             "APPS",
-            "ClosedDataset 16 (Github Docstrings)",
+            "ClosedDataset 1 (Code)",
             "DS1000",
             "FreshStack",
             "HumanEval",
-            "ClosedDataset 12 (Japanese Code Descriptions)",
+            "ClosedDataset 12 (Japanese, Code)",
             "MBPP",
             "WikiSQL"
         ],
@@ -89,8 +89,8 @@
             "CUREv1_en",
             "CUREv1_fr",
             "ChatDoctor_HealthCareMagic",
-            "ClosedDataset 11 (COVID QA)",
-            "ClosedDataset 10 (German Health Care)"
+            "ClosedDataset 11 (English, Healthcare)",
+            "ClosedDataset 10 (German, Healthcare)"
         ],
         "leaderboard": "Text"
     },
@@ -98,18 +98,18 @@
         "name": "french",
         "datasets": [
             "CUREv1_fr",
-            "ClosedDataset 14 (French Trivia)",
-            "ClosedDataset 6 (French Fiscal Texts)"
+            "ClosedDataset 4 (French)",
+            "ClosedDataset 6 (French, Legal)"
         ],
         "leaderboard": "Text"
     },
     {
         "name": "finance",
         "datasets": [
-            "ClosedDataset 5 (Table QA)",
-            "ClosedDataset 7 (Conversational Finance)",
-            "ClosedDataset 8 (Personal Finance)",
-            "ClosedDataset 15 (Finance Alpaca)",
+            "ClosedDataset 5 (English, Finance)",
+            "ClosedDataset 7 (English, Finance)",
+            "ClosedDataset 8 (English, Finance)",
+            "ClosedDataset 3 (English, Finance)",
             "FinQA",
             "FinanceBench",
             "HC3Finance"
@@ -119,9 +119,9 @@
     {
         "name": "german",
         "datasets": [
-            "ClosedDataset 9 (German Dialog Summarization)",
-            "ClosedDataset 10 (German Health Care)",
-            "ClosedDataset 2 (German Legal Sentences)",
+            "ClosedDataset 9 (German)",
+            "ClosedDataset 10 (German, Healthcare)",
+            "ClosedDataset 2 (German, Legal)",
             "LegalQuAD"
         ],
         "leaderboard": "Text"
@@ -129,8 +129,8 @@
     {
         "name": "japanese",
         "datasets": [
-            "ClosedDataset 12 (Japanese Code Descriptions)",
-            "ClosedDataset 13 (Japanese Law)"
+            "ClosedDataset 12 (Japanese, Code)",
+            "ClosedDataset 13 (Japanese, Legal)"
         ],
         "leaderboard": "Text"
     }
