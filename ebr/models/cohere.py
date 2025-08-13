@@ -77,22 +77,22 @@ embed_v4_0 = ModelMeta(
     vendor="Cohere",
 )
 
-embed_v4_0_int8 = ModelMeta(
+embed_v4_0_int8_512 = ModelMeta(
     loader=CohereEmbeddingModel,
     model_name="embed-v4.0",
     embd_dtype="int8",
-    embd_dim=1536,
+    embd_dim=512,
     max_tokens=128_000,
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed",
     vendor="Cohere",
 )
 
-embed_v4_0_binary = ModelMeta(
+embed_v4_0_binary_256 = ModelMeta(
     loader=CohereEmbeddingModel,
     model_name="embed-v4.0",
     embd_dtype="binary",
-    embd_dim=1536,
+    embd_dim=256,
     max_tokens=128_000,
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed",

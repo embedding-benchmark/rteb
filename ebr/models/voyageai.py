@@ -83,22 +83,10 @@ voyage_35 = ModelMeta(
     reference="https://docs.voyageai.com/docs/embeddings"
 )
 
-voyage_35_int8 = ModelMeta(
+voyage_35_int8_512 = ModelMeta(
     loader=VoyageAIEmbeddingModel,
     model_name="voyage-3.5",
     embd_dtype="int8",
-    embd_dim=1024,
-    max_tokens=32_000,
-    similarity="cosine",
-    query_instruct="Represent the query for retrieving supporting documents: ",
-    corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
-)
-
-voyage_35_binary_512 = ModelMeta(
-    loader=VoyageAIEmbeddingModel,
-    model_name="voyage-3.5",
-    embd_dtype="binary",
     embd_dim=512,
     max_tokens=32_000,
     similarity="cosine",
@@ -107,10 +95,10 @@ voyage_35_binary_512 = ModelMeta(
     reference="https://docs.voyageai.com/docs/embeddings"
 )
 
-voyage_35_256 = ModelMeta(
+voyage_35_binary_256 = ModelMeta(
     loader=VoyageAIEmbeddingModel,
     model_name="voyage-3.5",
-    embd_dtype="float32",
+    embd_dtype="binary",
     embd_dim=256,
     max_tokens=32_000,
     similarity="cosine",
