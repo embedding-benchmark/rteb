@@ -36,11 +36,17 @@ class VoyageAIEmbeddingModel(APIEmbeddingModel):
         return self._client
 
     def embed(self, data: Any, input_type: str) -> list[list[float]]:
+        request = {
+            "texts": data,
+            "model": self.model_name,
+            "input_type": None
+        }
+        if self.model_name in ["voyage-3-large", "voyage-3.5", "voyage-3.5-lite", "voyage-code-3"]:
+            request["output_dimension"] = self.embd_dim
+            request["output_dtype"] = self.embd_dtype
+
         result = self.client.embed(
-            data,
-            model=self.model_name,
-            output_dimension=self.embd_dim,
-            input_type=None
+            **request
         )
         return result.embeddings
 
@@ -62,8 +68,7 @@ voyage_3 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
+    reference="https://docs.voyageai.com/docs/embeddings"
 )
 
 voyage_35 = ModelMeta(
@@ -75,8 +80,31 @@ voyage_35 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
+    reference="https://docs.voyageai.com/docs/embeddings"
+)
+
+voyage_35_int8_512 = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-3.5",
+    embd_dtype="int8",
+    embd_dim=512,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings"
+)
+
+voyage_35_binary_256 = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-3.5",
+    embd_dtype="binary",
+    embd_dim=256,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings"
 )
 
 

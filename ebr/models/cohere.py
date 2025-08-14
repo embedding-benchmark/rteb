@@ -39,7 +39,7 @@ class CohereEmbeddingModel(APIEmbeddingModel):
         if self.embd_dtype == "float32":
             return "float"
         else:
-            raise NotImplementedError
+            return self.embd_dtype
 
     def embed(self, data: str, input_type: str) -> list[list[float]]:
         
