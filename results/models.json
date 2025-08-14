@@ -361,7 +361,7 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": "voyage-3.5 (binary, 256d)",
-        "vendor": null
+        "vendor": "Voyage AI"
     },
     {
         "model_name": "voyage-3.5",
@@ -374,6 +374,6 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": "voyage-3.5 (int8, 512d)",
-        "vendor": null
+        "vendor": "Voyage AI"
     }
 ]
