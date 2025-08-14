@@ -39,7 +39,7 @@ class CohereEmbeddingModel(APIEmbeddingModel):
         if self.embd_dtype == "float32":
             return "float"
         else:
-            return self.embd_dtype
+            raise NotImplementedError
 
     def embed(self, data: str, input_type: str) -> list[list[float]]:
         
@@ -80,6 +80,7 @@ embed_v4_0 = ModelMeta(
 embed_v4_0_int8_512 = ModelMeta(
     loader=CohereEmbeddingModel,
     model_name="embed-v4.0",
+    alias="embed-v4.0 (int8, 512d)",
     embd_dtype="int8",
     embd_dim=512,
     max_tokens=128_000,
@@ -91,6 +92,7 @@ embed_v4_0_int8_512 = ModelMeta(
 embed_v4_0_binary_256 = ModelMeta(
     loader=CohereEmbeddingModel,
     model_name="embed-v4.0",
+    alias="embed-v4.0 (binary, 256d)",
     embd_dtype="binary",
     embd_dim=256,
     max_tokens=128_000,

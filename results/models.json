@@ -169,6 +169,32 @@
         "vendor": "Cohere"
     },
     {
+        "model_name": "embed-v4.0",
+        "embd_dtype": "binary",
+        "embd_dim": 256,
+        "num_params": null,
+        "max_tokens": 128000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
+        "alias": "embed-v4.0 (binary, 256d)",
+        "vendor": "Cohere"
+    },
+    {
+        "model_name": "embed-v4.0",
+        "embd_dtype": "int8",
+        "embd_dim": 512,
+        "num_params": null,
+        "max_tokens": 128000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
+        "alias": "embed-v4.0 (int8, 512d)",
+        "vendor": "Cohere"
+    },
+    {
         "model_name": "GritLM-7B",
         "embd_dtype": "float32",
         "embd_dim": 384,
@@ -323,5 +349,31 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI"
+    },
+    {
+        "model_name": "voyage-3.5",
+        "embd_dtype": "binary",
+        "embd_dim": 256,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": "Represent the query for retrieving supporting documents: ",
+        "corpus_instruct": "Represent the document for retrieval: ",
+        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "alias": "voyage-3.5 (binary, 256d)",
+        "vendor": null
+    },
+    {
+        "model_name": "voyage-3.5",
+        "embd_dtype": "int8",
+        "embd_dim": 512,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": "Represent the query for retrieving supporting documents: ",
+        "corpus_instruct": "Represent the document for retrieval: ",
+        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "alias": "voyage-3.5 (int8, 512d)",
+        "vendor": null
     }
 ]
