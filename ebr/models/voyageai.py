@@ -68,7 +68,8 @@ voyage_3 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
 )
 
 voyage_35 = ModelMeta(
@@ -80,33 +81,9 @@ voyage_35 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
 )
-
-voyage_35_int8_512 = ModelMeta(
-    loader=VoyageAIEmbeddingModel,
-    model_name="voyage-3.5",
-    embd_dtype="int8",
-    embd_dim=512,
-    max_tokens=32_000,
-    similarity="cosine",
-    query_instruct="Represent the query for retrieving supporting documents: ",
-    corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
-)
-
-voyage_35_binary_256 = ModelMeta(
-    loader=VoyageAIEmbeddingModel,
-    model_name="voyage-3.5",
-    embd_dtype="binary",
-    embd_dim=256,
-    max_tokens=32_000,
-    similarity="cosine",
-    query_instruct="Represent the query for retrieving supporting documents: ",
-    corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
-)
-
 
 voyage_35_int8_512 = ModelMeta(
     loader=VoyageAIEmbeddingModel,
@@ -118,7 +95,8 @@ voyage_35_int8_512 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
 )
 
 voyage_35_binary_256 = ModelMeta(
@@ -131,5 +109,6 @@ voyage_35_binary_256 = ModelMeta(
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings"
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
 )

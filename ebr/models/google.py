@@ -99,7 +99,7 @@ text_embedding_004 = ModelMeta(
 
 text_embedding_001 = ModelMeta(
     loader=GoogleEmbeddingModel,
-    model_name="text-embedding-001",
+    model_name="gemini-embedding-001",
     embd_dtype="float32",
     embd_dim=3072,
     max_tokens=2048,
