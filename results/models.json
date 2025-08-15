@@ -273,6 +273,19 @@
         "vendor": "Alibaba"
     },
     {
+        "model_name": "gemini-embedding-001",
+        "embd_dtype": "float32",
+        "embd_dim": 3072,
+        "num_params": null,
+        "max_tokens": 2048,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+        "alias": null,
+        "vendor": "Google"
+    },
+    {
         "model_name": "text-embedding-004",
         "embd_dtype": "float32",
         "embd_dim": 768,
