@@ -41,6 +41,7 @@ class DatasetMeta(BaseModel):
 
     loader: Callable[..., RetrievalDataset]
     dataset_name: str
+    alias: str | None = None
     tier: DATASET_TIER = 3
     groups: dict[str, int] = {}
     reference: str | None = None

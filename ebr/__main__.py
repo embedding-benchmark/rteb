@@ -75,20 +75,28 @@ def list_available_tasks():
         elif task_meta.tier == 3:
             tier_info += " (fully held out)"
         
-        tasks_by_group[group_key].append((task_id, tier_info, groups))
+        # Use alias if available, but also show original ID if different
+        display_name = task_meta.alias if task_meta.alias else task_id
+        if task_meta.alias and task_meta.alias != task_id:
+            display_info = f"{display_name} (ID: {task_id})"
+        else:
+            display_info = display_name
+            
+        tasks_by_group[group_key].append((task_id, display_info, tier_info, groups))
     
     # Print tasks grouped by their groups
     for group, tasks in sorted(tasks_by_group.items()):
         print(f"\n{group} Tasks:")
-        for task_id, tier_info, groups in sorted(tasks):
+        for task_id, display_info, tier_info, groups in sorted(tasks, key=lambda x: x[1]):
             groups_str = f"({', '.join(groups)})" if groups else ""
-            print(f"  - {task_id}: [{tier_info}] {groups_str}")
+            print(f"  - {display_info}: [{tier_info}] {groups_str}")
             
             # Add reference if available
             if DATASET_REGISTRY[task_id].reference:
                 print(f"    Reference: {DATASET_REGISTRY[task_id].reference}")
     
     print("\nNote: Tasks are grouped by their category. The tier indicates data availability.")
+    print("You can use either the task name (alias) or ID with --tasks argument.")
 
 def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -192,11 +200,18 @@ def _get_complete_models(
     output_path = Path(output_dir)
     if output_path.exists() and output_path.is_dir():
         for dataset_output_dir in output_path.iterdir():
+            # Find dataset by either dataset_name or alias
+            dataset_name = None
+            for ds_name, ds_meta in DATASET_REGISTRY.items():
+                if (dataset_output_dir.name == ds_name or 
+                    (ds_meta.alias and dataset_output_dir.name == ds_meta.alias)):
+                    dataset_name = ds_name
+                    break
+            
             # Skip if the dataset is not in the registry
-            if dataset_output_dir.name not in DATASET_REGISTRY:
+            if dataset_name is None:
                 continue
                 
-            dataset_name = dataset_output_dir.name
             for one_result in dataset_output_dir.iterdir():
                 eval_file = one_result / "retrieve_eval.json"
                 if eval_file.exists():
@@ -276,7 +291,9 @@ def _dump_dataset_info(
     for dataset_meta in dataset_registry.values():
         for group_name in dataset_meta.groups.keys():
             leaderboard = dataset_meta.loader.LEADERBOARD
-            group_data[(leaderboard, group_name)].append(dataset_meta.dataset_name)
+            # Use alias if available, otherwise use dataset_name
+            display_name = dataset_meta.alias if dataset_meta.alias else dataset_meta.dataset_name
+            group_data[(leaderboard, group_name)].append(display_name)
 
     groups = []
     for (leaderboard, group_name), datasets in group_data.items():
@@ -296,8 +313,16 @@ def _compile_results(
     
     results = []
     for dataset_output_dir in Path(output_dir).iterdir():
+        # Find dataset by either dataset_name or alias
+        dataset_name = None
+        for ds_name, ds_meta in DATASET_REGISTRY.items():
+            if (dataset_output_dir.name == ds_name or 
+                (ds_meta.alias and dataset_output_dir.name == ds_meta.alias)):
+                dataset_name = ds_name
+                break
+        
         # Skip if the dataset is not in the registry
-        if dataset_output_dir.name not in DATASET_REGISTRY:
+        if dataset_name is None:
             continue
 
         dataset_results = []
@@ -315,11 +340,16 @@ def _compile_results(
 
         # Only include dataset if it has results from complete models
         if dataset_results:
-            results.append({
-                **DATASET_REGISTRY[dataset_output_dir.name].model_dump(),
+            dataset_meta = DATASET_REGISTRY[dataset_name]
+            result_entry = {
+                **dataset_meta.model_dump(),
                 "results": dataset_results,
-                "is_closed": DATASET_REGISTRY[dataset_output_dir.name].tier != 0
-            })
+                "is_closed": dataset_meta.tier != 0
+            }
+            # Override dataset_name with alias if available for display
+            if dataset_meta.alias:
+                result_entry["dataset_name"] = dataset_meta.alias
+            results.append(result_entry)
     
     print(f"✓ Writing results for {len(results)} datasets with complete model coverage to {results_dir}/results.json")
 
@@ -382,8 +412,26 @@ def main(args: argparse.Namespace):
         # Filter datasets based on the --tasks argument
         datasets_to_evaluate = DATASET_REGISTRY
         if args.tasks:
-            task_names = [task_name.strip() for task_name in args.tasks.split(',')]
-            datasets_to_evaluate = {task_name: DATASET_REGISTRY[task_name] for task_name in task_names if task_name in DATASET_REGISTRY}
+            # Split on commas, but not those inside parentheses
+            import re
+            task_names = [task_name.strip() for task_name in re.split(r',(?![^()]*\))', args.tasks)]
+            datasets_to_evaluate = {}
+            
+            for task_name in task_names:
+                # Try to find dataset by exact ID match first
+                if task_name in DATASET_REGISTRY:
+                    datasets_to_evaluate[task_name] = DATASET_REGISTRY[task_name]
+                else:
+                    # Try to find by alias
+                    found = False
+                    for ds_id, ds_meta in DATASET_REGISTRY.items():
+                        if ds_meta.alias == task_name:
+                            datasets_to_evaluate[ds_id] = ds_meta
+                            found = True
+                            break
+                    if not found:
+                        logger.error(f"Task '{task_name}' not found in dataset registry")
+            
             if not datasets_to_evaluate:
                 logger.error(f"No valid tasks found in the provided list: {args.tasks}")
                 logger.info(f"Available tasks: {list(DATASET_REGISTRY.keys())}")

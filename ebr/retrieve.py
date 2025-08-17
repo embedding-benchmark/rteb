@@ -43,8 +43,10 @@ def run_retrieve_task(
     args: argparse.Namespace
 ):
     dataset_name = dataset_meta.dataset_name
+    # Use alias for output folder if available, otherwise use dataset_name
+    output_folder_name = dataset_meta.alias if dataset_meta.alias else dataset_name
 
-    task_save_path = Path(args.save_path) / dataset_name / encoder.model._id
+    task_save_path = Path(args.save_path) / output_folder_name / encoder.model._id
     task_save_path.mkdir(parents=True, exist_ok=True)
 
     if not args.overwrite:
