@@ -97,13 +97,13 @@ text_embedding_004 = ModelMeta(
     vendor="Google",
 )
 
-text_embedding_001 = ModelMeta(
-    loader=GoogleEmbeddingModel,
-    model_name="gemini-embedding-001",
-    embd_dtype="float32",
-    embd_dim=3072,
-    max_tokens=2048,
-    similarity="cosine",
-    reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
-    vendor="Google",
-)
+# gemini_embedding_001 = ModelMeta(
+#     loader=GoogleEmbeddingModel,
+#     model_name="gemini-embedding-001",
+#     embd_dtype="float32",
+#     embd_dim=3072,
+#     max_tokens=2048,
+#     similarity="cosine",
+#     reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+#     vendor="Google",
+# )

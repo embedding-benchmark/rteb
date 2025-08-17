@@ -43,7 +43,11 @@ class VoyageAIEmbeddingModel(APIEmbeddingModel):
         }
         if self.model_name in ["voyage-3-large", "voyage-3.5", "voyage-3.5-lite", "voyage-code-3"]:
             request["output_dimension"] = self.embd_dim
-            request["output_dtype"] = self.embd_dtype
+
+            output_dtype = self.embd_dtype
+            if output_dtype == "float32":
+                output_dtype = "float"
+            request["output_dtype"] = output_dtype
 
         result = self.client.embed(
             **request
@@ -64,6 +68,19 @@ voyage_3 = ModelMeta(
     model_name="voyage-3",
     embd_dtype="float32",
     embd_dim=1024,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
+)
+
+voyage_3_large = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-3-large",
+    embd_dtype="float32",
+    embd_dim=2048,
     max_tokens=32_000,
     similarity="cosine",
     query_instruct="Represent the query for retrieving supporting documents: ",

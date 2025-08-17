@@ -375,5 +375,18 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": "voyage-3.5 (int8, 512d)",
         "vendor": "Voyage AI"
+    },
+    {
+        "model_name": "voyage-3-large",
+        "embd_dtype": "float32",
+        "embd_dim": 2048,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": "Represent the query for retrieving supporting documents: ",
+        "corpus_instruct": "Represent the document for retrieval: ",
+        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "alias": null,
+        "vendor": "Voyage AI"
     }
 ]
