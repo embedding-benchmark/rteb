@@ -76,18 +76,18 @@ voyage_3 = ModelMeta(
     vendor="Voyage AI"
 )
 
-voyage_3_large = ModelMeta(
-    loader=VoyageAIEmbeddingModel,
-    model_name="voyage-3-large",
-    embd_dtype="float32",
-    embd_dim=2048,
-    max_tokens=32_000,
-    similarity="cosine",
-    query_instruct="Represent the query for retrieving supporting documents: ",
-    corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
-)
+# voyage_3_large = ModelMeta(
+#     loader=VoyageAIEmbeddingModel,
+#     model_name="voyage-3-large",
+#     embd_dtype="float32",
+#     embd_dim=2048,
+#     max_tokens=32_000,
+#     similarity="cosine",
+#     query_instruct="Represent the query for retrieving supporting documents: ",
+#     corpus_instruct="Represent the document for retrieval: ",
+#     reference="https://docs.voyageai.com/docs/embeddings",
+#     vendor="Voyage AI"
+# )
 
 voyage_35 = ModelMeta(
     loader=VoyageAIEmbeddingModel,
