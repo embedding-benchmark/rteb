@@ -75,6 +75,7 @@ def run_retrieve_task(
         num_workers=args.num_workers,
         dataset_kwargs=dataset_kwargs,
         collator_kwargs=collator_kwargs,
+        embd_dtype=encoder.model.embd_dtype,
     )
     if trainer.is_global_zero:
         dm.prepare_data()
