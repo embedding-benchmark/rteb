@@ -12,7 +12,7 @@ from ebr.core.base import RetrievalDataset, EmbeddingModel
 # Tier 3: fully held out
 DATASET_TIER = Literal[0, 1, 2, 3]
 
-EMBEDDING_DTYPES = Literal["float32", "int8", "binary"]
+EMBEDDING_DTYPES = Literal["float32", "int8", "binary", "ubinary"]
 SIMILARITY_METRICS = Literal["cosine", "dot"]
 
 
