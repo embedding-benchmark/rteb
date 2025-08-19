@@ -95,6 +95,7 @@ text_embedding_004 = ModelMeta(
     similarity="cosine",
     reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
     vendor="Google",
+    tooltip="Google's latest 768d embedding model"
 )
 
 # gemini_embedding_001 = ModelMeta(

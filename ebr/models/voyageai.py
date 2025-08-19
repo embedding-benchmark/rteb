@@ -73,7 +73,8 @@ voyage_3 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="Voyage AI",
+    tooltip="Voyage's top model with retrieval instructions"
 )
 
 # voyage_3_large = ModelMeta(
@@ -99,7 +100,8 @@ voyage_35 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="Voyage AI",
+    tooltip="Voyage's top model with retrieval instructions"
 )
 
 voyage_35_int8_512 = ModelMeta(
@@ -113,7 +115,8 @@ voyage_35_int8_512 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="Voyage AI",
+    tooltip="Voyage's top model with retrieval instructions"
 )
 
 voyage_35_binary_256 = ModelMeta(
@@ -127,5 +130,6 @@ voyage_35_binary_256 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="Voyage AI",
+    tooltip="Voyage's top model with retrieval instructions"
 )

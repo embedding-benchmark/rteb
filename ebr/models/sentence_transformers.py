@@ -103,6 +103,7 @@ NV_Embed_v2 = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/nvidia/NV-Embed-v2",
     vendor="NVidia",
+    tooltip="High-performance 4096d model with 32K context, 7.8B params"
 )
 
 
@@ -116,6 +117,7 @@ qwen3_embedding_8B = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/Qwen/Qwen3-Embedding-8B",
     vendor="Alibaba",
+    tooltip="Alibaba's large 4096d model with 32K context"
 )
 
 
@@ -128,7 +130,8 @@ e5_mistral_7b_instruct = ModelMeta(
     max_tokens=4096,
     similarity="cosine",
     reference="https://huggingface.co/intfloat/e5-mistral-7b-instruct",
-    vendor="Microsoft"
+    vendor="Microsoft",
+    tooltip="Large 4096d instruction-tuned model, 7.1B params"
 )
 
 
@@ -140,7 +143,8 @@ all_MiniLM_L6_v2 = ModelMeta(
     num_params=22_700_000,
     max_tokens=256,
     similarity="cosine",
-    reference="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    reference="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+    tooltip="Ultra-compact 384d model, fastest inference, 23M params"
 )
 
 
@@ -152,7 +156,8 @@ all_MiniLM_L12_v2 = ModelMeta(
     num_params=33_400_000,
     max_tokens=256,
     similarity="cosine",
-    reference="https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2"
+    reference="https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2",
+    tooltip="Lightweight 384d model, fast inference, 33M params"
 )
 
 
@@ -166,6 +171,7 @@ labse = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/sentence-transformers/LaBSE",
     vendor="Google",
+    tooltip="Google's multilingual sentence encoder, 768d"
 )
 
 
@@ -177,7 +183,8 @@ multi_qa_MiniLM_L6_cos_v1 = ModelMeta(
     num_params=22_700_000,
     max_tokens=512,
     similarity="cosine",
-    reference="https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1"
+    reference="https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1",
+    tooltip="QA-optimized compact model, 384d, 23M params"
 )
 
 
@@ -189,7 +196,8 @@ all_mpnet_base_v2 = ModelMeta(
     num_params=109_000_000,
     max_tokens=384,
     similarity="cosine",
-    reference="https://huggingface.co/sentence-transformers/all-mpnet-base-v2"
+    reference="https://huggingface.co/sentence-transformers/all-mpnet-base-v2",
+    tooltip="Balanced 768d model, good quality-speed tradeoff"
 )
 
 
@@ -203,6 +211,7 @@ jina_embeddings_v2_base_en = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/jinaai/jina-embeddings-v2-base-en",
     vendor="Jina AI",
+    tooltip="English-focused 768d model with 8K context"
 )
 
 
@@ -216,6 +225,7 @@ jina_embeddings_v2_small_en = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/jinaai/jina-embeddings-v2-small-en",
     vendor="Jina AI",
+    tooltip="Compact 512d English model with 8K context"
 )
 
 

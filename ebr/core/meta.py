@@ -75,6 +75,7 @@ class ModelMeta(BaseModel):
         similarity: Similarity function, e.g. cosine, dot-product, etc.
         query_instruct: Prompt to prepend to the input for queries.
         corpus_instruct: Prompt to prepend to the input for documents.
+        tooltip: A tooltip description for the model.
     """
 
     model_config: ConfigDict = ConfigDict(protected_namespaces=())
@@ -91,6 +92,7 @@ class ModelMeta(BaseModel):
     reference: str | None = None
     alias: str | None = None
     vendor: str | None = None
+    tooltip: str | None = None
 
     def model_dump(self, **kwargs) -> dict[str, Any]:
         exclude = kwargs.pop("exclude", set()) | {"loader"}

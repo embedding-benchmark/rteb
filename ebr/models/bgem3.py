@@ -31,6 +31,7 @@ bge_m3 = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/BAAI/bge-m3",
     vendor="BAAI",
+    tooltip="Multilingual 1024d model with 8K context"
 )
 
 bge_m3_unsupervised = ModelMeta(
@@ -42,6 +43,7 @@ bge_m3_unsupervised = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/BAAI/bge-m3-unsupervised",
     vendor = "BAAI",
+    tooltip="M3 variant trained without supervision"
 )
 
 bge_m3_retromae = ModelMeta(
@@ -53,6 +55,7 @@ bge_m3_retromae = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/BAAI/bge-m3-retromae",
     vendor="BAAI",
+    tooltip="M3 variant with RetroMAE pretraining enhancement"
 )
 
 bge_large_en_v15 = ModelMeta(
@@ -65,6 +68,7 @@ bge_large_en_v15 = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/BAAI/bge-large-en-v1.5",
     vendor="BAAI",
+    tooltip="High-quality 1024d English model, 335M params"
 )
 
 bge_base_en_v15 = ModelMeta(
@@ -77,6 +81,7 @@ bge_base_en_v15 = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/BAAI/bge-base-en-v1.5",
     vendor="BAAI",
+    tooltip="Solid 768d English model, 109M params"
 )
 
 bge_small_en_v15 = ModelMeta(
@@ -89,4 +94,5 @@ bge_small_en_v15 = ModelMeta(
     similarity="cosine",
     reference="https://huggingface.co/BAAI/bge-small-en-v1.5",
     vendor="BAAI",
+    tooltip="Compact 384d English model, 33M params"
 )

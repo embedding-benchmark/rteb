@@ -77,6 +77,7 @@ text_embedding_3_large = ModelMeta(
     alias="text-embedding-3-large (3072d)",
     reference="https://platform.openai.com/docs/guides/embeddings",
     vendor="OpenAI",
+    tooltip="OpenAI's premium large embedding model"
 )
 
 
@@ -90,6 +91,7 @@ text_embedding_3_large_512d = ModelMeta(
     alias="text-embedding-3-large (512d)",
     reference="https://platform.openai.com/docs/guides/embeddings",
     vendor="OpenAI",
+    tooltip="OpenAI's premium large embedding model"
 )
 
 
@@ -103,6 +105,7 @@ text_embedding_3_small = ModelMeta(
     alias="text-embedding-3-small (1536d)",
     reference="https://platform.openai.com/docs/guides/embeddings",
     vendor="OpenAI",
+    tooltip="OpenAI's efficient embedding model"
 )
 
 
@@ -116,4 +119,5 @@ text_embedding_3_small_512d = ModelMeta(
     alias="text-embedding-3-small (512d)",
     reference="https://platform.openai.com/docs/guides/embeddings",
     vendor="OpenAI",
+    tooltip="OpenAI's efficient embedding model"
 )

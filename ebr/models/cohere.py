@@ -64,6 +64,7 @@ embed_multilingual_v3_0 = ModelMeta(
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed",
     vendor="Cohere",
+    tooltip="Cohere's 1024d multilingual embedding model"
 )
 
 embed_v4_0 = ModelMeta(
@@ -75,6 +76,7 @@ embed_v4_0 = ModelMeta(
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed",
     vendor="Cohere",
+    tooltip="Cohere's latest 1536d model with 128K context"
 )
 
 embed_v4_0_int8_512 = ModelMeta(
@@ -87,6 +89,7 @@ embed_v4_0_int8_512 = ModelMeta(
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed",
     vendor="Cohere",
+    tooltip="Cohere's latest 1536d model with 128K context"
 )
 
 embed_v4_0_binary_256 = ModelMeta(
@@ -99,4 +102,5 @@ embed_v4_0_binary_256 = ModelMeta(
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed",
     vendor="Cohere",
+    tooltip="Cohere's latest 1536d model with 128K context"
 )
