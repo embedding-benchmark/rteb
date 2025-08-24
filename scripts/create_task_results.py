@@ -56,8 +56,11 @@ class RTEBTaskResultCreator:
         self.results_dir = self.base_dir / "results"
         # Build mapping from model names to ModelMeta
         self.model_mapping: Dict[str, Any] = self._build_model_mapping()
+        # Build mapping from task names to TaskResult name
+        self.task_mapping: Dict[str, str] = self._build_task_mapping()
 
-    def _build_model_mapping(self) -> Dict[str, Any]:
+    @staticmethod
+    def _build_model_mapping() -> Dict[str, Any]:
         """Build mapping from model names to ModelMeta"""
         mapping = {}
 
@@ -89,6 +92,36 @@ class RTEBTaskResultCreator:
             print(f"Failed to initialize MTEB model mapping: {e}")
             return mapping
 
+    @staticmethod
+    def _build_task_mapping() -> Dict[str, str]:
+        """Build mapping from task names to TaskResult name"""
+        task_mapping = {}
+
+        if not MTEB_AVAILABLE:
+            print(
+                "WARNING: mteb library not available, skipping tasks mapping initialization"
+            )
+            return task_mapping
+
+        try:
+            print("Fetching all task information from MTEB...")
+            all_retrieval_tasks = mteb.get_tasks(task_types=["Retrieval"])
+
+            for task_meta in all_retrieval_tasks:
+                task_result_name = type(task_meta).__name__
+                task_name = task_meta.metadata.name
+
+                task_mapping[task_result_name] = task_name
+
+            print(
+                f"Successfully created mapping for {len(all_retrieval_tasks)} tasks, generated {len(task_mapping)} mapping relationships"
+            )
+            return task_mapping
+
+        except Exception as e:
+            print(f"Failed to initialize MTEB tasks mapping: {e}")
+            return task_mapping
+
     def get_model_meta(self, model_name: str) -> Optional[Any]:
         """Get model metadata"""
         if not MTEB_AVAILABLE:
@@ -112,7 +145,7 @@ class RTEBTaskResultCreator:
         return self.organization, None
 
     def create_fallback_model_meta(
-        self, model_name: str, vendor: str
+            self, model_name: str, vendor: str
     ) -> Dict[str, Any]:
         """Create fallback model_meta.json"""
         return {
@@ -182,12 +215,12 @@ class RTEBTaskResultCreator:
             return False
 
     def create_task_result_json(
-        self, model_result: Dict[str, Any], dataset_result: Dict[str, Any]
+            self, model_result: Dict[str, Any], dataset_result: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Create task result JSON"""
         dataset_hash = hashlib.md5(dataset_result["dataset_name"].encode()).hexdigest()[
-            :8
-        ]
+                       :8
+                       ]
         task_name = self._generate_task_name(dataset_result["dataset_name"])
 
         # Determine main score
@@ -221,30 +254,43 @@ class RTEBTaskResultCreator:
 
         # If the name is already in proper format (no underscores), just add Retrieval
         if "_" not in clean_name:
-            return f"{clean_name}Retrieval"
-
-        # Split by underscores and convert to camelCase, preserving original capitalization patterns
-        words = clean_name.split("_")
-        result_words = []
-
-        for word in words:
-            if word:  # Skip empty strings from consecutive underscores
-                # Preserve the original capitalization pattern of each word
-                result_words.append(word)
-
-        # Join words and capitalize first letter of each word except the first
-        if result_words:
-            camel_case = result_words[0]
-            for word in result_words[1:]:
-                # Capitalize first letter while preserving the rest
-                camel_case += word[0].upper() + word[1:] if len(word) > 0 else ""
+            task_result_name = f"{clean_name}"
         else:
-            camel_case = clean_name
+            # Split by underscores and convert to camelCase, preserving original capitalization patterns
+            words = clean_name.split("_")
+            result_words = []
 
-        return f"{camel_case}Retrieval"
+            for word in words:
+                if word:  # Skip empty strings from consecutive underscores
+                    # Preserve the original capitalization pattern of each word
+                    result_words.append(word)
+
+            # Join words and capitalize first letter of each word except the first
+            if result_words:
+                camel_case = result_words[0]
+                for word in result_words[1:]:
+                    # Capitalize first letter while preserving the rest
+                    camel_case += word[0].upper() + word[1:] if len(word) > 0 else ""
+            else:
+                camel_case = clean_name
+            task_result_name = camel_case
+        task_name = self.task_mapping.get(task_result_name)
+        if task_name:
+            return task_name
+        # if not fund task_name then try name+Retrieval
+        task_name = self.task_mapping.get(f"{task_result_name}Retrieval")
+        if task_name:
+            return task_name
+        # Deal with two special cases
+        if task_result_name.upper() == "APPS".upper():
+            return "AppsRetrieval"
+        if task_result_name.upper().startswith("CUREV1"):
+            return "CUREv1"
+        print(f"  Failed to find task_name:{task_result_name} in MTEB ")
+        return task_result_name
 
     def create_task_files_for_model(
-        self, model_name: str, dataset_results: List[Dict]
+            self, model_name: str, dataset_results: List[Dict], closed_dataset: bool = False
     ) -> int:
         """Create task files for model"""
         # First check if this model has any results
@@ -288,6 +334,8 @@ class RTEBTaskResultCreator:
 
         success_count = 0
         for dataset_result, model_result in valid_results:
+            if not closed_dataset and dataset_result["dataset_name"].startswith("ClosedDataset"):
+                continue
             # Create task result JSON
             task_result = self.create_task_result_json(model_result, dataset_result)
             task_name = self._generate_task_name(dataset_result["dataset_name"])
@@ -326,7 +374,7 @@ class RTEBTaskResultCreator:
             return [], []
 
     def create_all_task_files(
-        self, result_file: str = "result.json", dataset_file: str = "dataset.json"
+            self, result_file: str = "result.json", dataset_file: str = "dataset.json", closed_dateset: bool = False
     ) -> None:
         """Create all task files"""
         results_data, datasets_data = self.load_json_files(result_file, dataset_file)
@@ -363,7 +411,7 @@ class RTEBTaskResultCreator:
         for i, model_name in enumerate(sorted(all_models), 1):
             print(f"[{i}/{len(all_models)}] Processing model: {model_name}")
 
-            files_created = self.create_task_files_for_model(model_name, results_data)
+            files_created = self.create_task_files_for_model(model_name, results_data, closed_dateset)
             total_files_created += files_created
             models_processed += 1
 
@@ -460,3 +508,4 @@ if __name__ == "__main__":
     import sys
 
     sys.exit(main())
+
