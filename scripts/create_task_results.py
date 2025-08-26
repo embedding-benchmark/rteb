@@ -286,7 +286,7 @@ class RTEBTaskResultCreator:
                 camel_case = result_words[0]
                 for word in result_words[1:]:
                     # Capitalize first letter while preserving the rest
-                    camel_case += word[0].upper() + word[1:] if len(word) > 0 else ""
+                    camel_case += word[0].upper() + word[1:] if word else ""
             else:
                 camel_case = clean_name
             task_result_name = camel_case
@@ -370,7 +370,7 @@ class RTEBTaskResultCreator:
                         eval_splits = task_meta.eval_splits[0] if task_meta.eval_splits else "test"
                         split_scores = scores[eval_splits]
                         score_obj = task_result.get("scores", {}).get(eval_splits, [])
-                        split_scores.append(score_obj)
+                        split_scores.extend(score_obj)
                         task_result = task_result_exist
 
                 with open(task_file, "w", encoding="utf-8") as f:
