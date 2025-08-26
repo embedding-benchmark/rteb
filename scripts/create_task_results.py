@@ -10,6 +10,7 @@ formatted MTEB result files in the results_rteb directory.
 Requirements:
     - Python 3.8+
     - Latest version of mteb library (recommended: pip install --upgrade mteb)
+    - loguru library for enhanced logging (pip install loguru)
     - result.json: Contains evaluation results for different models and datasets
     - dataset.json: Contains dataset metadata and information
 
@@ -32,9 +33,10 @@ dataset names and create proper MTEB-format directory structures.
 import json
 import argparse
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from datetime import datetime
 import hashlib
+from loguru import logger  # Import loguru for enhanced logging
 
 try:
     import mteb
@@ -42,9 +44,13 @@ try:
     MTEB_AVAILABLE = True
 except ImportError:
     MTEB_AVAILABLE = False
-    print(
-        "WARNING: mteb library not installed, will use fallback method to create model_meta.json"
-    )
+    logger.warning("mteb library not installed, will use fallback method to create model_meta.json")
+
+_LANGUAGES = {
+    "en": ["eng-Latn", "eng-Latn"],
+    "es": ["spa-Latn", "eng-Latn"],
+    "fr": ["fra-Latn", "eng-Latn"],
+}
 
 
 class RTEBTaskResultCreator:
@@ -57,7 +63,7 @@ class RTEBTaskResultCreator:
         # Build mapping from model names to ModelMeta
         self.model_mapping: Dict[str, Any] = self._build_model_mapping()
         # Build mapping from task names to TaskResult name
-        self.task_mapping: Dict[str, str] = self._build_task_mapping()
+        self.task_mapping: Dict[str, Any] = self._build_task_mapping()
 
     @staticmethod
     def _build_model_mapping() -> Dict[str, Any]:
@@ -65,13 +71,13 @@ class RTEBTaskResultCreator:
         mapping = {}
 
         if not MTEB_AVAILABLE:
-            print(
-                "WARNING: mteb library not available, skipping model mapping initialization"
+            logger.warning(
+                "mteb library not available, skipping model mapping initialization"
             )
             return mapping
 
         try:
-            print("Fetching all model information from MTEB...")
+            logger.info("Fetching all model information from MTEB...")
             all_models = mteb.get_model_metas()
 
             for model_meta in all_models:
@@ -83,43 +89,42 @@ class RTEBTaskResultCreator:
                 model_name = full_name.split("/", 1)[1]
                 mapping[model_name] = model_meta
 
-            print(
+            logger.info(
                 f"Successfully created mapping for {len(all_models)} models, generated {len(mapping)} mapping relationships"
             )
             return mapping
 
         except Exception as e:
-            print(f"Failed to initialize MTEB model mapping: {e}")
+            logger.error(f"Failed to initialize MTEB model mapping: {e}")
             return mapping
 
     @staticmethod
-    def _build_task_mapping() -> Dict[str, str]:
+    def _build_task_mapping() -> Dict[str, Any]:
         """Build mapping from task names to TaskResult name"""
         task_mapping = {}
 
         if not MTEB_AVAILABLE:
-            print(
-                "WARNING: mteb library not available, skipping tasks mapping initialization"
+            logger.warning(
+                "mteb library not available, skipping tasks mapping initialization"
             )
             return task_mapping
 
         try:
-            print("Fetching all task information from MTEB...")
+            logger.info("Fetching all task information from MTEB...")
             all_retrieval_tasks = mteb.get_tasks(task_types=["Retrieval"])
 
             for task_meta in all_retrieval_tasks:
                 task_result_name = type(task_meta).__name__
-                task_name = task_meta.metadata.name
 
-                task_mapping[task_result_name] = task_name
+                task_mapping[task_result_name] = task_meta
 
-            print(
+            logger.info(
                 f"Successfully created mapping for {len(all_retrieval_tasks)} tasks, generated {len(task_mapping)} mapping relationships"
             )
             return task_mapping
 
         except Exception as e:
-            print(f"Failed to initialize MTEB tasks mapping: {e}")
+            logger.error(f"Failed to initialize MTEB tasks mapping: {e}")
             return task_mapping
 
     def get_model_meta(self, model_name: str) -> Optional[Any]:
@@ -129,10 +134,10 @@ class RTEBTaskResultCreator:
 
         if model_name in self.model_mapping:
             model_meta = self.model_mapping[model_name]
-            print(f"  Retrieved model metadata: {model_meta.name}")
+            logger.info(f"  Retrieved model metadata: {model_meta.name}")
             return model_meta
 
-        print(f"  WARNING: No mapping found for model '{model_name}'")
+        logger.warning(f"  No mapping found for model '{model_name}'")
         return None
 
     def get_vendor_and_meta(self, model_name: str) -> tuple[str, Optional[Any]]:
@@ -182,12 +187,12 @@ class RTEBTaskResultCreator:
                     model_name, vendor
                 )
                 revision = "external"
-                print(f"  Using fallback to create model_meta: {model_name}")
+                logger.info(f"  Using fallback to create model_meta: {model_name}")
             else:
                 # directly use MTEB model_meta object
                 model_meta_to_write = model_meta
                 revision = model_meta.revision
-                print(f"  Using MTEB model_meta: {model_meta.name}")
+                logger.info(f"  Using MTEB model_meta: {model_meta.name}")
 
             model_dir_name = (
                 model_name.replace(" ", "-").replace("(", "").replace(")", "")
@@ -207,11 +212,11 @@ class RTEBTaskResultCreator:
                     default=str,
                 )
 
-            print(f"  Created model directory: {vendor}__{model_dir_name}/{revision}")
+            logger.info(f"  Created model directory: {vendor}__{model_dir_name}/{revision}")
             return True
 
         except Exception as e:
-            print(f"  Failed to create model directory {model_name}: {e}")
+            logger.error(f"  Failed to create model directory {model_name}: {e}")
             return False
 
     def create_task_result_json(
@@ -221,7 +226,14 @@ class RTEBTaskResultCreator:
         dataset_hash = hashlib.md5(dataset_result["dataset_name"].encode()).hexdigest()[
                        :8
                        ]
-        task_name = self._generate_task_name(dataset_result["dataset_name"])
+        task_name, task_meta = self._generate_task_name(dataset_result["dataset_name"])
+        if task_meta:
+
+            splits = task_meta.eval_splits[0] if task_meta.eval_splits else "test"
+            hf_subsets = task_meta.hf_subsets[0] if task_meta.hf_subsets else "default"
+        else:
+            splits = "test"
+            hf_subsets = "default"
 
         # Determine main score
         main_score = model_result.get(
@@ -229,7 +241,11 @@ class RTEBTaskResultCreator:
             model_result.get("ndcg_at_5", model_result.get("map_at_10", 0.0)),
         )
 
-        score_obj = {"hf_subset": "test", "languages": ["en"], "main_score": main_score}
+        languages = getattr(task_meta, "eval_langs", ["eng-Latn"])
+        if dataset_result["dataset_name"].startswith("CUREv1"):
+            hf_subsets = dataset_result["dataset_name"].rsplit("_", maxsplit=1)[1]
+            languages = _LANGUAGES.get(hf_subsets, ["eng-Latn"])
+        score_obj = {"hf_subset": hf_subsets, "languages": languages, "main_score": main_score}
 
         # Add retrieval metrics
         for k in [1, 3, 5, 10, 20, 50, 100]:
@@ -244,10 +260,10 @@ class RTEBTaskResultCreator:
             "evaluation_time": 0,
             "kg_co2_emissions": 0,
             "mteb_version": "1.0.0",
-            "scores": {"test": [score_obj]},
+            "scores": {splits: [score_obj]},
         }
 
-    def _generate_task_name(self, dataset_name: str) -> str:
+    def _generate_task_name(self, dataset_name: str) -> Tuple[str, Any]:
         """Generate task name automatically by adding 'Retrieval' suffix"""
         # Remove leading underscores
         clean_name = dataset_name.lstrip("_")
@@ -274,20 +290,24 @@ class RTEBTaskResultCreator:
             else:
                 camel_case = clean_name
             task_result_name = camel_case
-        task_name = self.task_mapping.get(task_result_name)
-        if task_name:
-            return task_name
+        task_meta = self.task_mapping.get(task_result_name)
+        if task_meta:
+            return task_meta.metadata.name, task_meta
         # if not fund task_name then try name+Retrieval
-        task_name = self.task_mapping.get(f"{task_result_name}Retrieval")
-        if task_name:
-            return task_name
-        # Deal with two special cases
+        task_meta = self.task_mapping.get(f"{task_result_name}Retrieval")
+        if task_meta:
+            return task_meta.metadata.name, task_meta
+        # Deal with three special cases
         if task_result_name.upper() == "APPS".upper():
-            return "AppsRetrieval"
+            return "AppsRetrieval", self.task_mapping.get("AppsRetrieval")
         if task_result_name.upper().startswith("CUREV1"):
-            return "CUREv1"
-        print(f"  Failed to find task_name:{task_result_name} in MTEB ")
-        return task_result_name
+            task_meta = self.task_mapping.get("CUREv1Retrieval")
+
+            return "CUREv1", task_meta
+        if task_result_name == "ChatDoctorHealthCareMagic":
+            return "ChatDoctorRetrieval", self.task_mapping.get("ChatDoctorRetrieval")
+        logger.warning(f"  Failed to find task_name:{task_result_name} in MTEB ")
+        return task_result_name, None
 
     def create_task_files_for_model(
             self, model_name: str, dataset_results: List[Dict], closed_dataset: bool = False
@@ -311,8 +331,8 @@ class RTEBTaskResultCreator:
 
         # If this model has no results, don't create directory
         if not has_results:
-            print(
-                f"  WARNING: Model {model_name} has no results on any dataset, skipping directory creation"
+            logger.warning(
+                f"  Model {model_name} has no results on any dataset, skipping directory creation"
             )
             return 0
 
@@ -337,20 +357,30 @@ class RTEBTaskResultCreator:
             if not closed_dataset and dataset_result["dataset_name"].startswith("ClosedDataset"):
                 continue
             # Create task result JSON
+            task_name, task_meta = self._generate_task_name(dataset_result["dataset_name"])
             task_result = self.create_task_result_json(model_result, dataset_result)
-            task_name = self._generate_task_name(dataset_result["dataset_name"])
 
             # Write to file
             task_file = external_dir / f"{task_name}.json"
             try:
+                if task_name == "CUREv1" and task_file.exists():
+                    with open(task_file, "r", encoding="utf-8") as f:
+                        task_result_exist = json.load(f)
+                        scores = task_result_exist["scores"]
+                        eval_splits = task_meta.eval_splits[0] if task_meta.eval_splits else "test"
+                        split_scores = scores[eval_splits]
+                        score_obj = task_result.get("scores", {}).get(eval_splits, [])
+                        split_scores.append(score_obj)
+                        task_result = task_result_exist
+
                 with open(task_file, "w", encoding="utf-8") as f:
                     json.dump(task_result, f, indent=4, ensure_ascii=False)
                 success_count += 1
-                print(f"  Created task file: {task_name}.json")
+                logger.info(f"  Created task file: {task_name}.json")
             except Exception as e:
-                print(f"  Failed to create task file {task_name}.json: {e}")
+                logger.error(f"  Failed to create task file {task_name}.json: {e}")
 
-        print(f"  Model {model_name}: Created {success_count} task files")
+        logger.info(f"  Model {model_name}: Created {success_count} task files")
         return success_count
 
     def load_json_files(self, result_file: str, dataset_file: str) -> tuple:
@@ -358,19 +388,19 @@ class RTEBTaskResultCreator:
         try:
             with open(result_file, "r", encoding="utf-8") as f:
                 results_data = json.load(f)
-            print(f"Successfully loaded results for {len(results_data)} datasets")
+            logger.info(f"Successfully loaded results for {len(results_data)} datasets")
 
             with open(dataset_file, "r", encoding="utf-8") as f:
                 datasets_data = json.load(f)
-            print(f"Successfully loaded {len(datasets_data)} dataset categories")
+            logger.info(f"Successfully loaded {len(datasets_data)} dataset categories")
 
             return results_data, datasets_data
 
         except FileNotFoundError as e:
-            print(f"ERROR: File not found - {e}")
+            logger.error(f"File not found - {e}")
             return [], []
         except json.JSONDecodeError as e:
-            print(f"ERROR: JSON parsing failed - {e}")
+            logger.error(f"JSON parsing failed - {e}")
             return [], []
 
     def create_all_task_files(
@@ -389,16 +419,16 @@ class RTEBTaskResultCreator:
                 if model_name:
                     all_models.add(model_name)
 
-        print(f"\nFound {len(all_models)} models")
-        print(f"Found {len(results_data)} datasets")
+        logger.info(f"\nFound {len(all_models)} models")
+        logger.info(f"Found {len(results_data)} datasets")
 
         if MTEB_AVAILABLE:
-            print(
+            logger.info(
                 "mteb library is available, will use mteb to get accurate model metadata"
             )
         else:
-            print(
-                "WARNING: mteb library not available, will use fallback method to create model_meta.json"
+            logger.warning(
+                "mteb library not available, will use fallback method to create model_meta.json"
             )
 
         self.results_dir.mkdir(parents=True, exist_ok=True)
@@ -406,27 +436,31 @@ class RTEBTaskResultCreator:
         total_files_created = 0
         models_processed = 0
 
-        print(f"\nStarting to process {len(all_models)} models...")
+        logger.info(f"\nStarting to process {len(all_models)} models...")
 
         for i, model_name in enumerate(sorted(all_models), 1):
-            print(f"[{i}/{len(all_models)}] Processing model: {model_name}")
+            logger.info(f"[{i}/{len(all_models)}] Processing model: {model_name}")
 
             files_created = self.create_task_files_for_model(model_name, results_data, closed_dateset)
             total_files_created += files_created
             models_processed += 1
 
-            print(f"    Created {files_created} task files\n")
+            logger.info(f"    Created {files_created} task files\n")
 
-        print("\nCompletion Statistics:")
-        print(f"   Models processed: {models_processed}")
-        print(f"   Total task files: {total_files_created}")
+        logger.info("\nCompletion Statistics:")
+        logger.info(f"   Models processed: {models_processed}")
+        logger.info(f"   Total task files: {total_files_created}")
 
         if total_files_created > 0:
-            print(f"\nMTEB format results created in: {self.results_dir}")
+            logger.info(f"\nMTEB format results created in: {self.results_dir}")
 
 
 def main():
     """Main function"""
+    # Configure loguru for better-looking output, default level INFO
+    logger.remove()  # Remove default sink
+    logger.add(sys.stderr, level="INFO")
+
     parser = argparse.ArgumentParser(
         description="Create MTEB format result files from RTEB evaluation data",
         epilog="""
@@ -437,6 +471,7 @@ Examples:
 
 Requirements:
   - Latest mteb library: pip install --upgrade mteb
+  - loguru library for enhanced logging: pip install loguru
   - result.json: Evaluation results for models and datasets
   - dataset.json: Dataset metadata and information
 
@@ -463,20 +498,20 @@ with properly formatted task result files for each model and dataset combination
 
     args = parser.parse_args()
 
-    print(">> Starting RTEB to MTEB format conversion...")
-    print("=" * 60)
+    logger.info(">> Starting RTEB to MTEB format conversion...")
+    logger.info("=" * 60)
 
     # Check if required files exist
     if not Path(args.result_file).exists():
-        print(f"ERROR: Result file '{args.result_file}' not found!")
-        print(
+        logger.error(f"Result file '{args.result_file}' not found!")
+        logger.info(
             "   Please ensure the result file exists or specify a different path with -r"
         )
         return 1
 
     if not Path(args.dataset_file).exists():
-        print(f"ERROR: Dataset file '{args.dataset_file}' not found!")
-        print(
+        logger.error(f"Dataset file '{args.dataset_file}' not found!")
+        logger.info(
             "   Please ensure the dataset file exists or specify a different path with -d"
         )
         return 1
@@ -484,17 +519,17 @@ with properly formatted task result files for each model and dataset combination
     # MTEB version recommendation
     if MTEB_AVAILABLE:
         try:
-            print(f"Using mteb version: {mteb.__version__}")
-            print(
+            logger.info(f"Using mteb version: {mteb.__version__}")
+            logger.info(
                 "TIP: For latest model metadata, ensure mteb is up to date: pip install --upgrade mteb"
             )
         except AttributeError:
-            print("mteb library available")
+            logger.info("mteb library available")
     else:
-        print("WARNING: mteb library not found - will use fallback mode")
-        print("TIP: Install mteb for better model metadata: pip install mteb")
+        logger.warning("mteb library not found - will use fallback mode")
+        logger.info("TIP: Install mteb for better model metadata: pip install mteb")
 
-    print("=" * 60)
+    logger.info("=" * 60)
 
     creator = RTEBTaskResultCreator()
     creator.create_all_task_files(
@@ -508,4 +543,3 @@ if __name__ == "__main__":
     import sys
 
     sys.exit(main())
-
