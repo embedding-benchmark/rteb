@@ -32,6 +32,7 @@ dataset names and create proper MTEB-format directory structures.
 
 import json
 import argparse
+import sys
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
 from datetime import datetime
@@ -140,7 +141,7 @@ class RTEBTaskResultCreator:
         logger.warning(f"  No mapping found for model '{model_name}'")
         return None
 
-    def get_vendor_and_meta(self, model_name: str) -> tuple[str, Optional[Any]]:
+    def get_vendor_and_meta(self, model_name: str) -> Tuple[str, Optional[Any]]:
         """Get vendor and model metadata"""
         if model_name in self.model_mapping:
             model_meta = self.model_mapping[model_name]
@@ -149,8 +150,9 @@ class RTEBTaskResultCreator:
 
         return self.organization, None
 
+    @staticmethod
     def create_fallback_model_meta(
-            self, model_name: str, vendor: str
+            model_name: str, vendor: str
     ) -> Dict[str, Any]:
         """Create fallback model_meta.json"""
         return {
@@ -383,31 +385,32 @@ class RTEBTaskResultCreator:
         logger.info(f"  Model {model_name}: Created {success_count} task files")
         return success_count
 
-    def load_json_files(self, result_file: str, dataset_file: str) -> tuple:
+    @staticmethod
+    def load_json_files(result_file: str, dataset_file: str) -> tuple:
         """Load JSON files"""
-        try:
-            with open(result_file, "r", encoding="utf-8") as f:
-                results_data = json.load(f)
-            logger.info(f"Successfully loaded results for {len(results_data)} datasets")
+        with open(result_file, "r", encoding="utf-8") as f:
+            results_data = json.load(f)
+        logger.info(f"Successfully loaded results for {len(results_data)} datasets")
 
-            with open(dataset_file, "r", encoding="utf-8") as f:
-                datasets_data = json.load(f)
-            logger.info(f"Successfully loaded {len(datasets_data)} dataset categories")
+        with open(dataset_file, "r", encoding="utf-8") as f:
+            datasets_data = json.load(f)
+        logger.info(f"Successfully loaded {len(datasets_data)} dataset categories")
 
-            return results_data, datasets_data
-
-        except FileNotFoundError as e:
-            logger.error(f"File not found - {e}")
-            return [], []
-        except json.JSONDecodeError as e:
-            logger.error(f"JSON parsing failed - {e}")
-            return [], []
+        return results_data, datasets_data
 
     def create_all_task_files(
             self, result_file: str = "result.json", dataset_file: str = "dataset.json", closed_dateset: bool = False
     ) -> None:
         """Create all task files"""
-        results_data, datasets_data = self.load_json_files(result_file, dataset_file)
+        try:
+            results_data, datasets_data = self.load_json_files(result_file, dataset_file)
+        except FileNotFoundError as e:
+            logger.error(f"File not found - {e}")
+            return
+        except json.JSONDecodeError as e:
+            logger.error(f"JSON parsing failed - {e}")
+            return
+
         if not results_data:
             return
 
@@ -540,6 +543,4 @@ with properly formatted task result files for each model and dataset combination
 
 
 if __name__ == "__main__":
-    import sys
-
     sys.exit(main())
