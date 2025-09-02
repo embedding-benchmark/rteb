@@ -45,8 +45,8 @@ RTEB uses a hierarchical organization system:
 
 Based on production interactions with embedding model users, RTEB includes these key groups:
 
-- **Domain-specific**: text, legal, code, healthcare, finance, conversation, long-context, multilingual
-- **Multimodal** (future): text-to-photo, document screenshots, figures & tables, image-to-image
+- **Domain-specific**: text, legal, code, healthcare, finance, conversation, long-context
+- **Language-specific**: english, german, french, japanese, multilingual
 
 ## Tiered Dataset System
 
