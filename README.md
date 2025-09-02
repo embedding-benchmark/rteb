@@ -29,7 +29,7 @@ Most existing benchmarks used to evaluate embedding models and rerankers have si
 RTEB addresses these shortcomings by:
 - **Retrieval-focused**: Concentrating on high-quality retrieval-specific datasets
 - **Real-world relevance**: Including datasets that reflect actual enterprise use cases
-- **Tiered approach**: Implementing a two-tier system to prevent overfitting while maintaining transparency
+- **Tiered approach**: Implementing a multi-tier system (0-3) to prevent overfitting while maintaining transparency
 - **Practical dataset sizes**: Ensuring datasets are large enough to be meaningful but small enough for efficient evaluation
 
 ## Dataset Structure
@@ -50,18 +50,27 @@ Based on production interactions with embedding model users, RTEB includes these
 
 ## Tiered Dataset System
 
-To prevent overfitting while maintaining transparency, RTEB implements a two-tier system:
+To prevent overfitting while maintaining transparency, RTEB implements a multi-tier system:
 
-### Tier 1 Datasets (Fully Open)
+### Tier 0 Datasets (Fully Open)
 - All files publicly available: `corpus.jsonl`, `queries.jsonl`, `relevance.jsonl`
 - Includes existing high-quality datasets with open test sets
 - At least one open dataset per task group
 
-### Tier 2 Datasets (Held-out)
+### Tier 1 Datasets (Docs & Queries Open)
+- Documents and queries publicly available, but relevance judgments are held out
+- Allows for development and analysis while preventing direct optimization on labels
+
+### Tier 2 Datasets (Only Docs Open)
+- Only document corpus is publicly available
+- Queries and relevance judgments are held out
+
+### Tier 3 Datasets (Fully Held Out)
 - Private evaluation sets to prevent manipulation
+- All data is held out - corpus, queries, and relevance judgments
 - Public metadata includes: basic description, data sources, dataset statistics, token length distributions
 - Five sample (query, document, relevance) triplets provided for reference
-- Most datasets in RTEB are Tier 2
+- Most closed datasets in RTEB are Tier 3
 
 ## Getting Started
 
@@ -71,6 +80,24 @@ To prevent overfitting while maintaining transparency, RTEB implements a two-tie
 git clone <repository-url>
 cd rteb
 pip install -r requirements.txt
+```
+
+**Note**: Additional packages may be required depending on the models you want to evaluate. The framework uses lazy loading, so model-specific dependencies (like `sentence-transformers`, `openai`, `cohere`, etc.) are only imported when needed. Install additional packages as required:
+
+```bash
+# For sentence-transformers models
+pip install sentence-transformers
+
+# For OpenAI models
+pip install openai
+
+# For Cohere models
+pip install cohere
+
+# For VoyageAI models
+pip install voyageai
+
+# For other specific model requirements, check the model's documentation
 ```
 
 ### Quick Start
