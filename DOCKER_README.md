@@ -1,6 +1,6 @@
-# Running EBR with Docker
+# Running RTEB with Docker
 
-This document explains how to run the EBR (Embedding Benchmark and Retrieval) application using Docker.
+This document explains how to run the RTEB (Retrieval Embedding Benchmark) application using Docker.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ This document explains how to run the EBR (Embedding Benchmark and Retrieval) ap
 
 2. Run the application with default settings:
    ```bash
-   ./run_ebr.sh
+   ./run_rteb.sh
    ```
    This will use the application's built-in defaults:
    - Data path: "data/"
@@ -23,12 +23,12 @@ This document explains how to run the EBR (Embedding Benchmark and Retrieval) ap
 
 3. Run with custom arguments:
    ```bash
-   ./run_ebr.sh --gpus 2 --batch_size 32 --save_embds
+   ./run_rteb.sh --gpus 2 --batch_size 32 --save_embds
    ```
 
 ## Available Arguments
 
-All arguments supported by the EBR application can be passed directly to the Docker container. Here are some common ones:
+All arguments supported by the RTEB application can be passed directly to the Docker container. Here are some common ones:
 
 - `--gpus <num>`: Number of GPUs to use (default: 0, requires NVIDIA Docker runtime)
 - `--cpus <num>`: Number of CPUs to use (default: 1)
@@ -41,7 +41,7 @@ All arguments supported by the EBR application can be passed directly to the Doc
 
 For a complete list of arguments, run:
 ```bash
-./run_ebr.sh --help
+./run_rteb.sh --help
 ```
 
 ## Docker Configuration

@@ -3,9 +3,9 @@
 from __future__ import annotations
 from typing import Any, TYPE_CHECKING
 
-from ebr.core.base import APIEmbeddingModel
-from ebr.core.meta import ModelMeta
-from ebr.utils.lazy_import import LazyImport
+from rteb.core.base import APIEmbeddingModel
+from rteb.core.meta import ModelMeta
+from rteb.utils.lazy_import import LazyImport
 
 if TYPE_CHECKING:
     import voyageai

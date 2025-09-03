@@ -9,5 +9,5 @@ source /app/.venv/bin/activate
 source /app/api_keys
 
 # Run the application with any provided arguments
-echo "Running EBR with arguments: ${@:-none (using defaults)}"
-python -m ebr "$@"
+echo "Running RTEB with arguments: ${@:-none (using defaults)}"
+python -m rteb "$@"

@@ -8,7 +8,7 @@ from typing import Any, TYPE_CHECKING
 from torch.utils.data import Dataset
 
 if TYPE_CHECKING:
-    from ebr.core.meta import DatasetMeta
+    from rteb.core.meta import DatasetMeta
 
 
 def add_instruct(

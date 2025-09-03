@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script to run EBR with Docker
+# Script to run RTEB with Docker
 
 # Colors for output
 RED='\033[0;31m'
@@ -8,7 +8,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}EBR Setup${NC}"
+echo -e "${GREEN}RTEB Setup${NC}"
 echo "================================"
 
 # Function to check if sudo is needed for Docker
@@ -69,7 +69,7 @@ echo -e "${GREEN}✓ Docker image built successfully${NC}"
 
 # Run the application
 echo ""
-echo -e "${YELLOW}Starting EBR...${NC}"
+echo -e "${YELLOW}Starting RTEB...${NC}"
 echo "This may take a while depending on the dataset size."
 echo ""
 
@@ -86,7 +86,7 @@ fi
 
 # Run with docker-compose and pass any arguments to the container
 echo -e "${YELLOW}Running with arguments: $@${NC}"
-$DOCKER_COMPOSE_CMD run --rm ebr "$@"
+$DOCKER_COMPOSE_CMD run --rm rteb "$@"
 
 # Check if execution completed
 if [ $? -eq 0 ]; then

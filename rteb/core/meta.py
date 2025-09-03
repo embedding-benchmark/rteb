@@ -4,7 +4,7 @@ from typing import Any, Callable, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict
 
-from ebr.core.base import RetrievalDataset, EmbeddingModel
+from rteb.core.base import RetrievalDataset, EmbeddingModel
 
 # Tier 0: fully open (documents, queries, relevance)
 # Tier 1: documents and queries released
