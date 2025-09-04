@@ -1,7 +1,7 @@
 [project]
-name = "ebr"
+name = "rteb"
 version = "2025.01.08"
-description = "Embedding benchmark for retrieval"
+description = "Retrieval Embedding Benchmark"
 requires-python = ">=3.10"  # Because of NoneType
 dependencies = [
     "numpy>=1.25",
@@ -14,8 +14,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/embedding-benchmark/ebr"
-Issues = "https://github.com/embedding-benchmark/ebr/issues"
+Homepage = "https://github.com/embedding-benchmark/rteb"
+Issues = "https://github.com/embedding-benchmark/rteb/issues"
 
 [tool.setuptools]
-packages = ["ebr"]
+packages = ["rteb"]

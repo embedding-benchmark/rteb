@@ -1,7 +1,7 @@
 # RTEB: Retrieval-focused Text Embedding Benchmark
 
 <h3 align="center">
-    <a href="https://huggingface.co/spaces/embedding-benchmark/ebr"><img style="float: middle; padding: 10px 10px 10px 10px;" width="60" height="55" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" /></a>
+    <a href="https://huggingface.co/spaces/embedding-benchmark/rteb"><img style="float: middle; padding: 10px 10px 10px 10px;" width="60" height="55" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" /></a>
 </h3>
 
 ## Overview
@@ -104,25 +104,25 @@ pip install voyageai
 
 1. **List available models and datasets:**
 ```bash
-python -m ebr --list-models
-python -m ebr --list-tasks
+python -m rteb --list-models
+python -m rteb --list-tasks
 ```
 
 2. **Run evaluation on all datasets with all models:**
 ```bash
-python -m ebr
+python -m rteb
 ```
 
 3. **Evaluate specific models on specific datasets:**
 ```bash
-python -m ebr --models "text-embedding-3-small_float32_1536d,all-MiniLM-L6-v2" --tasks "FinanceBench,LegalQuAD"
+python -m rteb --models "text-embedding-3-small_float32_1536d,all-MiniLM-L6-v2" --tasks "FinanceBench,LegalQuAD"
 ```
 
 ### Usage Examples
 
 #### Example 1: Evaluate OpenAI models on finance datasets
 ```bash
-python -m ebr \
+python -m rteb \
   --models "text-embedding-3-small_float32_1536d,text-embedding-3-large_float32_3072d,text-embedding-004_float32_768d" \
   --tasks "FinanceBench,HC3Finance,FinQA" \
   --gpus 1 \
@@ -131,7 +131,7 @@ python -m ebr \
 
 #### Example 2: Compare sentence-transformers models on code datasets
 ```bash
-python -m ebr \
+python -m rteb \
   --models "sentence-transformers__all-MiniLM-L6-v2_float32_384d,sentence-transformers__all-mpnet-base-v2_float32_768d" \
   --tasks "APPS,DS1000,HumanEval,MBPP,WikiSQL,FreshStack" \
   --save_path "output/code_evaluation" \
@@ -140,7 +140,7 @@ python -m ebr \
 
 #### Example 3: Evaluate on healthcare datasets with CPU
 ```bash
-python -m ebr \
+python -m rteb \
   --models "sentence-transformers__all-MiniLM-L6-v2_float32_384d" \
   --tasks "ChatDoctor_HealthCareMagic,CUREv1_en" \
   --cpus 4 \
@@ -149,7 +149,7 @@ python -m ebr \
 
 #### Example 4: Run with memory optimization
 ```bash
-python -m ebr \
+python -m rteb \
   --models "nvidia__NV-Embed-v2_float32_4096d" \
   --gpus 1 \
   --bf16 \

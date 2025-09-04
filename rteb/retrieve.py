@@ -7,10 +7,10 @@ from beir.retrieval.evaluation import EvaluateRetrieval
 import pytorch_lightning as pl
 from termcolor import colored
 
-from ebr.core import Encoder
-from ebr.core.data import RetrieveDataModule
-from ebr.core.meta import DatasetMeta
-from ebr.utils.memory import force_garbage_collection
+from rteb.core import Encoder
+from rteb.core.data import RetrieveDataModule
+from rteb.core.meta import DatasetMeta
+from rteb.utils.memory import force_garbage_collection
 
 
 CORPUS_EMBD_FILENAME = "corpus_embds.jsonl"

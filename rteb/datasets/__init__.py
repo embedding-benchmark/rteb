@@ -1,7 +1,7 @@
-from ebr.core.base import RetrievalDataset
-from ebr.core.meta import DatasetMeta, dataset_id
-from ebr.datasets.text import *
-from ebr.utils.lazy_import import LazyImport
+from rteb.core.base import RetrievalDataset
+from rteb.core.meta import DatasetMeta, dataset_id
+from rteb.datasets.text import *
+from rteb.utils.lazy_import import LazyImport
 
 
 DATASET_REGISTRY: dict[str, DatasetMeta] = {}

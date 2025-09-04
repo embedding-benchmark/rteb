@@ -1,9 +1,9 @@
 import logging
 
-from ebr.core.base import EmbeddingModel
-from ebr.utils.lazy_import import LazyImport
-from ebr.core.meta import ModelMeta
-from ebr.utils.memory import force_garbage_collection
+from rteb.core.base import EmbeddingModel
+from rteb.utils.lazy_import import LazyImport
+from rteb.core.meta import ModelMeta
+from rteb.utils.memory import force_garbage_collection
 
 SentenceTransformer = LazyImport("sentence_transformers", attribute="SentenceTransformer")
 

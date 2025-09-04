@@ -4,9 +4,9 @@ import os
 
 from torch.utils.data import Dataset
 
-from ebr.core.base import RetrievalDataset
-from ebr.core.meta import DatasetMeta
-from ebr.utils.data import JSONLDataset
+from rteb.core.base import RetrievalDataset
+from rteb.core.meta import DatasetMeta
+from rteb.utils.data import JSONLDataset
 
 
 class TextRetrievalDataset(RetrievalDataset):

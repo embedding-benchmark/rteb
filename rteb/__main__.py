@@ -8,10 +8,10 @@ from pathlib import Path
 import pytorch_lightning as pl
 from pytorch_lightning.strategies.ddp import DDPStrategy
 
-from ebr.retrieve import run_retrieve_task
-from ebr.datasets import DatasetMeta, DATASET_REGISTRY
-from ebr.models import ModelMeta, MODEL_REGISTRY
-from ebr.core import Encoder, Retriever
+from rteb.retrieve import run_retrieve_task
+from rteb.datasets import DatasetMeta, DATASET_REGISTRY
+from rteb.models import ModelMeta, MODEL_REGISTRY
+from rteb.core import Encoder, Retriever
 
 
 logger = logging.getLogger(__name__)

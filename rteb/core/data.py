@@ -3,8 +3,8 @@ import numpy as np
 from typing import Optional, Any
 from pytorch_lightning import LightningDataModule
 
-from ebr.datasets import get_retrieval_dataset
-from ebr.utils.data import EmptyDataset, JSONLDataset
+from rteb.datasets import get_retrieval_dataset
+from rteb.utils.data import EmptyDataset, JSONLDataset
 
 
 class EmbeddingDataCollator:

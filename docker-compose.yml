@@ -2,11 +2,11 @@
 x-memory-limit: &memory_limit 20G
 
 services:
-  ebr:
+  rteb:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ebr
+    container_name: rteb
     
     # Memory limits
     deploy:

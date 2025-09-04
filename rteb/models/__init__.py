@@ -1,12 +1,12 @@
-from ebr.core.base import EmbeddingModel
-from ebr.core.meta import ModelMeta, model_id
-from ebr.models.cohere import *
-from ebr.models.openai import *
-from ebr.models.sentence_transformers import *
-from ebr.models.voyageai import *
-from ebr.models.bgem3 import *
-from ebr.models.gritlm import *
-from ebr.models.google import *
+from rteb.core.base import EmbeddingModel
+from rteb.core.meta import ModelMeta, model_id
+from rteb.models.cohere import *
+from rteb.models.openai import *
+from rteb.models.sentence_transformers import *
+from rteb.models.voyageai import *
+from rteb.models.bgem3 import *
+from rteb.models.gritlm import *
+from rteb.models.google import *
 
 
 MODEL_REGISTRY: dict[str, ModelMeta] = {}

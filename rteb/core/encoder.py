@@ -6,9 +6,9 @@ from typing import List
 from numpy import ndarray
 from pytorch_lightning import LightningModule
 
-from ebr.core.base import EmbeddingModel
-from ebr.utils.data import JSONLDataset
-from ebr.utils.distributed import gather_list
+from rteb.core.base import EmbeddingModel
+from rteb.utils.data import JSONLDataset
+from rteb.utils.distributed import gather_list
 
 logger = logging.getLogger(__name__)
 
