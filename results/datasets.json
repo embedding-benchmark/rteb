@@ -64,7 +64,10 @@
             "FinanceBench",
             "HC3Finance",
             "LegalSummarization",
-            "WikiSQL"
+            "WikiSQL",
+            "HumanEval",
+            "MBPP",
+            "FreshStack"
         ],
         "leaderboard": "Text"
     },

@@ -290,7 +290,7 @@ HumanEval = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="HumanEval",
     tier=0,
-    groups={"text": 1, "code": 1},
+    groups={"text": 1, "code": 1, "english": 1},
     reference=None
 )
 
@@ -298,7 +298,7 @@ MBPP = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="MBPP",
     tier=0,
-    groups={"text": 1, "code": 1},
+    groups={"text": 1, "code": 1, "english": 1},
     reference=None
 )
 
@@ -314,7 +314,7 @@ FreshStack = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="FreshStack",
     tier=0,
-    groups={"text": 1, "code": 1},
+    groups={"text": 1, "code": 1, "english": 1},
     reference=None
 )
 
