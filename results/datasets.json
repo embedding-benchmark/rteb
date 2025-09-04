@@ -62,12 +62,12 @@
             "ClosedDataset 11 (English, Healthcare)",
             "FinQA",
             "FinanceBench",
+            "FreshStack",
             "HC3Finance",
-            "LegalSummarization",
-            "WikiSQL",
             "HumanEval",
+            "LegalSummarization",
             "MBPP",
-            "FreshStack"
+            "WikiSQL"
         ],
         "leaderboard": "Text"
     },
