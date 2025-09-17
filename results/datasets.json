@@ -6,7 +6,6 @@
             "AILAStatutes",
             "APPS",
             "CUREv1_en",
-            "CUREv1_fr",
             "ChatDoctor_HealthCareMagic",
             "ClosedDataset 1 (Code)",
             "DS1000",
@@ -63,8 +62,11 @@
             "ClosedDataset 11 (English, Healthcare)",
             "FinQA",
             "FinanceBench",
+            "FreshStack",
             "HC3Finance",
+            "HumanEval",
             "LegalSummarization",
+            "MBPP",
             "WikiSQL"
         ],
         "leaderboard": "Text"
@@ -87,7 +89,6 @@
         "name": "healthcare",
         "datasets": [
             "CUREv1_en",
-            "CUREv1_fr",
             "ChatDoctor_HealthCareMagic",
             "ClosedDataset 11 (English, Healthcare)",
             "ClosedDataset 10 (German, Healthcare)"
@@ -97,7 +98,6 @@
     {
         "name": "french",
         "datasets": [
-            "CUREv1_fr",
             "ClosedDataset 4 (French)",
             "ClosedDataset 6 (French, Legal)"
         ],
