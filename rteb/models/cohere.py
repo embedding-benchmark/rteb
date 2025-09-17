@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any, TYPE_CHECKING
 
-from ebr.core.meta import ModelMeta
-from ebr.core.base import APIEmbeddingModel
-from ebr.utils.lazy_import import LazyImport
+from rteb.core.meta import ModelMeta
+from rteb.core.base import APIEmbeddingModel
+from rteb.utils.lazy_import import LazyImport
 
 if TYPE_CHECKING:
     import cohere

@@ -5,8 +5,8 @@ from typing import Any, TYPE_CHECKING
 import time
 import logging
 
-from ebr.core.base import APIEmbeddingModel
-from ebr.core.meta import ModelMeta
+from rteb.core.base import APIEmbeddingModel
+from rteb.core.meta import ModelMeta
 
 from google import genai
 from google.genai.types import EmbedContentConfig

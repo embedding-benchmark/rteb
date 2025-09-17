@@ -1,6 +1,6 @@
-# Contributing to EBR (Embedding Benchmark for Retrieval)
+# Contributing to RTEB (Retrieval Embedding Benchmark)
 
-Thank you for your interest in contributing to EBR! This guide will help you add new models and datasets to the benchmark.
+Thank you for your interest in contributing to RTEB! This guide will help you add new models and datasets to the benchmark.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ Thank you for your interest in contributing to EBR! This guide will help you add
 
 ## Overview
 
-EBR is designed with a modular architecture that makes it easy to add new embedding models and retrieval datasets. The framework supports:
+RTEB is designed with a modular architecture that makes it easy to add new embedding models and retrieval datasets. The framework supports:
 
 - **Models**: Both local models (via sentence-transformers, transformers) and API-based models (OpenAI, Cohere, etc.)
 - **Datasets**: Text retrieval datasets with queries, corpus, and relevance judgments
@@ -22,7 +22,7 @@ EBR is designed with a modular architecture that makes it easy to add new embedd
 
 ### Step 1: Choose the Right Base Class
 
-EBR provides several base classes for different types of models:
+RTEB provides several base classes for different types of models:
 
 - `EmbeddingModel`: Base class for all embedding models
 - `APIEmbeddingModel`: For API-based models (OpenAI, Cohere, etc.)
@@ -30,23 +30,24 @@ EBR provides several base classes for different types of models:
 
 ### Step 2: Create Your Model Class
 
-Create a new file in `ebr/models/` or add to an existing one. Here are examples for different model types:
+Create a new file in `rteb/models/` or add to an existing one. Here are examples for different model types:
 
 #### Local Model Example (Sentence Transformers)
 
 ```python
-from ebr.core.base import EmbeddingModel
-from ebr.core.meta import ModelMeta
-from ebr.utils.lazy_import import LazyImport
+from rteb.core.base import EmbeddingModel
+from rteb.core.meta import ModelMeta
+from rteb.utils.lazy_import import LazyImport
 
 # Use lazy import for optional dependencies
 SentenceTransformer = LazyImport("sentence_transformers", attribute="SentenceTransformer")
+
 
 class MyCustomEmbeddingModel(EmbeddingModel):
     def __init__(self, model_meta: ModelMeta, device: str = None, **kwargs):
         super().__init__(model_meta, **kwargs)
         self._model = SentenceTransformer(
-            self.model_name, 
+            self.model_name,
             device=device,
             trust_remote_code=True
         )
@@ -64,6 +65,7 @@ class MyCustomEmbeddingModel(EmbeddingModel):
         """
         return self._model.encode(data).tolist()
 
+
 # Create model metadata
 my_custom_model = ModelMeta(
     loader=MyCustomEmbeddingModel,
@@ -71,8 +73,8 @@ my_custom_model = ModelMeta(
     embd_dtype="float32",
     embd_dim=768,
     num_params=110_000_000,  # Number of parameters
-    max_tokens=512,          # Maximum input tokens
-    similarity="cosine",     # Similarity function: "cosine" or "dot"
+    max_tokens=512,  # Maximum input tokens
+    similarity="cosine",  # Similarity function: "cosine" or "dot"
     reference="https://huggingface.co/my-organization/my-model-name"
 )
 ```
@@ -80,12 +82,13 @@ my_custom_model = ModelMeta(
 #### API Model Example
 
 ```python
-from ebr.core.base import APIEmbeddingModel
-from ebr.core.meta import ModelMeta
-from ebr.utils.lazy_import import LazyImport
+from rteb.core.base import APIEmbeddingModel
+from rteb.core.meta import ModelMeta
+from rteb.utils.lazy_import import LazyImport
 
 # Use lazy import for API client
 my_api_client = LazyImport("my_api_package")
+
 
 class MyAPIEmbeddingModel(APIEmbeddingModel):
     def __init__(self, model_meta: ModelMeta, api_key: str = None, **kwargs):
@@ -116,6 +119,7 @@ class MyAPIEmbeddingModel(APIEmbeddingModel):
         """Return the exception type for service errors"""
         return my_api_client.ServiceError
 
+
 # Create model metadata
 my_api_model = ModelMeta(
     loader=MyAPIEmbeddingModel,
@@ -130,11 +134,11 @@ my_api_model = ModelMeta(
 
 ### Step 3: Register Your Model
 
-Add your model to the appropriate file in `ebr/models/` and make sure it's imported in `ebr/models/__init__.py`:
+Add your model to the appropriate file in `rteb/models/` and make sure it's imported in `rteb/models/__init__.py`:
 
 ```python
-# In ebr/models/__init__.py
-from ebr.models.my_custom_models import *
+# In rteb/models/__init__.py
+from rteb.models.my_custom_models import *
 ```
 
 ### Step 4: Model Metadata Fields
@@ -157,7 +161,7 @@ When creating `ModelMeta`, include these fields:
 
 ### Step 1: Understand Dataset Structure
 
-EBR expects datasets to have this structure:
+RTEB expects datasets to have this structure:
 ```
 dataset_name/
 ├── corpus.jsonl      # Document collection
@@ -192,9 +196,10 @@ dataset_name/
 Most datasets can use the existing `TextRetrievalDataset` class. Only create a custom class if you need special processing:
 
 ```python
-from ebr.core.base import RetrievalDataset
-from ebr.core.meta import DatasetMeta
-from ebr.utils.data import JSONLDataset
+from rteb.core.base import RetrievalDataset
+from rteb.core.meta import DatasetMeta
+from rteb.utils.data import JSONLDataset
+
 
 class MyCustomDataset(RetrievalDataset):
     LEADERBOARD: str = "Text"  # or "Code", "Legal", etc.
@@ -220,20 +225,20 @@ class MyCustomDataset(RetrievalDataset):
 
 ### Step 3: Create Dataset Metadata
 
-Add your dataset metadata to `ebr/datasets/text.py` (or create a new file):
+Add your dataset metadata to `rteb/datasets/text.py` (or create a new file):
 
 ```python
-from ebr.core.meta import DatasetMeta
-from ebr.datasets.text import TextRetrievalDataset  # or your custom class
+from rteb.core.meta import DatasetMeta
+from rteb.datasets.text import TextRetrievalDataset  # or your custom class
 
 MyDataset = DatasetMeta(
     loader=TextRetrievalDataset,  # or your custom class
     dataset_name="MyDataset",
     tier=0,  # 0=fully open, 1=docs+queries open, 2=docs only, 3=held out
     groups={
-        "text": 1,           # Primary category
-        "domain": 1,         # Domain (legal, finance, code, healthcare, etc.)
-        "language": 1        # Language (english, french, german, etc.)
+        "text": 1,  # Primary category
+        "domain": 1,  # Domain (legal, finance, code, healthcare, etc.)
+        "language": 1  # Language (english, french, german, etc.)
     },
     reference="https://example.com/dataset-paper"  # Optional reference
 )
@@ -276,8 +281,8 @@ Use these standard group categories:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/embedding-benchmark/ebr.git
-   cd ebr
+   git clone https://github.com/embedding-benchmark/rteb.git
+   cd rteb
    ```
 
 2. **Install dependencies:**
@@ -298,7 +303,7 @@ Use these standard group categories:
 ### Test Your Model
 
 ```python
-from ebr.models import get_embedding_model
+from rteb.models import get_embedding_model
 
 # Test loading your model
 model = get_embedding_model(
@@ -316,7 +321,7 @@ print(f"Generated {len(embeddings)} embeddings of dimension {len(embeddings[0])}
 ### Test Your Dataset
 
 ```python
-from ebr.datasets import get_retrieval_dataset
+from rteb.datasets import get_retrieval_dataset
 
 # Test loading your dataset
 dataset = get_retrieval_dataset(
@@ -333,7 +338,7 @@ print(f"Relevance judgments: {len(dataset.relevance)}")
 ### Run Evaluation
 
 ```bash
-python -m ebr \
+python -m rteb \
     --model_name your-model-name \
     --embd_dim 768 \
     --embd_dtype float32 \
@@ -400,4 +405,4 @@ python -m ebr \
 - **Discussions**: Use GitHub Discussions for general questions
 - **Documentation**: Check existing model/dataset implementations for examples
 
-Thank you for contributing to EBR! Your additions help make embedding evaluation more comprehensive and accessible.
+Thank you for contributing to RTEB! Your additions help make embedding evaluation more comprehensive and accessible.

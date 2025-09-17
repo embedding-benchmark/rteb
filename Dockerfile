@@ -26,7 +26,7 @@ WORKDIR /app
 COPY pyproject.toml uv.lock ./
 
 # Copy application code
-COPY ebr ./ebr
+COPY rteb ./rteb
 COPY results ./results
 
 # Create output directory
