@@ -210,6 +210,20 @@
         "tooltip": "Cohere's latest 1536d model with 128K context"
     },
     {
+        "model_name": "gemini-embedding-001",
+        "embd_dtype": "float32",
+        "embd_dim": 3072,
+        "num_params": null,
+        "max_tokens": 2048,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+        "alias": null,
+        "vendor": "Google",
+        "tooltip": null
+    },
+    {
         "model_name": "GritLM-7B",
         "embd_dtype": "float32",
         "embd_dim": 384,
@@ -404,5 +418,19 @@
         "alias": "voyage-3.5 (int8, 512d)",
         "vendor": "Voyage AI",
         "tooltip": "Voyage's top model with retrieval instructions"
+    },
+    {
+        "model_name": "voyage-3-large",
+        "embd_dtype": "float32",
+        "embd_dim": 2048,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": "Represent the query for retrieving supporting documents: ",
+        "corpus_instruct": "Represent the document for retrieval: ",
+        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "alias": null,
+        "vendor": "Voyage AI",
+        "tooltip": null
     }
 ]

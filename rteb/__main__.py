@@ -162,7 +162,8 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "--offload-model", action="store_true", 
         help="Offload model after encoding to save memory during retrieval phase.")
-    
+    parser.add_argument("--dump_data_only", action="store_true", help="Just read the output and create the results.")
+
     args = parser.parse_args()
     return args
 
@@ -467,7 +468,11 @@ if __name__ == "__main__":
     args = get_args()
 
     # Handle listing flags
-    if args.list_models or args.list_tasks:
+    if args.dump_data_only:
+        _dump_dataset_info()
+        _compile_results()
+        _dump_model_meta(output_dir=args.save_path)
+    elif args.list_models or args.list_tasks:
         if args.list_models:
             list_available_models()
             # Add a separator if both flags are passed

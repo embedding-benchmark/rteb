@@ -345,13 +345,13 @@ CUREv1_en = DatasetMeta(
 #     reference=None
 # )
 
-CUREv1_fr = DatasetMeta(
-    loader=TextRetrievalDataset,
-    dataset_name="CUREv1_fr",
-    tier=0,
-    groups={"text": 1, "healthcare": 1, "french": 1},
-    reference=None
-)
+# CUREv1_fr = DatasetMeta(
+#     loader=TextRetrievalDataset,
+#     dataset_name="CUREv1_fr",
+#     tier=0,
+#     groups={"text": 1, "healthcare": 1, "french": 1},
+#     reference=None
+# )
 
 
 # Other/multilingual datasets
