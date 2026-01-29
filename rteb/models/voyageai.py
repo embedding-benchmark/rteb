@@ -62,6 +62,19 @@ class VoyageAIEmbeddingModel(APIEmbeddingModel):
     def service_error_type() -> type:
         return voyageai.error.ServiceUnavailableError
 
+voyage_code_3 = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-code-3",
+    embd_dtype="float32",
+    embd_dim=2048,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI",
+    tooltip="Voyage's top model with retrieval instructions"
+)
 
 voyage_3 = ModelMeta(
     loader=VoyageAIEmbeddingModel,
@@ -132,6 +145,45 @@ voyage_35_binary_256 = ModelMeta(
     reference="https://docs.voyageai.com/docs/embeddings",
     vendor="Voyage AI",
     tooltip="Voyage's top model with retrieval instructions"
+)
+
+voyage_4_large = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-4-large",
+    embd_dtype="float32",
+    embd_dim=2048,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
+)
+
+voyage_4_lite = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-4-lite",
+    embd_dtype="float32",
+    embd_dim=1024,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
+)
+
+voyage_4 = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-4",
+    embd_dtype="float32",
+    embd_dim=1024,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI"
 )
 
 voyage_4_large = ModelMeta(

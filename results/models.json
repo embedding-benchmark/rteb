@@ -434,6 +434,20 @@
         "tooltip": null
     },
     {
+        "model_name": "voyage-4",
+        "embd_dtype": "float32",
+        "embd_dim": 1024,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": "Represent the query for retrieving supporting documents: ",
+        "corpus_instruct": "Represent the document for retrieval: ",
+        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "alias": null,
+        "vendor": "Voyage AI",
+        "tooltip": null
+    },
+    {
         "model_name": "voyage-4-large",
         "embd_dtype": "float32",
         "embd_dim": 2048,
@@ -460,5 +474,19 @@
         "alias": null,
         "vendor": "Voyage AI",
         "tooltip": null
+    },
+    {
+        "model_name": "voyage-code-3",
+        "embd_dtype": "float32",
+        "embd_dim": 2048,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": "Represent the query for retrieving supporting documents: ",
+        "corpus_instruct": "Represent the document for retrieval: ",
+        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "alias": null,
+        "vendor": "Voyage AI",
+        "tooltip": "Voyage's top model with retrieval instructions"
     }
 ]
