@@ -223,11 +223,12 @@ def _get_complete_models(
                             model_datasets[model_name].add(dataset_name)
     
     # Separate complete and incomplete models
-    complete_models = {model for model, datasets in model_datasets.items() 
-                      if len(datasets) >= total_datasets}
-    
-    incomplete_models = {model: datasets for model, datasets in model_datasets.items() 
-                        if len(datasets) < total_datasets}
+    # Exception: voyage-code-3* models are included even without full coverage
+    complete_models = {model for model, datasets in model_datasets.items()
+                      if len(datasets) >= total_datasets or model.startswith("voyage-code-3")}
+
+    incomplete_models = {model: datasets for model, datasets in model_datasets.items()
+                        if len(datasets) < total_datasets and not model.startswith("voyage-code-3")}
     
     # Generate detailed report using print to ensure visibility
     if show_report:
