@@ -314,7 +314,7 @@ FreshStack = DatasetMeta(
     loader=TextRetrievalDataset,
     dataset_name="FreshStack",
     tier=0,
-    groups={"text": 1, "code": 1, "english": 1},
+    groups={"text": 1, "english": 1},
     reference=None
 )
 
