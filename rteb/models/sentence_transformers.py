@@ -93,6 +93,12 @@ class QwenEmbeddingModel(SentenceTransformersEmbeddingModel):
         return "Qwen"
 
 
+class VoyageAILocalEmbeddingModel(SentenceTransformersEmbeddingModel):
+    @property
+    def model_name_prefix(self) -> str:
+        return "voyageai"
+
+
 NV_Embed_v2 = ModelMeta(
     loader=NvidiaEmbeddingModel,
     model_name="NV-Embed-v2",
@@ -226,6 +232,22 @@ jina_embeddings_v2_small_en = ModelMeta(
     reference="https://huggingface.co/jinaai/jina-embeddings-v2-small-en",
     vendor="Jina AI",
     tooltip="Compact 512d English model with 8K context"
+)
+
+
+voyage_4_nano = ModelMeta(
+    loader=VoyageAILocalEmbeddingModel,
+    model_name="voyage-4-nano",
+    embd_dtype="float32",
+    embd_dim=2048,
+    num_params=340_000_000,
+    max_tokens=32000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://huggingface.co/voyageai/voyage-4-nano",
+    vendor="Voyage AI",
+    tooltip="Multilingual 2048d model with 32K context, 340M params, MRL & quantization-aware"
 )
 
 
