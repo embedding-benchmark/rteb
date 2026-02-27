@@ -266,11 +266,25 @@
         "tooltip": "Compact 512d English model with 8K context"
     },
     {
+        "model_name": "KaLM-Embedding-Gemma3-12B-2511",
+        "embd_dtype": "float32",
+        "embd_dim": 3840,
+        "num_params": 11760000000,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": "Instruct: Given a query, retrieve documents that answer the query\nQuery: ",
+        "corpus_instruct": null,
+        "reference": "https://huggingface.co/tencent/KaLM-Embedding-Gemma3-12B-2511",
+        "alias": null,
+        "vendor": "Tencent",
+        "tooltip": "Tencent's large 3840d model based on Gemma3-12B"
+    },
+    {
         "model_name": "LaBSE",
         "embd_dtype": "float32",
         "embd_dim": 768,
         "num_params": 471000000,
-        "max_tokens": 512,
+        "max_tokens": 256,
         "similarity": "cosine",
         "query_instruct": null,
         "corpus_instruct": null,
@@ -278,6 +292,20 @@
         "alias": null,
         "vendor": "Google",
         "tooltip": "Google's multilingual sentence encoder, 768d"
+    },
+    {
+        "model_name": "llama-embed-nemotron-8b",
+        "embd_dtype": "float32",
+        "embd_dim": 4096,
+        "num_params": 7500000000,
+        "max_tokens": 32768,
+        "similarity": "cosine",
+        "query_instruct": "Instruct: Given a query, retrieve passages that answer the query\nQuery: ",
+        "corpus_instruct": null,
+        "reference": "https://huggingface.co/nvidia/llama-embed-nemotron-8b",
+        "alias": null,
+        "vendor": "NVIDIA",
+        "tooltip": "NVIDIA's instruction-aware 4096d model based on Llama-3.1-8B"
     },
     {
         "model_name": "multi-qa-MiniLM-L6-cos-v1",
@@ -294,11 +322,39 @@
         "tooltip": "QA-optimized compact model, 384d, 23M params"
     },
     {
+        "model_name": "Octen-Embedding-4B",
+        "embd_dtype": "float32",
+        "embd_dim": 2560,
+        "num_params": 4000000000,
+        "max_tokens": 32768,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://huggingface.co/Octen/Octen-Embedding-4B",
+        "alias": null,
+        "vendor": "Octen",
+        "tooltip": "Octen's efficient 2560d model based on Qwen3, 40K context"
+    },
+    {
+        "model_name": "Octen-Embedding-8B",
+        "embd_dtype": "float32",
+        "embd_dim": 4096,
+        "num_params": 7600000000,
+        "max_tokens": 32768,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://huggingface.co/Octen/Octen-Embedding-8B",
+        "alias": null,
+        "vendor": "Octen",
+        "tooltip": "Octen's large 4096d model based on Qwen3, 40K context"
+    },
+    {
         "model_name": "Qwen3-Embedding-8B",
         "embd_dtype": "float32",
         "embd_dim": 4096,
         "num_params": 7570000000,
-        "max_tokens": 32768,
+        "max_tokens": 32000,
         "similarity": "cosine",
         "query_instruct": null,
         "corpus_instruct": null,
@@ -376,20 +432,6 @@
         "alias": "text-embedding-3-small (512d)",
         "vendor": "OpenAI",
         "tooltip": "OpenAI's efficient embedding model"
-    },
-    {
-        "model_name": "voyage-3.5",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": null,
-        "max_tokens": 32000,
-        "similarity": "cosine",
-        "query_instruct": "Represent the query for retrieving supporting documents: ",
-        "corpus_instruct": "Represent the document for retrieval: ",
-        "reference": "https://docs.voyageai.com/docs/embeddings",
-        "alias": null,
-        "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions"
     },
     {
         "model_name": "voyage-3.5",
