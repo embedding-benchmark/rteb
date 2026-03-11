@@ -74,7 +74,7 @@ class Retriever(LightningModule):
                 result[cid] = topk_scores[i][j]
             self.local_prediction[qid] = result
 
-    def on_predict_epoch_end(self):
+    def on_predict_epoch_end(self, results=None):
         if self.trainer.num_devices > 1:
             if self.in_memory:
                 gathered_prediction = [None] * self.trainer.num_devices
