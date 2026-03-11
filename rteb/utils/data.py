@@ -1,6 +1,9 @@
 import json
+import logging
 
 from torch.utils.data import Dataset
+
+logger = logging.getLogger(__name__)
 
 
 class EmptyDataset(Dataset):
@@ -32,14 +35,22 @@ class JSONLDataset(Dataset):
         if isinstance(file_path, str):
             with open(file_path, 'r') as f:
                 for line in f:
-                    item = json.loads(line)
+                    try:
+                        item = json.loads(line)
+                    except json.JSONDecodeError:
+                        logger.warning(f"Skipping corrupt JSONL line in {file_path}")
+                        continue
                     if item.get("id") not in exclude_ids:
                         self.data.append(item)
         elif isinstance(file_path, list):
             for path in file_path:
                 with open(path, 'r') as f:
                     for line in f:
-                        item = json.loads(line)
+                        try:
+                            item = json.loads(line)
+                        except json.JSONDecodeError:
+                            logger.warning(f"Skipping corrupt JSONL line in {path}")
+                            continue
                         if item.get("id") not in exclude_ids:
                             self.data.append(item)
         else:
