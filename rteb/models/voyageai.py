@@ -1,5 +1,3 @@
-
-
 from __future__ import annotations
 from typing import Any, TYPE_CHECKING
 
@@ -11,6 +9,26 @@ if TYPE_CHECKING:
     import voyageai
 else:
     voyageai = LazyImport("voyageai")
+
+
+BATCH_TOKEN_LIMITS = {
+    "voyage-4-large": 115_000,
+    "voyage-4": 320_000,
+    "voyage-4-lite": 1_000_000,
+    "voyage-3.5": 320_000,
+    "voyage-3.5-lite": 1_000_000,
+    "voyage-3-large": 120_000,
+    "voyage-code-3": 120_000,
+    "voyage-3": 120_000,
+    "voyage-2": 320_000,
+}
+
+BATCH_SIZE_LIMITS = {
+    "voyage-4-large": 1000,
+    "voyage-4": 1000,
+    "voyage-4-lite": 1000,
+}
+
 
 class VoyageAIEmbeddingModel(APIEmbeddingModel):
 
@@ -35,13 +53,45 @@ class VoyageAIEmbeddingModel(APIEmbeddingModel):
             self._client = voyageai.Client(api_key=self._api_key)
         return self._client
 
+    def get_token_counts(self, texts: list[str]) -> list[int]:
+        tokenized = self.client.tokenize(texts, model=self.model_name)
+        return [len(t) for t in tokenized]
+
+    def build_token_batches(self, items: list[dict]) -> list[dict]:
+        texts = [item["text"] if item["text"] else " " for item in items]
+        token_counts = self.get_token_counts(texts)
+        token_limit = BATCH_TOKEN_LIMITS.get(self.model_name, 120_000)
+        size_limit = BATCH_SIZE_LIMITS.get(self.model_name, 128)
+
+        batches = []
+        current_indices, current_tokens = [], 0
+        for i, count in enumerate(token_counts):
+            if current_indices and (current_tokens + count > token_limit or len(current_indices) >= size_limit):
+                batches.append(self._indices_to_batch(items, current_indices))
+                current_indices, current_tokens = [], 0
+            current_indices.append(i)
+            current_tokens += count
+        if current_indices:
+            batches.append(self._indices_to_batch(items, current_indices))
+
+        return batches
+
+    @staticmethod
+    def _indices_to_batch(items, indices):
+        return {
+            "id": [items[i]["id"] for i in indices],
+            "text": [items[i]["text"] for i in indices],
+            "input_type": [items[i]["input_type"] for i in indices],
+        }
+
     def embed(self, data: Any, input_type: str) -> list[list[float]]:
         request = {
             "texts": data,
             "model": self.model_name,
             "input_type": None
         }
-        if self.model_name in ["voyage-3-large", "voyage-3.5", "voyage-3.5-lite", "voyage-code-3"]:
+        if self.model_name in ["voyage-3-large", "voyage-3.5", "voyage-3.5-lite", "voyage-code-3",
+                                "voyage-4-large", "voyage-4", "voyage-4-lite"]:
             request["output_dimension"] = self.embd_dim
 
             output_dtype = self.embd_dtype

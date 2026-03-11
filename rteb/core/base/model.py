@@ -70,6 +70,9 @@ class APIEmbeddingModel(EmbeddingModel):
                     time.sleep(60)
                 elif isinstance(e, type(self).service_error_type()):
                     time.sleep(300)
+                elif "connection" in type(e).__name__.lower() or "timeout" in type(e).__name__.lower() or isinstance(e, (ConnectionError, OSError, TimeoutError)):
+                    logging.warning(f"Transient error ({type(e).__name__}, attempt {num_tries}), retrying in 30s...")
+                    time.sleep(30)
                 else:
                     raise e
         return result

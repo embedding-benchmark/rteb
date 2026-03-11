@@ -74,6 +74,21 @@ class RetrieveDataCollator:
         return batch
 
 
+class PreBatchedDataset(torch.utils.data.Dataset):
+    def __init__(self, batches: list):
+        self.batches = batches
+
+    def __len__(self):
+        return len(self.batches)
+
+    def __getitem__(self, idx):
+        return self.batches[idx]
+
+
+def prebatch_collator(items):
+    return items[0]
+
+
 class RetrieveDataModule(LightningDataModule):
 
     def __init__(
@@ -106,7 +121,6 @@ class RetrieveDataModule(LightningDataModule):
     def queries_dataloader(self, exclude_ids=None):
         dataset = self.dataset.queries
         if exclude_ids:
-            # Create filtered dataset excluding already processed IDs
             dataset = EmptyDataset(
                 [item for item in self.dataset.queries if item["id"] not in exclude_ids]
             )
@@ -120,15 +134,22 @@ class RetrieveDataModule(LightningDataModule):
     def corpus_dataloader(self, exclude_ids=None):
         dataset = self.dataset.corpus
         if exclude_ids:
-            # Create filtered dataset excluding already processed IDs
             dataset = EmptyDataset(
                 [item for item in self.dataset.corpus if item["id"] not in exclude_ids]
             )
         return torch.utils.data.DataLoader(
-            dataset, 
-            batch_size=self.batch_size, 
+            dataset,
+            batch_size=self.batch_size,
             num_workers=self.num_workers,
             collate_fn=self.corpus_collator,
+        )
+
+    def token_aware_dataloader(self, batches: list):
+        return torch.utils.data.DataLoader(
+            PreBatchedDataset(batches),
+            batch_size=1,
+            num_workers=0,
+            collate_fn=prebatch_collator,
         )
 
     def set_queries_embds(self, queries_embds=None, queries_embds_files=None):
