@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from typing import Any, TYPE_CHECKING
+import os
 import time
 import logging
 
@@ -10,11 +11,13 @@ from rteb.core.meta import ModelMeta
 
 from google import genai
 from google.genai.types import EmbedContentConfig
-import vertexai
-from vertexai.language_models import TextEmbeddingModel
-from google.oauth2 import service_account
 
-USE_VERTEX = True
+USE_VERTEX = os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "False").lower() == "true"
+
+if USE_VERTEX:
+    import vertexai
+    from vertexai.language_models import TextEmbeddingModel
+    from google.oauth2 import service_account
 
 
 class GoogleEmbeddingModel(APIEmbeddingModel):
@@ -106,5 +109,16 @@ gemini_embedding_001 = ModelMeta(
     max_tokens=2048,
     similarity="cosine",
     reference="https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+    vendor="Google",
+)
+
+gemini_embedding_2_preview = ModelMeta(
+    loader=GoogleEmbeddingModel,
+    model_name="gemini-embedding-2-preview",
+    embd_dtype="float32",
+    embd_dim=3072,
+    max_tokens=8192,
+    similarity="cosine",
+    reference="https://ai.google.dev/gemini-api/docs/embeddings",
     vendor="Google",
 )

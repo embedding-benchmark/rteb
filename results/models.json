@@ -530,5 +530,39 @@
         "alias": null,
         "vendor": "Voyage AI",
         "tooltip": "Voyage's top model with retrieval instructions"
+    },
+    {
+        "model_name": "gemini-embedding-2-preview",
+        "embd_dtype": "float32",
+        "embd_dim": 3072,
+        "num_params": null,
+        "max_tokens": 8192,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://ai.google.dev/gemini-api/docs/embeddings",
+        "alias": null,
+        "vendor": "Google",
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
+    },
+    {
+        "model_name": "kanon-2-embedder",
+        "embd_dtype": "float32",
+        "embd_dim": 1792,
+        "num_params": null,
+        "max_tokens": 16384,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.isaacus.com/embeddings",
+        "alias": null,
+        "vendor": "Isaacus",
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     }
 ]

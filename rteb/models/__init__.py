@@ -7,6 +7,7 @@ from rteb.models.voyageai import *
 from rteb.models.bgem3 import *
 from rteb.models.gritlm import *
 from rteb.models.google import *
+from rteb.models.isaacus import *
 
 
 MODEL_REGISTRY: dict[str, ModelMeta] = {}
