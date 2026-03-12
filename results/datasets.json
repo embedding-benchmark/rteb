@@ -132,5 +132,45 @@
             "ClosedDataset 13 (Japanese, Legal)"
         ],
         "leaderboard": "Text"
+    },
+    {
+        "name": "multimodal",
+        "datasets": [
+            "Vidore2BioMedicalLectures",
+            "Vidore2ESGReports",
+            "Vidore2ESGReportsHL",
+            "Vidore2EconomicsReports",
+            "VidoreArxivQA",
+            "VidoreDocVQA",
+            "VidoreInfoVQA",
+            "VidoreShiftProject",
+            "VidoreSyntheticDocQAAI",
+            "VidoreSyntheticDocQAEnergy",
+            "VidoreSyntheticDocQAGovReports",
+            "VidoreSyntheticDocQAHealthcare",
+            "VidoreTabfquad",
+            "VidoreTatdqa"
+        ],
+        "leaderboard": "Multimodal"
+    },
+    {
+        "name": "document_understanding",
+        "datasets": [
+            "Vidore2BioMedicalLectures",
+            "Vidore2ESGReports",
+            "Vidore2ESGReportsHL",
+            "Vidore2EconomicsReports",
+            "VidoreArxivQA",
+            "VidoreDocVQA",
+            "VidoreInfoVQA",
+            "VidoreShiftProject",
+            "VidoreSyntheticDocQAAI",
+            "VidoreSyntheticDocQAEnergy",
+            "VidoreSyntheticDocQAGovReports",
+            "VidoreSyntheticDocQAHealthcare",
+            "VidoreTabfquad",
+            "VidoreTatdqa"
+        ],
+        "leaderboard": "Multimodal"
     }
 ]

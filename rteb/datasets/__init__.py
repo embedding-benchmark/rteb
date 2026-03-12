@@ -1,6 +1,7 @@
 from rteb.core.base import RetrievalDataset
 from rteb.core.meta import DatasetMeta, dataset_id
 from rteb.datasets.text import *
+from rteb.datasets.multimodal import *
 from rteb.utils.lazy_import import LazyImport
 
 

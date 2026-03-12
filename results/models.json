@@ -530,5 +530,19 @@
         "alias": null,
         "vendor": "Voyage AI",
         "tooltip": "Voyage's top model with retrieval instructions"
+    },
+    {
+        "model_name": "voyage-multimodal-3.5",
+        "embd_dtype": "float32",
+        "embd_dim": 1024,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.voyageai.com/docs/multimodal-embeddings",
+        "alias": null,
+        "vendor": "Voyage AI",
+        "tooltip": null
     }
 ]
