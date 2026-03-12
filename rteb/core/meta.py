@@ -93,6 +93,7 @@ class ModelMeta(BaseModel):
     alias: str | None = None
     vendor: str | None = None
     tooltip: str | None = None
+    leaderboards: list[str] = ["Text"]
 
     def model_dump(self, **kwargs) -> dict[str, Any]:
         exclude = kwargs.pop("exclude", set()) | {"loader"}

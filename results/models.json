@@ -1,269 +1,20 @@
 [
     {
-        "model_name": "NV-Embed-v2",
-        "embd_dtype": "float32",
-        "embd_dim": 4096,
-        "num_params": 7850000000,
-        "max_tokens": 32768,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/nvidia/NV-Embed-v2",
-        "alias": null,
-        "vendor": "NVidia",
-        "tooltip": "High-performance 4096d model with 32K context, 7.8B params"
-    },
-    {
-        "model_name": "all-MiniLM-L12-v2",
-        "embd_dtype": "float32",
-        "embd_dim": 384,
-        "num_params": 33400000,
-        "max_tokens": 256,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2",
-        "alias": null,
-        "vendor": null,
-        "tooltip": "Lightweight 384d model, fast inference, 33M params"
-    },
-    {
-        "model_name": "all-MiniLM-L6-v2",
-        "embd_dtype": "float32",
-        "embd_dim": 384,
-        "num_params": 22700000,
-        "max_tokens": 256,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
-        "alias": null,
-        "vendor": null,
-        "tooltip": "Ultra-compact 384d model, fastest inference, 23M params"
-    },
-    {
-        "model_name": "all-mpnet-base-v2",
-        "embd_dtype": "float32",
-        "embd_dim": 768,
-        "num_params": 109000000,
-        "max_tokens": 384,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/sentence-transformers/all-mpnet-base-v2",
-        "alias": null,
-        "vendor": null,
-        "tooltip": "Balanced 768d model, good quality-speed tradeoff"
-    },
-    {
-        "model_name": "bge-base-en-v1.5",
-        "embd_dtype": "float32",
-        "embd_dim": 768,
-        "num_params": 109000000,
-        "max_tokens": 512,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/BAAI/bge-base-en-v1.5",
-        "alias": null,
-        "vendor": "BAAI",
-        "tooltip": "Solid 768d English model, 109M params"
-    },
-    {
-        "model_name": "bge-large-en-v1.5",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": 335000000,
-        "max_tokens": 512,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/BAAI/bge-large-en-v1.5",
-        "alias": null,
-        "vendor": "BAAI",
-        "tooltip": "High-quality 1024d English model, 335M params"
-    },
-    {
-        "model_name": "bge-m3",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": 569000000,
-        "max_tokens": 8192,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/BAAI/bge-m3",
-        "alias": null,
-        "vendor": "BAAI",
-        "tooltip": "Multilingual 1024d model with 8K context"
-    },
-    {
-        "model_name": "bge-m3-retromae",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": null,
-        "max_tokens": 8192,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/BAAI/bge-m3-retromae",
-        "alias": null,
-        "vendor": "BAAI",
-        "tooltip": "M3 variant with RetroMAE pretraining enhancement"
-    },
-    {
-        "model_name": "bge-m3-unsupervised",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": null,
-        "max_tokens": 8192,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/BAAI/bge-m3-unsupervised",
-        "alias": null,
-        "vendor": "BAAI",
-        "tooltip": "M3 variant trained without supervision"
-    },
-    {
-        "model_name": "bge-small-en-v1.5",
-        "embd_dtype": "float32",
-        "embd_dim": 384,
-        "num_params": 33400000,
-        "max_tokens": 512,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/BAAI/bge-small-en-v1.5",
-        "alias": null,
-        "vendor": "BAAI",
-        "tooltip": "Compact 384d English model, 33M params"
-    },
-    {
-        "model_name": "e5-mistral-7b-instruct",
-        "embd_dtype": "float32",
-        "embd_dim": 4096,
-        "num_params": 7110000000,
-        "max_tokens": 4096,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/intfloat/e5-mistral-7b-instruct",
-        "alias": null,
-        "vendor": "Microsoft",
-        "tooltip": "Large 4096d instruction-tuned model, 7.1B params"
-    },
-    {
-        "model_name": "embed-multilingual-v3.0",
-        "embd_dtype": "float32",
-        "embd_dim": 1024,
-        "num_params": null,
-        "max_tokens": 512,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
-        "alias": null,
-        "vendor": "Cohere",
-        "tooltip": "Cohere's 1024d multilingual embedding model"
-    },
-    {
-        "model_name": "embed-v4.0",
-        "embd_dtype": "float32",
-        "embd_dim": 1536,
-        "num_params": null,
-        "max_tokens": 128000,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
-        "alias": null,
-        "vendor": "Cohere",
-        "tooltip": "Cohere's latest 1536d model with 128K context"
-    },
-    {
-        "model_name": "embed-v4.0",
-        "embd_dtype": "binary",
-        "embd_dim": 256,
-        "num_params": null,
-        "max_tokens": 128000,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
-        "alias": "embed-v4.0 (binary, 256d)",
-        "vendor": "Cohere",
-        "tooltip": "Cohere's latest 1536d model with 128K context"
-    },
-    {
-        "model_name": "embed-v4.0",
-        "embd_dtype": "int8",
-        "embd_dim": 512,
-        "num_params": null,
-        "max_tokens": 128000,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
-        "alias": "embed-v4.0 (int8, 512d)",
-        "vendor": "Cohere",
-        "tooltip": "Cohere's latest 1536d model with 128K context"
-    },
-    {
-        "model_name": "gemini-embedding-001",
+        "model_name": "gemini-embedding-2-preview",
         "embd_dtype": "float32",
         "embd_dim": 3072,
         "num_params": null,
-        "max_tokens": 2048,
+        "max_tokens": 8192,
         "similarity": "cosine",
         "query_instruct": null,
         "corpus_instruct": null,
-        "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+        "reference": "https://ai.google.dev/gemini-api/docs/embeddings",
         "alias": null,
         "vendor": "Google",
-        "tooltip": null
-    },
-    {
-        "model_name": "GritLM-7B",
-        "embd_dtype": "float32",
-        "embd_dim": 384,
-        "num_params": 7240000000,
-        "max_tokens": 8192,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/GritLM/GritLM-7B",
-        "alias": null,
-        "vendor": null,
-        "tooltip": "Generative retrieval model, 384d output, 7.2B params"
-    },
-    {
-        "model_name": "jina-embeddings-v2-base-en",
-        "embd_dtype": "float32",
-        "embd_dim": 768,
-        "num_params": 137000000,
-        "max_tokens": 8192,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/jinaai/jina-embeddings-v2-base-en",
-        "alias": null,
-        "vendor": "Jina AI",
-        "tooltip": "English-focused 768d model with 8K context"
-    },
-    {
-        "model_name": "jina-embeddings-v2-small-en",
-        "embd_dtype": "float32",
-        "embd_dim": 512,
-        "num_params": 33000000,
-        "max_tokens": 8192,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/jinaai/jina-embeddings-v2-small-en",
-        "alias": null,
-        "vendor": "Jina AI",
-        "tooltip": "Compact 512d English model with 8K context"
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "KaLM-Embedding-Gemma3-12B-2511",
@@ -277,21 +28,27 @@
         "reference": "https://huggingface.co/tencent/KaLM-Embedding-Gemma3-12B-2511",
         "alias": null,
         "vendor": "Tencent",
-        "tooltip": "Tencent's large 3840d model based on Gemma3-12B"
+        "tooltip": "Tencent's large 3840d model based on Gemma3-12B",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
-        "model_name": "LaBSE",
+        "model_name": "kanon-2-embedder",
         "embd_dtype": "float32",
-        "embd_dim": 768,
-        "num_params": 471000000,
-        "max_tokens": 256,
+        "embd_dim": 1792,
+        "num_params": null,
+        "max_tokens": 16384,
         "similarity": "cosine",
         "query_instruct": null,
         "corpus_instruct": null,
-        "reference": "https://huggingface.co/sentence-transformers/LaBSE",
+        "reference": "https://docs.isaacus.com/embeddings",
         "alias": null,
-        "vendor": "Google",
-        "tooltip": "Google's multilingual sentence encoder, 768d"
+        "vendor": "Isaacus",
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "llama-embed-nemotron-8b",
@@ -305,21 +62,10 @@
         "reference": "https://huggingface.co/nvidia/llama-embed-nemotron-8b",
         "alias": null,
         "vendor": "NVIDIA",
-        "tooltip": "NVIDIA's instruction-aware 4096d model based on Llama-3.1-8B"
-    },
-    {
-        "model_name": "multi-qa-MiniLM-L6-cos-v1",
-        "embd_dtype": "float32",
-        "embd_dim": 384,
-        "num_params": 22700000,
-        "max_tokens": 512,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1",
-        "alias": null,
-        "vendor": null,
-        "tooltip": "QA-optimized compact model, 384d, 23M params"
+        "tooltip": "NVIDIA's instruction-aware 4096d model based on Llama-3.1-8B",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "Octen-Embedding-4B",
@@ -333,7 +79,10 @@
         "reference": "https://huggingface.co/Octen/Octen-Embedding-4B",
         "alias": null,
         "vendor": "Octen",
-        "tooltip": "Octen's efficient 2560d model based on Qwen3, 40K context"
+        "tooltip": "Octen's efficient 2560d model based on Qwen3, 40K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "Octen-Embedding-8B",
@@ -347,133 +96,10 @@
         "reference": "https://huggingface.co/Octen/Octen-Embedding-8B",
         "alias": null,
         "vendor": "Octen",
-        "tooltip": "Octen's large 4096d model based on Qwen3, 40K context"
-    },
-    {
-        "model_name": "Qwen3-Embedding-8B",
-        "embd_dtype": "float32",
-        "embd_dim": 4096,
-        "num_params": 7570000000,
-        "max_tokens": 32000,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
-        "alias": null,
-        "vendor": "Alibaba",
-        "tooltip": "Alibaba's large 4096d model with 32K context"
-    },
-    {
-        "model_name": "text-embedding-004",
-        "embd_dtype": "float32",
-        "embd_dim": 768,
-        "num_params": null,
-        "max_tokens": 2048,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
-        "alias": null,
-        "vendor": "Google",
-        "tooltip": "Google's latest 768d embedding model"
-    },
-    {
-        "model_name": "text-embedding-3-large",
-        "embd_dtype": "float32",
-        "embd_dim": 3072,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-large (3072d)",
-        "vendor": "OpenAI",
-        "tooltip": "OpenAI's premium large embedding model"
-    },
-    {
-        "model_name": "text-embedding-3-large",
-        "embd_dtype": "float32",
-        "embd_dim": 512,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-large (512d)",
-        "vendor": "OpenAI",
-        "tooltip": "OpenAI's premium large embedding model"
-    },
-    {
-        "model_name": "text-embedding-3-small",
-        "embd_dtype": "float32",
-        "embd_dim": 1536,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-small (1536d)",
-        "vendor": "OpenAI",
-        "tooltip": "OpenAI's efficient embedding model"
-    },
-    {
-        "model_name": "text-embedding-3-small",
-        "embd_dtype": "float32",
-        "embd_dim": 512,
-        "num_params": null,
-        "max_tokens": 8191,
-        "similarity": "cosine",
-        "query_instruct": null,
-        "corpus_instruct": null,
-        "reference": "https://platform.openai.com/docs/guides/embeddings",
-        "alias": "text-embedding-3-small (512d)",
-        "vendor": "OpenAI",
-        "tooltip": "OpenAI's efficient embedding model"
-    },
-    {
-        "model_name": "voyage-3.5",
-        "embd_dtype": "binary",
-        "embd_dim": 256,
-        "num_params": null,
-        "max_tokens": 32000,
-        "similarity": "cosine",
-        "query_instruct": "Represent the query for retrieving supporting documents: ",
-        "corpus_instruct": "Represent the document for retrieval: ",
-        "reference": "https://docs.voyageai.com/docs/embeddings",
-        "alias": "voyage-3.5 (binary, 256d)",
-        "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions"
-    },
-    {
-        "model_name": "voyage-3.5",
-        "embd_dtype": "int8",
-        "embd_dim": 512,
-        "num_params": null,
-        "max_tokens": 32000,
-        "similarity": "cosine",
-        "query_instruct": "Represent the query for retrieving supporting documents: ",
-        "corpus_instruct": "Represent the document for retrieval: ",
-        "reference": "https://docs.voyageai.com/docs/embeddings",
-        "alias": "voyage-3.5 (int8, 512d)",
-        "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions"
-    },
-    {
-        "model_name": "voyage-3-large",
-        "embd_dtype": "float32",
-        "embd_dim": 2048,
-        "num_params": null,
-        "max_tokens": 32000,
-        "similarity": "cosine",
-        "query_instruct": "Represent the query for retrieving supporting documents: ",
-        "corpus_instruct": "Represent the document for retrieval: ",
-        "reference": "https://docs.voyageai.com/docs/embeddings",
-        "alias": null,
-        "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": "Octen's large 4096d model based on Qwen3, 40K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-4",
@@ -487,7 +113,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-4-large",
@@ -501,7 +130,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-4-lite",
@@ -515,20 +147,26 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
-        "model_name": "voyage-code-3",
+        "model_name": "voyage-multimodal-3.5",
         "embd_dtype": "float32",
-        "embd_dim": 2048,
+        "embd_dim": 1024,
         "num_params": null,
         "max_tokens": 32000,
         "similarity": "cosine",
-        "query_instruct": "Represent the query for retrieving supporting documents: ",
-        "corpus_instruct": "Represent the document for retrieval: ",
-        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.voyageai.com/docs/multimodal-embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions"
+        "tooltip": null,
+        "leaderboards": [
+            "Multimodal"
+        ]
     }
 ]
