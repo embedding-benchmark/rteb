@@ -121,9 +121,16 @@ def run_retrieve_task(
         if need_encoding:
             if not args.load_embds:
                 trainer.print(f"Encoding queries to disk...")
-            # Use filtered dataloader to exclude already processed embeddings when resuming
             exclude_ids = getattr(encoder, 'local_existing_ids', None) if args.load_embds else None
-            trainer.predict(model=encoder, dataloaders=dm.queries_dataloader(exclude_ids=exclude_ids))
+            if hasattr(encoder.model, 'build_token_batches'):
+                items = list(dm.dataset.queries.data)
+                if exclude_ids:
+                    items = [item for item in items if item["id"] not in exclude_ids]
+                batches = encoder.model.build_token_batches(items)
+                dataloader = dm.token_aware_dataloader(batches)
+            else:
+                dataloader = dm.queries_dataloader(exclude_ids=exclude_ids)
+            trainer.predict(model=encoder, dataloaders=dataloader)
         queries_embds_files = encoder.get_embd_files(trainer.num_devices)
         
         # Force garbage collection after query encoding
@@ -150,9 +157,16 @@ def run_retrieve_task(
         if need_encoding:
             if not args.load_embds:
                 trainer.print(f"Encoding corpus to disk...")
-            # Use filtered dataloader to exclude already processed embeddings when resuming
             exclude_ids = getattr(encoder, 'local_existing_ids', None) if args.load_embds else None
-            trainer.predict(model=encoder, dataloaders=dm.corpus_dataloader(exclude_ids=exclude_ids))
+            if hasattr(encoder.model, 'build_token_batches'):
+                items = list(dm.dataset.corpus.data)
+                if exclude_ids:
+                    items = [item for item in items if item["id"] not in exclude_ids]
+                batches = encoder.model.build_token_batches(items)
+                dataloader = dm.token_aware_dataloader(batches)
+            else:
+                dataloader = dm.corpus_dataloader(exclude_ids=exclude_ids)
+            trainer.predict(model=encoder, dataloaders=dataloader)
         corpus_embds_files = encoder.get_embd_files(trainer.num_devices)
         
         # Force garbage collection after corpus encoding

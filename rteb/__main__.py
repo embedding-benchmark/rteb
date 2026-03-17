@@ -160,8 +160,19 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "--overwrite", action="store_true", help="Whether to overwrite the results.")
     parser.add_argument(
-        "--offload-model", action="store_true", 
+        "--offload-model", action="store_true",
         help="Offload model after encoding to save memory during retrieval phase.")
+    parser.add_argument(
+        "--max_seq_length", type=int, default=None,
+        help="Override model's max sequence length for tokenization truncation.")
+    parser.add_argument(
+        "--no_seq_length_cap", action="store_true",
+        help="Disable automatic max_seq_length capping from model's max_tokens. "
+             "By default, SentenceTransformers models are capped to the model's documented max_tokens.")
+    parser.add_argument(
+        "--device_map", action="store_true",
+        help="Use device_map='auto' to shard model across multiple GPUs. "
+             "Use with --gpus 1 and CUDA_VISIBLE_DEVICES=X,Y to spread a large model across GPUs.")
     parser.add_argument("--dump_data_only", action="store_true", help="Just read the output and create the results.")
 
     args = parser.parse_args()
@@ -392,7 +403,7 @@ def main(args: argparse.Namespace):
         
         if trainer.is_global_zero:
             trainer.print(f"Evaluating {len(models_to_evaluate)} models: {list(models_to_evaluate.keys())}")
-    
+
     # Evaluate each model on the specified datasets
     for model_id, model_meta in models_to_evaluate.items():
         if trainer.is_global_zero:
@@ -401,8 +412,15 @@ def main(args: argparse.Namespace):
         # Determine device based on GPU/CPU arguments
         device = "cuda" if args.gpus > 0 else "cpu"
         
+        load_kwargs = {"device": device}
+        if args.device_map:
+            load_kwargs["device_map"] = True
+        if args.max_seq_length is not None:
+            load_kwargs["max_seq_length"] = args.max_seq_length
+        if args.no_seq_length_cap:
+            load_kwargs["cap_seq_length"] = False
         encoder = Encoder(
-            model_meta.load_model(device=device),
+            model_meta.load_model(**load_kwargs),
             load_embds=args.load_embds
         )
         retriever = Retriever(

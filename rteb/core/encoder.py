@@ -142,7 +142,7 @@ class Encoder(LightningModule):
                 self._ensure_file_open()  # Lazy file opening
                 self.local_embd_file.write(json.dumps(obj) + "\n")
 
-    def on_predict_epoch_end(self):
+    def on_predict_epoch_end(self, results=None):
         if self.save_embds and self.local_embd_file is not None:
             self.local_embd_file.close()
             logger.debug(f"Closed embedding file: {self.local_embd_file_name}")
