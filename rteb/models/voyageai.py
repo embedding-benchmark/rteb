@@ -18,7 +18,6 @@ else:
 
 logger = logging.getLogger(__name__)
 
-
 BATCH_TOKEN_LIMITS = {
     "voyage-4-large": 115_000,
     "voyage-4": 320_000,
@@ -203,32 +202,6 @@ voyage_35_binary_256 = ModelMeta(
     reference="https://docs.voyageai.com/docs/embeddings",
     vendor="Voyage AI",
     tooltip="Voyage's top model with retrieval instructions"
-)
-
-voyage_4_large = ModelMeta(
-    loader=VoyageAIEmbeddingModel,
-    model_name="voyage-4-large",
-    embd_dtype="float32",
-    embd_dim=2048,
-    max_tokens=32_000,
-    similarity="cosine",
-    query_instruct="Represent the query for retrieving supporting documents: ",
-    corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
-)
-
-voyage_4_lite = ModelMeta(
-    loader=VoyageAIEmbeddingModel,
-    model_name="voyage-4-lite",
-    embd_dtype="float32",
-    embd_dim=1024,
-    max_tokens=32_000,
-    similarity="cosine",
-    query_instruct="Represent the query for retrieving supporting documents: ",
-    corpus_instruct="Represent the document for retrieval: ",
-    reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
 )
 
 voyage_4 = ModelMeta(
