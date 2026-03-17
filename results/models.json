@@ -56,6 +56,20 @@
         "tooltip": "Balanced 768d model, good quality-speed tradeoff"
     },
     {
+        "model_name": "amazon.titan-embed-image-v1",
+        "embd_dtype": "float32",
+        "embd_dim": 1024,
+        "num_params": null,
+        "max_tokens": 128,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-multiemb-models.html",
+        "alias": null,
+        "vendor": "Amazon",
+        "tooltip": null
+    },
+    {
         "model_name": "bge-base-en-v1.5",
         "embd_dtype": "float32",
         "embd_dim": 768,
@@ -210,6 +224,20 @@
         "tooltip": "Cohere's latest 1536d model with 128K context"
     },
     {
+        "model_name": "embed-v4.0-multimodal",
+        "embd_dtype": "float32",
+        "embd_dim": 1536,
+        "num_params": null,
+        "max_tokens": 128000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
+        "alias": "embed-v4.0 (multimodal)",
+        "vendor": "Cohere",
+        "tooltip": null
+    },
+    {
         "model_name": "gemini-embedding-001",
         "embd_dtype": "float32",
         "embd_dim": 3072,
@@ -219,6 +247,20 @@
         "query_instruct": null,
         "corpus_instruct": null,
         "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
+        "alias": null,
+        "vendor": "Google",
+        "tooltip": null
+    },
+    {
+        "model_name": "gemini-embedding-2-preview",
+        "embd_dtype": "float32",
+        "embd_dim": 3072,
+        "num_params": null,
+        "max_tokens": 8192,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://ai.google.dev/gemini-api/docs/embeddings",
         "alias": null,
         "vendor": "Google",
         "tooltip": null
@@ -530,5 +572,19 @@
         "alias": null,
         "vendor": "Voyage AI",
         "tooltip": "Voyage's top model with retrieval instructions"
+    },
+    {
+        "model_name": "voyage-multimodal-3.5",
+        "embd_dtype": "float32",
+        "embd_dim": 1024,
+        "num_params": null,
+        "max_tokens": 32000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.voyageai.com/docs/multimodal-embeddings",
+        "alias": null,
+        "vendor": "Voyage AI",
+        "tooltip": null
     }
 ]

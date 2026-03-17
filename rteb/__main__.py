@@ -184,22 +184,27 @@ def _get_complete_models(
     results_dir: str = "results",
     show_report: bool = True
 ) -> set[str]:
-    """Get models that have results for all datasets."""
+    """Get models that have results for all datasets in at least one leaderboard."""
     from collections import defaultdict
-    
-    # Count total datasets in registry
+
+    # Group datasets by leaderboard
+    leaderboard_datasets: dict[str, set[str]] = defaultdict(set)
+    for ds_name, ds_meta in DATASET_REGISTRY.items():
+        lb = ds_meta.loader.LEADERBOARD
+        leaderboard_datasets[lb].add(ds_name)
+
     total_datasets = len(DATASET_REGISTRY)
     all_datasets = set(DATASET_REGISTRY.keys())
-    
-    # Track which datasets each model has results for - start with all possible models
+
+    # Track which datasets each model has results for
     model_datasets = defaultdict(set)
-    
+
     # First, check existing results.json to get baseline coverage
     results_file = Path(results_dir) / "results.json"
     if results_file.exists():
         with open(results_file) as f:
             results_data = json.load(f)
-            
+
         for dataset_entry in results_data:
             dataset_name = dataset_entry.get("dataset_name")
             if dataset_name in DATASET_REGISTRY:
@@ -207,7 +212,7 @@ def _get_complete_models(
                     if "model_name" in result:
                         model_name = result["model_name"]
                         model_datasets[model_name].add(dataset_name)
-    
+
     # Then, update with any new results from output directory
     output_path = Path(output_dir)
     if output_path.exists() and output_path.is_dir():
@@ -215,15 +220,15 @@ def _get_complete_models(
             # Find dataset by either dataset_name or alias
             dataset_name = None
             for ds_name, ds_meta in DATASET_REGISTRY.items():
-                if (dataset_output_dir.name == ds_name or 
+                if (dataset_output_dir.name == ds_name or
                     (ds_meta.alias and dataset_output_dir.name == ds_meta.alias)):
                     dataset_name = ds_name
                     break
-            
+
             # Skip if the dataset is not in the registry
             if dataset_name is None:
                 continue
-                
+
             for one_result in dataset_output_dir.iterdir():
                 eval_file = one_result / "retrieve_eval.json"
                 if eval_file.exists():
@@ -232,31 +237,43 @@ def _get_complete_models(
                         if "model_name" in result_data:
                             model_name = result_data["model_name"]
                             model_datasets[model_name].add(dataset_name)
-    
-    # Separate complete and incomplete models
-    # Exception: voyage-code-3* models are included even without full coverage
-    complete_models = {model for model, datasets in model_datasets.items()
-                      if len(datasets) >= total_datasets or model.startswith("voyage-code-3")}
 
-    incomplete_models = {model: datasets for model, datasets in model_datasets.items()
-                        if len(datasets) < total_datasets and not model.startswith("voyage-code-3")}
-    
+    # A model is complete if it covers all datasets in at least one leaderboard.
+    # Exception: voyage-code-3* models are included even without full coverage.
+    complete_models = set()
+    incomplete_models = {}
+    for model, datasets in model_datasets.items():
+        if model.startswith("voyage-code-3"):
+            complete_models.add(model)
+            continue
+        is_complete = False
+        for lb, lb_ds in leaderboard_datasets.items():
+            if lb_ds <= datasets:
+                is_complete = True
+                break
+        if is_complete:
+            complete_models.add(model)
+        else:
+            incomplete_models[model] = datasets
+
     # Generate detailed report using print to ensure visibility
     if show_report:
         print("=" * 80)
         print("MODEL COMPLETENESS REPORT")
         print("=" * 80)
+        for lb, lb_ds in sorted(leaderboard_datasets.items()):
+            print(f"  {lb} leaderboard: {len(lb_ds)} datasets")
         print(f"Total datasets in registry: {total_datasets}")
         print(f"Complete models (will be included): {len(complete_models)}")
         print(f"Incomplete models (will be excluded): {len(incomplete_models)}")
         print("")
-        
+
         if complete_models:
             print("COMPLETE MODELS:")
             for model in sorted(complete_models):
                 print(f"  ✓ {model} ({len(model_datasets[model])}/{total_datasets} datasets)")
             print("")
-        
+
         if incomplete_models:
             print("INCOMPLETE MODELS (EXCLUDED):")
             for model in sorted(incomplete_models.keys()):
@@ -267,9 +284,9 @@ def _get_complete_models(
                 for missing in sorted(missing_datasets):
                     print(f"      - {missing}")
                 print("")
-        
+
         print("=" * 80)
-    
+
     return complete_models
 
 
