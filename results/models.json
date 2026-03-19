@@ -11,7 +11,10 @@
         "reference": "https://huggingface.co/nvidia/NV-Embed-v2",
         "alias": null,
         "vendor": "NVidia",
-        "tooltip": "High-performance 4096d model with 32K context, 7.8B params"
+        "tooltip": "High-performance 4096d model with 32K context, 7.8B params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "all-MiniLM-L12-v2",
@@ -25,7 +28,10 @@
         "reference": "https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2",
         "alias": null,
         "vendor": null,
-        "tooltip": "Lightweight 384d model, fast inference, 33M params"
+        "tooltip": "Lightweight 384d model, fast inference, 33M params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "all-MiniLM-L6-v2",
@@ -39,7 +45,10 @@
         "reference": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
         "alias": null,
         "vendor": null,
-        "tooltip": "Ultra-compact 384d model, fastest inference, 23M params"
+        "tooltip": "Ultra-compact 384d model, fastest inference, 23M params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "all-mpnet-base-v2",
@@ -53,7 +62,10 @@
         "reference": "https://huggingface.co/sentence-transformers/all-mpnet-base-v2",
         "alias": null,
         "vendor": null,
-        "tooltip": "Balanced 768d model, good quality-speed tradeoff"
+        "tooltip": "Balanced 768d model, good quality-speed tradeoff",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "amazon.titan-embed-image-v1",
@@ -67,7 +79,10 @@
         "reference": "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-multiemb-models.html",
         "alias": null,
         "vendor": "Amazon",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Multimodal"
+        ]
     },
     {
         "model_name": "bge-base-en-v1.5",
@@ -81,7 +96,10 @@
         "reference": "https://huggingface.co/BAAI/bge-base-en-v1.5",
         "alias": null,
         "vendor": "BAAI",
-        "tooltip": "Solid 768d English model, 109M params"
+        "tooltip": "Solid 768d English model, 109M params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "bge-large-en-v1.5",
@@ -95,7 +113,10 @@
         "reference": "https://huggingface.co/BAAI/bge-large-en-v1.5",
         "alias": null,
         "vendor": "BAAI",
-        "tooltip": "High-quality 1024d English model, 335M params"
+        "tooltip": "High-quality 1024d English model, 335M params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "bge-m3",
@@ -109,7 +130,10 @@
         "reference": "https://huggingface.co/BAAI/bge-m3",
         "alias": null,
         "vendor": "BAAI",
-        "tooltip": "Multilingual 1024d model with 8K context"
+        "tooltip": "Multilingual 1024d model with 8K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "bge-m3-retromae",
@@ -123,7 +147,10 @@
         "reference": "https://huggingface.co/BAAI/bge-m3-retromae",
         "alias": null,
         "vendor": "BAAI",
-        "tooltip": "M3 variant with RetroMAE pretraining enhancement"
+        "tooltip": "M3 variant with RetroMAE pretraining enhancement",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "bge-m3-unsupervised",
@@ -137,7 +164,10 @@
         "reference": "https://huggingface.co/BAAI/bge-m3-unsupervised",
         "alias": null,
         "vendor": "BAAI",
-        "tooltip": "M3 variant trained without supervision"
+        "tooltip": "M3 variant trained without supervision",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "bge-small-en-v1.5",
@@ -151,7 +181,10 @@
         "reference": "https://huggingface.co/BAAI/bge-small-en-v1.5",
         "alias": null,
         "vendor": "BAAI",
-        "tooltip": "Compact 384d English model, 33M params"
+        "tooltip": "Compact 384d English model, 33M params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "e5-mistral-7b-instruct",
@@ -165,7 +198,10 @@
         "reference": "https://huggingface.co/intfloat/e5-mistral-7b-instruct",
         "alias": null,
         "vendor": "Microsoft",
-        "tooltip": "Large 4096d instruction-tuned model, 7.1B params"
+        "tooltip": "Large 4096d instruction-tuned model, 7.1B params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "embed-multilingual-v3.0",
@@ -179,7 +215,10 @@
         "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
         "alias": null,
         "vendor": "Cohere",
-        "tooltip": "Cohere's 1024d multilingual embedding model"
+        "tooltip": "Cohere's 1024d multilingual embedding model",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "embed-v4.0",
@@ -193,7 +232,10 @@
         "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
         "alias": null,
         "vendor": "Cohere",
-        "tooltip": "Cohere's latest 1536d model with 128K context"
+        "tooltip": "Cohere's latest 1536d model with 128K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "embed-v4.0",
@@ -207,7 +249,10 @@
         "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
         "alias": "embed-v4.0 (binary, 256d)",
         "vendor": "Cohere",
-        "tooltip": "Cohere's latest 1536d model with 128K context"
+        "tooltip": "Cohere's latest 1536d model with 128K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "embed-v4.0",
@@ -221,7 +266,10 @@
         "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
         "alias": "embed-v4.0 (int8, 512d)",
         "vendor": "Cohere",
-        "tooltip": "Cohere's latest 1536d model with 128K context"
+        "tooltip": "Cohere's latest 1536d model with 128K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "embed-v4.0-multimodal",
@@ -235,7 +283,10 @@
         "reference": "https://docs.cohere.com/v2/docs/cohere-embed",
         "alias": "embed-v4.0 (multimodal)",
         "vendor": "Cohere",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Multimodal"
+        ]
     },
     {
         "model_name": "gemini-embedding-001",
@@ -249,7 +300,10 @@
         "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
         "alias": null,
         "vendor": "Google",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "gemini-embedding-2-preview",
@@ -263,7 +317,11 @@
         "reference": "https://ai.google.dev/gemini-api/docs/embeddings",
         "alias": null,
         "vendor": "Google",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text",
+            "Multimodal"
+        ]
     },
     {
         "model_name": "GritLM-7B",
@@ -277,7 +335,10 @@
         "reference": "https://huggingface.co/GritLM/GritLM-7B",
         "alias": null,
         "vendor": null,
-        "tooltip": "Generative retrieval model, 384d output, 7.2B params"
+        "tooltip": "Generative retrieval model, 384d output, 7.2B params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "jina-embeddings-v2-base-en",
@@ -291,7 +352,10 @@
         "reference": "https://huggingface.co/jinaai/jina-embeddings-v2-base-en",
         "alias": null,
         "vendor": "Jina AI",
-        "tooltip": "English-focused 768d model with 8K context"
+        "tooltip": "English-focused 768d model with 8K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "jina-embeddings-v2-small-en",
@@ -305,7 +369,10 @@
         "reference": "https://huggingface.co/jinaai/jina-embeddings-v2-small-en",
         "alias": null,
         "vendor": "Jina AI",
-        "tooltip": "Compact 512d English model with 8K context"
+        "tooltip": "Compact 512d English model with 8K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "KaLM-Embedding-Gemma3-12B-2511",
@@ -319,7 +386,27 @@
         "reference": "https://huggingface.co/tencent/KaLM-Embedding-Gemma3-12B-2511",
         "alias": null,
         "vendor": "Tencent",
-        "tooltip": "Tencent's large 3840d model based on Gemma3-12B"
+        "tooltip": "Tencent's large 3840d model based on Gemma3-12B",
+        "leaderboards": [
+            "Text"
+        ]
+    },
+    {
+        "model_name": "kanon-2-embedder",
+        "embd_dtype": "float32",
+        "embd_dim": 1792,
+        "num_params": null,
+        "max_tokens": 16384,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.isaacus.com/embeddings",
+        "alias": null,
+        "vendor": "Isaacus",
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "LaBSE",
@@ -333,7 +420,10 @@
         "reference": "https://huggingface.co/sentence-transformers/LaBSE",
         "alias": null,
         "vendor": "Google",
-        "tooltip": "Google's multilingual sentence encoder, 768d"
+        "tooltip": "Google's multilingual sentence encoder, 768d",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "llama-embed-nemotron-8b",
@@ -347,7 +437,10 @@
         "reference": "https://huggingface.co/nvidia/llama-embed-nemotron-8b",
         "alias": null,
         "vendor": "NVIDIA",
-        "tooltip": "NVIDIA's instruction-aware 4096d model based on Llama-3.1-8B"
+        "tooltip": "NVIDIA's instruction-aware 4096d model based on Llama-3.1-8B",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "multi-qa-MiniLM-L6-cos-v1",
@@ -361,7 +454,10 @@
         "reference": "https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1",
         "alias": null,
         "vendor": null,
-        "tooltip": "QA-optimized compact model, 384d, 23M params"
+        "tooltip": "QA-optimized compact model, 384d, 23M params",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "Octen-Embedding-4B",
@@ -375,7 +471,10 @@
         "reference": "https://huggingface.co/Octen/Octen-Embedding-4B",
         "alias": null,
         "vendor": "Octen",
-        "tooltip": "Octen's efficient 2560d model based on Qwen3, 40K context"
+        "tooltip": "Octen's efficient 2560d model based on Qwen3, 40K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "Octen-Embedding-8B",
@@ -389,7 +488,10 @@
         "reference": "https://huggingface.co/Octen/Octen-Embedding-8B",
         "alias": null,
         "vendor": "Octen",
-        "tooltip": "Octen's large 4096d model based on Qwen3, 40K context"
+        "tooltip": "Octen's large 4096d model based on Qwen3, 40K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "Qwen3-Embedding-8B",
@@ -403,7 +505,10 @@
         "reference": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
         "alias": null,
         "vendor": "Alibaba",
-        "tooltip": "Alibaba's large 4096d model with 32K context"
+        "tooltip": "Alibaba's large 4096d model with 32K context",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "text-embedding-004",
@@ -417,7 +522,10 @@
         "reference": "https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-text-embeddings",
         "alias": null,
         "vendor": "Google",
-        "tooltip": "Google's latest 768d embedding model"
+        "tooltip": "Google's latest 768d embedding model",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "text-embedding-3-large",
@@ -431,7 +539,10 @@
         "reference": "https://platform.openai.com/docs/guides/embeddings",
         "alias": "text-embedding-3-large (3072d)",
         "vendor": "OpenAI",
-        "tooltip": "OpenAI's premium large embedding model"
+        "tooltip": "OpenAI's premium large embedding model",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "text-embedding-3-large",
@@ -445,7 +556,10 @@
         "reference": "https://platform.openai.com/docs/guides/embeddings",
         "alias": "text-embedding-3-large (512d)",
         "vendor": "OpenAI",
-        "tooltip": "OpenAI's premium large embedding model"
+        "tooltip": "OpenAI's premium large embedding model",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "text-embedding-3-small",
@@ -459,7 +573,10 @@
         "reference": "https://platform.openai.com/docs/guides/embeddings",
         "alias": "text-embedding-3-small (1536d)",
         "vendor": "OpenAI",
-        "tooltip": "OpenAI's efficient embedding model"
+        "tooltip": "OpenAI's efficient embedding model",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "text-embedding-3-small",
@@ -473,7 +590,10 @@
         "reference": "https://platform.openai.com/docs/guides/embeddings",
         "alias": "text-embedding-3-small (512d)",
         "vendor": "OpenAI",
-        "tooltip": "OpenAI's efficient embedding model"
+        "tooltip": "OpenAI's efficient embedding model",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-3.5",
@@ -487,7 +607,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": "voyage-3.5 (binary, 256d)",
         "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions"
+        "tooltip": "Voyage's top model with retrieval instructions",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-3.5",
@@ -501,7 +624,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": "voyage-3.5 (int8, 512d)",
         "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions"
+        "tooltip": "Voyage's top model with retrieval instructions",
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-3-large",
@@ -515,7 +641,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-4",
@@ -529,7 +658,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-4-large",
@@ -543,7 +675,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-4-lite",
@@ -557,7 +692,10 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-code-3",
@@ -571,7 +709,27 @@
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions"
+        "tooltip": "Voyage's top model with retrieval instructions",
+        "leaderboards": [
+            "Text"
+        ]
+    },
+    {
+        "model_name": "voyage-law-2",
+        "embd_dtype": "float32",
+        "embd_dim": 1024,
+        "num_params": null,
+        "max_tokens": 16000,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://docs.voyageai.com/docs/embeddings",
+        "alias": null,
+        "vendor": "Voyage AI",
+        "tooltip": null,
+        "leaderboards": [
+            "Text"
+        ]
     },
     {
         "model_name": "voyage-multimodal-3.5",
@@ -585,6 +743,9 @@
         "reference": "https://docs.voyageai.com/docs/multimodal-embeddings",
         "alias": null,
         "vendor": "Voyage AI",
-        "tooltip": null
+        "tooltip": null,
+        "leaderboards": [
+            "Multimodal"
+        ]
     }
 ]

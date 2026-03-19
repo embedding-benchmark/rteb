@@ -282,4 +282,5 @@ gemini_embedding_2 = ModelMeta(
     similarity="cosine",
     reference="https://ai.google.dev/gemini-api/docs/embeddings",
     vendor="Google",
+    leaderboards=["Text", "Multimodal"],
 )
