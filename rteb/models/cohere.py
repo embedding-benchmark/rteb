@@ -258,4 +258,5 @@ embed_v4_0_multimodal = ModelMeta(
     similarity="cosine",
     reference="https://docs.cohere.com/v2/docs/cohere-embed",
     vendor="Cohere",
+    leaderboards=["Multimodal"],
 )

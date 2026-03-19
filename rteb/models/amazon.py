@@ -164,4 +164,5 @@ amazon_titan_embed_image_v1 = ModelMeta(
     similarity="cosine",
     reference="https://docs.aws.amazon.com/bedrock/latest/userguide/titan-multiemb-models.html",
     vendor="Amazon",
+    leaderboards=["Multimodal"],
 )

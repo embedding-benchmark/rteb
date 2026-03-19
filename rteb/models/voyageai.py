@@ -28,6 +28,7 @@ BATCH_TOKEN_LIMITS = {
     "voyage-code-3": 120_000,
     "voyage-3": 120_000,
     "voyage-2": 320_000,
+    "voyage-law-2": 120_000,
 }
 
 BATCH_SIZE_LIMITS = {
@@ -243,6 +244,19 @@ voyage_4_lite = ModelMeta(
     vendor="Voyage AI"
 )
 
+voyage_law_2 = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-law-2",
+    embd_dtype="float32",
+    embd_dim=1024,
+    max_tokens=16_000,
+    similarity="cosine",
+    query_instruct=None,
+    corpus_instruct=None,
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI",
+)
+
 MULTIMODAL_BATCH_TOKEN_LIMIT = 32_000
 MULTIMODAL_BATCH_SIZE_LIMIT = 1000
 TOKENS_PER_IMAGE = 3571
@@ -389,4 +403,5 @@ voyage_multimodal_35 = ModelMeta(
     corpus_instruct=None,
     reference="https://docs.voyageai.com/docs/multimodal-embeddings",
     vendor="Voyage AI",
+    leaderboards=["Multimodal"],
 )
