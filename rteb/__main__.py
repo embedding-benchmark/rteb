@@ -184,17 +184,28 @@ def _get_complete_models(
     results_dir: str = "results",
     show_report: bool = True
 ) -> set[str]:
-    """Get models that have results for all datasets in at least one leaderboard."""
+    """Get models that have complete results for their declared leaderboards.
+
+    Each ModelMeta declares which leaderboards it participates in. A model is
+    complete if it has results for every dataset in each of its leaderboards.
+    """
     from collections import defaultdict
 
-    # Group datasets by leaderboard
+    # Build leaderboard -> dataset mapping
     leaderboard_datasets: dict[str, set[str]] = defaultdict(set)
     for ds_name, ds_meta in DATASET_REGISTRY.items():
         lb = ds_meta.loader.LEADERBOARD
         leaderboard_datasets[lb].add(ds_name)
 
+    # Build model_name -> declared leaderboards mapping from MODEL_REGISTRY
+    model_declared_leaderboards: dict[str, list[str]] = {}
+    for meta in MODEL_REGISTRY.values():
+        model_alias = meta.alias if meta.alias else meta.model_name
+        model_declared_leaderboards[meta.model_name] = meta.leaderboards
+        if model_alias != meta.model_name:
+            model_declared_leaderboards[model_alias] = meta.leaderboards
+
     total_datasets = len(DATASET_REGISTRY)
-    all_datasets = set(DATASET_REGISTRY.keys())
 
     # Track which datasets each model has results for
     model_datasets = defaultdict(set)
@@ -238,32 +249,45 @@ def _get_complete_models(
                             model_name = result_data["model_name"]
                             model_datasets[model_name].add(dataset_name)
 
-    # A model is complete if it covers all datasets in at least one leaderboard.
-    # Exception: voyage-code-3* models are included even without full coverage.
-    complete_models = set()
-    incomplete_models = {}
-    for model, datasets in model_datasets.items():
-        if model.startswith("voyage-code-3"):
-            complete_models.add(model)
-            continue
-        is_complete = False
-        for lb, lb_ds in leaderboard_datasets.items():
-            if lb_ds <= datasets:
-                is_complete = True
-                break
-        if is_complete:
-            complete_models.add(model)
-        else:
-            incomplete_models[model] = datasets
 
-    # Generate detailed report using print to ensure visibility
+    # Per-leaderboard completeness check using declared leaderboards.
+    # Exception: some models (e.g. domain-specific) are included regardless.
+    completeness_exceptions = {"voyage-code-3", "voyage-law-2", "kanon-2-embedder"}
+
+    complete_models = set()
+    model_complete_lbs: dict[str, list[str]] = defaultdict(list)
+
+    for model, datasets in model_datasets.items():
+        if any(model.startswith(exc) for exc in completeness_exceptions):
+            complete_models.add(model)
+            model_complete_lbs[model].append("(exception)")
+            continue
+
+        # Look up declared leaderboards; default to ["Text"] matching ModelMeta default
+        declared = model_declared_leaderboards.get(model, ["Text"])
+
+        all_complete = True
+        for lb_name in declared:
+            lb_datasets = leaderboard_datasets.get(lb_name, set())
+            if lb_datasets <= datasets:
+                model_complete_lbs[model].append(lb_name)
+            else:
+                all_complete = False
+
+        if all_complete and declared:
+            complete_models.add(model)
+
+    incomplete_models = {model: datasets for model, datasets in model_datasets.items()
+                        if model not in complete_models}
+
+    # Generate detailed report
     if show_report:
         print("=" * 80)
         print("MODEL COMPLETENESS REPORT")
         print("=" * 80)
-        for lb, lb_ds in sorted(leaderboard_datasets.items()):
-            print(f"  {lb} leaderboard: {len(lb_ds)} datasets")
-        print(f"Total datasets in registry: {total_datasets}")
+        for lb_name, lb_datasets in sorted(leaderboard_datasets.items()):
+            print(f"  Leaderboard '{lb_name}': {len(lb_datasets)} datasets")
+        print(f"  Total datasets in registry: {total_datasets}")
         print(f"Complete models (will be included): {len(complete_models)}")
         print(f"Incomplete models (will be excluded): {len(incomplete_models)}")
         print("")
@@ -271,18 +295,23 @@ def _get_complete_models(
         if complete_models:
             print("COMPLETE MODELS:")
             for model in sorted(complete_models):
-                print(f"  ✓ {model} ({len(model_datasets[model])}/{total_datasets} datasets)")
+                lbs = ", ".join(model_complete_lbs[model])
+                print(f"  ✓ {model} ({len(model_datasets[model])} datasets) [{lbs}]")
             print("")
 
         if incomplete_models:
             print("INCOMPLETE MODELS (EXCLUDED):")
             for model in sorted(incomplete_models.keys()):
                 model_dataset_set = incomplete_models[model]
-                missing_datasets = all_datasets - model_dataset_set
-                print(f"  ✗ {model} ({len(model_dataset_set)}/{total_datasets} datasets)")
-                print(f"    Missing datasets ({len(missing_datasets)}):")
-                for missing in sorted(missing_datasets):
-                    print(f"      - {missing}")
+                declared = model_declared_leaderboards.get(model, ["Text"])
+                print(f"  ✗ {model} ({len(model_dataset_set)} datasets)")
+                for lb_name in declared:
+                    lb_datasets = leaderboard_datasets.get(lb_name, set())
+                    missing = lb_datasets - model_dataset_set
+                    if missing:
+                        print(f"    {lb_name}: missing {len(missing)}/{len(lb_datasets)}:")
+                        for m in sorted(missing):
+                            print(f"      - {m}")
                 print("")
 
         print("=" * 80)

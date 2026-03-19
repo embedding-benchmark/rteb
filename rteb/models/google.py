@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from typing import Any, TYPE_CHECKING
+import os
 import base64
 import io
 import time
@@ -15,12 +16,13 @@ from rteb.core.meta import ModelMeta
 from google import genai
 from google.genai import types
 from google.genai.types import EmbedContentConfig
-import vertexai
-from vertexai.language_models import TextEmbeddingModel
-from google.oauth2 import service_account
 
-import os
-USE_VERTEX = os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "True").lower() == "true"
+USE_VERTEX = os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "False").lower() == "true"
+
+if USE_VERTEX:
+    import vertexai
+    from vertexai.language_models import TextEmbeddingModel
+    from google.oauth2 import service_account
 
 GOOGLE_MULTIMODAL_BATCH_LIMIT = 6  # API limit: 6 images per request
 GOOGLE_BATCH_SIZE_LIMIT = 100  # API limit: 100 items per batch
