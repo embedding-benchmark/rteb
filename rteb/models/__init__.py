@@ -8,6 +8,7 @@ from rteb.models.bgem3 import *
 from rteb.models.gritlm import *
 from rteb.models.google import *
 from rteb.models.isaacus import *
+from rteb.models.amazon import *
 
 
 MODEL_REGISTRY: dict[str, ModelMeta] = {}
