@@ -22,6 +22,7 @@ BATCH_TOKEN_LIMITS = {
     "voyage-4-large": 115_000,
     "voyage-4": 320_000,
     "voyage-4-lite": 1_000_000,
+    "voyage-4-nano": 1_000_000,
     "voyage-3.5": 320_000,
     "voyage-3.5-lite": 1_000_000,
     "voyage-3-large": 120_000,
@@ -35,6 +36,7 @@ BATCH_SIZE_LIMITS = {
     "voyage-4-large": 1000,
     "voyage-4": 1000,
     "voyage-4-lite": 1000,
+    "voyage-4-nano": 1000,
 }
 
 
@@ -99,7 +101,7 @@ class VoyageAIEmbeddingModel(APIEmbeddingModel):
             "input_type": None
         }
         if self.model_name in ["voyage-3-large", "voyage-3.5", "voyage-3.5-lite", "voyage-code-3",
-                                "voyage-4-large", "voyage-4", "voyage-4-lite"]:
+                                "voyage-4-large", "voyage-4", "voyage-4-lite", "voyage-4-nano"]:
             request["output_dimension"] = self.embd_dim
 
             output_dtype = self.embd_dtype
@@ -242,6 +244,19 @@ voyage_4_lite = ModelMeta(
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
     vendor="Voyage AI"
+)
+
+voyage_4_nano = ModelMeta(
+    loader=VoyageAIEmbeddingModel,
+    model_name="voyage-4-nano",
+    embd_dtype="float32",
+    embd_dim=2048,
+    max_tokens=32_000,
+    similarity="cosine",
+    query_instruct="Represent the query for retrieving supporting documents: ",
+    corpus_instruct="Represent the document for retrieval: ",
+    reference="https://docs.voyageai.com/docs/embeddings",
+    vendor="Voyage AI",
 )
 
 voyage_law_2 = ModelMeta(
