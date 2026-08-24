@@ -606,8 +606,8 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": "voyage-3.5 (binary, 256d)",
-        "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions",
+        "vendor": "MongoDB",
+        "tooltip": "MongoDB's top model with retrieval instructions",
         "leaderboards": [
             "Text"
         ]
@@ -623,8 +623,8 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": "voyage-3.5 (int8, 512d)",
-        "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions",
+        "vendor": "MongoDB",
+        "tooltip": "MongoDB's top model with retrieval instructions",
         "leaderboards": [
             "Text"
         ]
@@ -640,7 +640,7 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
-        "vendor": "Voyage AI",
+        "vendor": "MongoDB",
         "tooltip": null,
         "leaderboards": [
             "Text"
@@ -657,7 +657,7 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
-        "vendor": "Voyage AI",
+        "vendor": "MongoDB",
         "tooltip": null,
         "leaderboards": [
             "Text"
@@ -674,7 +674,7 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
-        "vendor": "Voyage AI",
+        "vendor": "MongoDB",
         "tooltip": null,
         "leaderboards": [
             "Text"
@@ -691,7 +691,7 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
-        "vendor": "Voyage AI",
+        "vendor": "MongoDB",
         "tooltip": null,
         "leaderboards": [
             "Text"
@@ -708,8 +708,8 @@
         "corpus_instruct": "Represent the document for retrieval: ",
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
-        "vendor": "Voyage AI",
-        "tooltip": "Voyage's top model with retrieval instructions",
+        "vendor": "MongoDB",
+        "tooltip": "MongoDB's top model with retrieval instructions",
         "leaderboards": [
             "Text"
         ]
@@ -725,7 +725,7 @@
         "corpus_instruct": null,
         "reference": "https://docs.voyageai.com/docs/embeddings",
         "alias": null,
-        "vendor": "Voyage AI",
+        "vendor": "MongoDB",
         "tooltip": null,
         "leaderboards": [
             "Text"
@@ -742,7 +742,7 @@
         "corpus_instruct": null,
         "reference": "https://docs.voyageai.com/docs/multimodal-embeddings",
         "alias": null,
-        "vendor": "Voyage AI",
+        "vendor": "MongoDB",
         "tooltip": null,
         "leaderboards": [
             "Multimodal"
