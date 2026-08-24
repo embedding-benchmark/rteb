@@ -132,8 +132,8 @@ voyage_code_3 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
-    tooltip="Voyage's top model with retrieval instructions"
+    vendor="MongoDB",
+    tooltip="MongoDB's top model with retrieval instructions"
 )
 
 voyage_3 = ModelMeta(
@@ -146,8 +146,8 @@ voyage_3 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
-    tooltip="Voyage's top model with retrieval instructions"
+    vendor="MongoDB",
+    tooltip="MongoDB's top model with retrieval instructions"
 )
 
 voyage_3_large = ModelMeta(
@@ -160,7 +160,7 @@ voyage_3_large = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="MongoDB"
 )
 
 voyage_35 = ModelMeta(
@@ -173,8 +173,8 @@ voyage_35 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
-    tooltip="Voyage's top model with retrieval instructions"
+    vendor="MongoDB",
+    tooltip="MongoDB's top model with retrieval instructions"
 )
 
 voyage_35_int8_512 = ModelMeta(
@@ -188,8 +188,8 @@ voyage_35_int8_512 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
-    tooltip="Voyage's top model with retrieval instructions"
+    vendor="MongoDB",
+    tooltip="MongoDB's top model with retrieval instructions"
 )
 
 voyage_35_binary_256 = ModelMeta(
@@ -203,8 +203,8 @@ voyage_35_binary_256 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
-    tooltip="Voyage's top model with retrieval instructions"
+    vendor="MongoDB",
+    tooltip="MongoDB's top model with retrieval instructions"
 )
 
 voyage_4 = ModelMeta(
@@ -217,7 +217,7 @@ voyage_4 = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="MongoDB"
 )
 
 voyage_4_large = ModelMeta(
@@ -230,7 +230,7 @@ voyage_4_large = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="MongoDB"
 )
 
 voyage_4_lite = ModelMeta(
@@ -243,7 +243,7 @@ voyage_4_lite = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI"
+    vendor="MongoDB"
 )
 
 voyage_4_nano = ModelMeta(
@@ -256,7 +256,7 @@ voyage_4_nano = ModelMeta(
     query_instruct="Represent the query for retrieving supporting documents: ",
     corpus_instruct="Represent the document for retrieval: ",
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
+    vendor="MongoDB",
 )
 
 voyage_law_2 = ModelMeta(
@@ -269,7 +269,7 @@ voyage_law_2 = ModelMeta(
     query_instruct=None,
     corpus_instruct=None,
     reference="https://docs.voyageai.com/docs/embeddings",
-    vendor="Voyage AI",
+    vendor="MongoDB",
 )
 
 MULTIMODAL_BATCH_TOKEN_LIMIT = 32_000
@@ -417,6 +417,6 @@ voyage_multimodal_35 = ModelMeta(
     query_instruct=None,
     corpus_instruct=None,
     reference="https://docs.voyageai.com/docs/multimodal-embeddings",
-    vendor="Voyage AI",
+    vendor="MongoDB",
     leaderboards=["Multimodal"],
 )

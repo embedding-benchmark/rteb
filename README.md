@@ -165,7 +165,7 @@ RTEB supports multiple model types organized by provider:
 - **Sentence-transformers**: all-MiniLM-L6-v2, all-mpnet-base-v2, etc.
 - **NVIDIA**: NV-Embed-v2
 - **Cohere**: embed-english-v3.0, embed-multilingual-v3.0
-- **VoyageAI**: voyage-3, voyage-3.5
+- **MongoDB**: voyage-3, voyage-3.5
 - **And many more...**
 
 Use `--list-models` to see all available models with their specifications.
