@@ -170,6 +170,10 @@ def get_args() -> argparse.Namespace:
         help="Disable automatic max_seq_length capping from model's max_tokens. "
              "By default, SentenceTransformers models are capped to the model's documented max_tokens.")
     parser.add_argument(
+        "--model_dtype", type=str, default=None,
+        help="Torch dtype for loading local model weights, e.g. 'bfloat16'. "
+             "Defaults to the checkpoint's own dtype handling (fp32 for SentenceTransformers).")
+    parser.add_argument(
         "--device_map", action="store_true",
         help="Use device_map='auto' to shard model across multiple GPUs. "
              "Use with --gpus 1 and CUDA_VISIBLE_DEVICES=X,Y to spread a large model across GPUs.")
@@ -461,6 +465,8 @@ def main(args: argparse.Namespace):
         load_kwargs = {"device": device}
         if args.device_map:
             load_kwargs["device_map"] = True
+        if args.model_dtype:
+            load_kwargs["dtype"] = args.model_dtype
         if args.max_seq_length is not None:
             load_kwargs["max_seq_length"] = args.max_seq_length
         if args.no_seq_length_cap:

@@ -59,6 +59,7 @@ class SentenceTransformersEmbeddingModel(EmbeddingModel):
         max_seq_length: int = None,
         cap_seq_length: bool = True,
         device_map: bool = False,
+        dtype: str = None,
         **kwargs
     ):
         super().__init__(model_meta, **kwargs)
@@ -66,6 +67,7 @@ class SentenceTransformersEmbeddingModel(EmbeddingModel):
         self._max_seq_length = max_seq_length
         self._cap_seq_length = cap_seq_length
         self._device_map = device_map
+        self._dtype = dtype
         self.__model = None  # Initialize for lazy loading
 
     def embed(self, data: str, input_type: str) -> list[list[float]]:
@@ -85,6 +87,11 @@ class SentenceTransformersEmbeddingModel(EmbeddingModel):
                 _patch_sdpa_for_embedding()
                 model_kwargs = {"attn_implementation": "sdpa"}
                 logger.info("Using PyTorch SDPA for memory-efficient attention")
+                if self._dtype:
+                    # Models published in bf16 (e.g. Nemotron-3-Embed-8B-BF16) do not fit
+                    # in fp32 on a single GPU once 32k-token activations are added.
+                    model_kwargs["torch_dtype"] = getattr(torch, self._dtype)
+                    logger.info(f"Loading model weights in {self._dtype}")
                 if self._device_map:
                     # Load model in bf16 to reduce memory, skip SDPA patch
                     # which adds overhead. With bf16 weights (~24GB for 12B model)
@@ -366,6 +373,23 @@ llama_embed_nemotron_8b = ModelMeta(
     reference="https://huggingface.co/nvidia/llama-embed-nemotron-8b",
     vendor="NVIDIA",
     tooltip="NVIDIA's instruction-aware 4096d model based on Llama-3.1-8B"
+)
+
+
+# NVIDIA Nemotron 3 embedding model
+nemotron_3_embed_8b = ModelMeta(
+    loader=NvidiaEmbeddingModel,
+    model_name="Nemotron-3-Embed-8B-BF16",
+    embd_dtype="float32",
+    embd_dim=4096,
+    max_tokens=32768,
+    num_params=8_000_000_000,
+    similarity="cosine",
+    query_instruct="query: ",
+    corpus_instruct="passage: ",
+    reference="https://huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16",
+    vendor="NVIDIA",
+    tooltip="NVIDIA's 4096d Nemotron 3 embedding model"
 )
 
 

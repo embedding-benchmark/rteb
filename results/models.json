@@ -747,5 +747,22 @@
         "leaderboards": [
             "Multimodal"
         ]
+    },
+    {
+        "model_name": "Nemotron-3-Embed-8B-BF16",
+        "embd_dtype": "float32",
+        "embd_dim": 4096,
+        "num_params": 8000000000,
+        "max_tokens": 32768,
+        "similarity": "cosine",
+        "query_instruct": "query: ",
+        "corpus_instruct": "passage: ",
+        "reference": "https://huggingface.co/nvidia/Nemotron-3-Embed-8B-BF16",
+        "alias": null,
+        "vendor": "NVIDIA",
+        "tooltip": "NVIDIA's 4096d Nemotron 3 embedding model",
+        "leaderboards": [
+            "Text"
+        ]
     }
 ]
