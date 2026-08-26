@@ -393,6 +393,21 @@ nemotron_3_embed_8b = ModelMeta(
 )
 
 
+# Tencent WeMM multimodal embedding model
+wemm_embedding_9b = ModelMeta(
+    loader=TencentEmbeddingModel,
+    model_name="WeMM-Embedding-9B",
+    embd_dtype="float32",
+    embd_dim=4096,
+    max_tokens=65536,
+    num_params=9_000_000_000,
+    similarity="cosine",
+    reference="https://huggingface.co/tencent/WeMM-Embedding-9B",
+    vendor="Tencent",
+    tooltip="Tencent's 4096d multimodal embedding model built on Qwen3.5"
+)
+
+
 # Tencent KaLM model
 kalm_embedding_gemma3_12B = ModelMeta(
     loader=TencentEmbeddingModel,
