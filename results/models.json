@@ -764,5 +764,22 @@
         "leaderboards": [
             "Text"
         ]
+    },
+    {
+        "model_name": "WeMM-Embedding-9B",
+        "embd_dtype": "float32",
+        "embd_dim": 4096,
+        "num_params": 9000000000,
+        "max_tokens": 65536,
+        "similarity": "cosine",
+        "query_instruct": null,
+        "corpus_instruct": null,
+        "reference": "https://huggingface.co/tencent/WeMM-Embedding-9B",
+        "alias": null,
+        "vendor": "Tencent",
+        "tooltip": "Tencent's 4096d multimodal embedding model built on Qwen3.5",
+        "leaderboards": [
+            "Text"
+        ]
     }
 ]
