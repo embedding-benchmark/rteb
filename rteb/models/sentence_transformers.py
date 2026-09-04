@@ -18,12 +18,19 @@ def _patch_sdpa_for_embedding():
 
     The default SDPA path fails for GQA models (e.g. Qwen3/Octen with 32 Q heads
     vs 8 K/V heads) because the memory-efficient kernel requires matching head counts,
-    and the 4D causal mask forces fallback to the O(n²) math backend.
+    because the memory-efficient kernel requires matching head counts.
 
     This patch:
     1. Expands K/V heads to match Q heads via repeat_kv
-    2. Drops the 4D attention mask (avoids O(n²) mask allocation)
-    3. Uses is_causal from the module (preserves causal attention for decoder models)
+    2. Lets SDPA build the causal mask internally when transformers passes none
+       (avoids O(n²) mask allocation for unpadded causal batches)
+    3. Honours the mask whenever transformers does pass one
+
+    Step 3 is not optional. When a batch is padded, that mask is the only thing marking
+    the pad positions, and for a bidirectionally-trained model (e.g. Nemotron-3-Embed,
+    which sets `is_causal: false`) it also carries the attention direction. Dropping it
+    let pad tokens into the attention of every real token, which cost 14 NDCG@10 points
+    on HC3Finance at batch_size 4.
     """
     global _sdpa_patched
     if _sdpa_patched:
@@ -36,11 +43,18 @@ def _patch_sdpa_for_embedding():
         if hasattr(module, 'num_key_value_groups'):
             key = repeat_kv(key, module.num_key_value_groups)
             value = repeat_kv(value, module.num_key_value_groups)
-        # Use the module's is_causal setting (True for decoder-based models like Qwen3)
-        # The SDPA kernel generates the causal mask internally without O(n²) memory
-        causal = getattr(module, 'is_causal', False) if is_causal is None else is_causal
+        mask = attention_mask
+        if mask is not None:
+            mask = mask[:, :, :, :key.shape[-2]]
+            # The mask already encodes direction; asking SDPA for causality too would
+            # double-apply it.
+            causal = False
+        else:
+            # Use the module's is_causal setting (True for decoder-based models like Qwen3)
+            # The SDPA kernel generates the causal mask internally without O(n²) memory
+            causal = getattr(module, 'is_causal', False) if is_causal is None else is_causal
         attn_output = torch.nn.functional.scaled_dot_product_attention(
-            query, key, value, attn_mask=None, dropout_p=dropout, scale=scaling, is_causal=causal
+            query, key, value, attn_mask=mask, dropout_p=dropout, scale=scaling, is_causal=causal
         )
         attn_output = attn_output.transpose(1, 2).contiguous()
         return attn_output, None

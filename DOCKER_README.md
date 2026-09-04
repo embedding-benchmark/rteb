@@ -23,7 +23,7 @@ This document explains how to run the RTEB (Retrieval Embedding Benchmark) appli
 
 3. Run with custom arguments:
    ```bash
-   ./run_rteb.sh --gpus 2 --batch_size 32 --save_embds
+   ./run_rteb.sh --gpus 2 --save_embds
    ```
 
 ## Available Arguments
@@ -32,7 +32,7 @@ All arguments supported by the RTEB application can be passed directly to the Do
 
 - `--gpus <num>`: Number of GPUs to use (default: 0, requires NVIDIA Docker runtime)
 - `--cpus <num>`: Number of CPUs to use (default: 1)
-- `--batch_size <num>`: Batch size for encoding (default: 16)
+- `--batch_size <num>`: Batch size for encoding (default: 1, see README)
 - `--data_path <path>`: Path to the dataset (default: /app/data)
 - `--save_path <path>`: Path to save output (default: /app/output)
 - `--save_embds`: Save embeddings

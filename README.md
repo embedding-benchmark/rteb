@@ -125,8 +125,7 @@ python -m rteb --models "text-embedding-3-small_float32_1536d,all-MiniLM-L6-v2" 
 python -m rteb \
   --models "text-embedding-3-small_float32_1536d,text-embedding-3-large_float32_3072d,text-embedding-004_float32_768d" \
   --tasks "FinanceBench,HC3Finance,FinQA" \
-  --gpus 1 \
-  --batch_size 32
+  --gpus 1
 ```
 
 #### Example 2: Compare sentence-transformers models on code datasets
@@ -143,8 +142,7 @@ python -m rteb \
 python -m rteb \
   --models "sentence-transformers__all-MiniLM-L6-v2_float32_384d" \
   --tasks "ChatDoctor_HealthCareMagic,CUREv1_en" \
-  --cpus 4 \
-  --batch_size 16
+  --cpus 4
 ```
 
 #### Example 4: Run with memory optimization
@@ -279,7 +277,9 @@ Each dataset follows a standard format:
 - `--bf16`: Use bfloat16 precision for memory efficiency
 
 ### Batch and Memory Settings
-- `--batch_size N`: Encoding batch size (default: 16)
+- `--batch_size N`: Encoding batch size (default: 1). Larger batches pad every sequence up
+  to the longest one in the batch; leave this at 1 unless you have verified that the model
+  handles the padding mask correctly.
 - `--embd_batch_size N`: Similarity computation batch size (default: 1024)
 - `--embd_in_memory_threshold N`: Embedding memory threshold (default: 200000)
 - `--offload-model`: Offload model after encoding to save memory
